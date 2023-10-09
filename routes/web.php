@@ -13,6 +13,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\InvoiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -120,4 +121,9 @@ Route::controller(DepartmentController::class)->group(function () {
 // ----------------------- subject -----------------------------//
 Route::controller(SubjectController::class)->group(function () {
     Route::get('subject/list/page', 'subjectList')->middleware('auth')->name('subject/list/page'); // subject/list/page
+});
+
+// ----------------------- invoice -----------------------------//
+Route::controller(InvoiceController::class)->group(function () {
+    Route::get('invoice/list/page', 'invoiceList')->middleware('auth')->name('invoice/list/page'); // subjeinvoicect/list/page
 });

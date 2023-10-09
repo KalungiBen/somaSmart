@@ -1,4 +1,3 @@
-
 @extends('layouts.master')
 @section('content')
 {{-- message --}}
@@ -246,7 +245,5 @@
 </div>
 
 @section('script')
-   
 @endsection
-
 @endsection
