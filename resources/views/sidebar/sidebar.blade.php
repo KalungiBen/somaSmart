@@ -71,13 +71,13 @@
                         <li><a href="{{ route('department/edit/page') }}" class="{{set_active(['department/edit/page'])}}">Department Edit</a></li>
                     </ul>
                 </li>
-                <li class="submenu">
+                <li class="submenu {{set_active(['subject/list/page'])}}">
                     <a href="#"><i class="fas fa-book-reader"></i>
                         <span> Subjects</span>
                         <span class="menu-arrow"></span>
                     </a>
                     <ul>
-                        <li><a href="subjects.html">Subject List</a></li>
+                        <li><a class="{{set_active(['subject/list/page'])}}" href="{{ route('subject/list/page') }}">Subject List</a></li>
                         <li><a href="add-subject.html">Subject Add</a></li>
                         <li><a href="edit-subject.html">Subject Edit</a></li>
                     </ul>

@@ -12,6 +12,7 @@ use App\Http\Controllers\Setting;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\SubjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -114,4 +115,9 @@ Route::controller(DepartmentController::class)->group(function () {
     Route::get('department/list/page', 'departmentList')->middleware('auth')->name('department/list/page'); // department/list/page
     Route::get('department/add/page', 'indexDepartment')->middleware('auth')->name('department/add/page'); // page add department
     Route::get('department/edit/page', 'editDepartment')->middleware('auth')->name('department/edit/page'); // page add department
+});
+
+// ----------------------- subject -----------------------------//
+Route::controller(SubjectController::class)->group(function () {
+    Route::get('subject/list/page', 'subjectList')->middleware('auth')->name('subject/list/page'); // subject/list/page
 });
