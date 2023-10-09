@@ -9,6 +9,6 @@ class SubjectController extends Controller
     /** index page */
     public function subjectList()
     {
-        return view('subjects.subject_list');
+        return view('subjects.list_subject');
     }
 }
