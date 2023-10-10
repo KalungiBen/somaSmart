@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('content')
     {{-- message --}}
-    {!! Toastr::message() !!}
+    {!! Toastr::message() !!} 
     <div class="page-wrapper">
         <div class="content container-fluid">
 
@@ -11,15 +11,10 @@
                         <h3 class="page-title">Invoices</h3>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Invoices</li>
+                            <li class="breadcrumb-item"><a href="invoices.html">Invoice</a></li>
+                            <li class="breadcrumb-item active">Invoices Paid</li>
                         </ul>
                     </div>
-                </div>
-            </div>
-
-            <div class="page-header">
-                <div class="row align-items-center">
-                    <div class="col"></div>
                     <div class="col-auto">
                         <a href="invoices.html" class="invoices-links active">
                             <i class="feather feather-list"></i>
@@ -136,11 +131,11 @@
                                                 <p class="checkbox-title">By Status</p>
                                                 <div class="selectBox-cont">
                                                     <label class="custom_check w-100">
-                                                        <input type="checkbox" name="name" checked>
+                                                        <input type="checkbox" name="name">
                                                         <span class="checkmark"></span> All Invoices
                                                     </label>
                                                     <label class="custom_check w-100">
-                                                        <input type="checkbox" name="name">
+                                                        <input type="checkbox" name="name" checked>
                                                         <span class="checkmark"></span> Paid
                                                     </label>
                                                     <label class="custom_check w-100">
@@ -237,8 +232,8 @@
                             <div class="col-lg-8 col-md-8">
                                 <div class="invoices-tabs">
                                     <ul>
-                                        <li><a href="invoices.html" class="active">All Invoice</a></li>
-                                        <li><a href="{{ route('invoice/paid/page') }}">Paid</a></li>
+                                        <li><a href="{{ route('invoice/list/page') }}">All Invoice</a></li>
+                                        <li><a href="invoices-paid.html" class="active">Paid</a></li>
                                         <li><a href="invoices-overdue.html">Overdue</a></li>
                                         <li><a href="invoices-draft.html">Draft</a></li>
                                         <li><a href="invoices-recurring.html">Recurring</a></li>
@@ -330,12 +325,11 @@
                                 <table class="table table-stripped table-hover datatable">
                                     <thead class="thead-light">
                                         <tr>
-                                            <th>Invoice ID</th>
-                                            <th>Category</th>
+                                            <th>Invoice number</th>
                                             <th>Created on</th>
                                             <th>Invoice to</th>
                                             <th>Amount</th>
-                                            <th>Due date</th>
+                                            <th>Paid on</th>
                                             <th>Status</th>
                                             <th class="text-end">Action</th>
                                         </tr>
@@ -349,7 +343,6 @@
                                                 </label>
                                                 <a href="view-invoice.html" class="invoice-link">IN093439#@09</a>
                                             </td>
-                                            <td>Advertising</td>
                                             <td>16 Mar 2022</td>
                                             <td>
                                                 <h2 class="table-avatar">
@@ -363,26 +356,12 @@
                                             <td>23 Mar 2022</td>
                                             <td><span class="badge bg-success-light">Paid</span></td>
                                             <td class="text-end">
-                                                <div class="dropdown dropdown-action">
-                                                    <a href="#" class="action-icon dropdown-toggle"
-                                                        data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                            class="fas fa-ellipsis-v"></i></a>
-                                                    <div class="dropdown-menu dropdown-menu-end">
-                                                        <a class="dropdown-item" href="edit-invoice.html"><i
-                                                                class="far fa-edit me-2"></i>Edit</a>
-                                                        <a class="dropdown-item" href="view-invoice.html"><i
-                                                                class="far fa-eye me-2"></i>View</a>
-                                                        <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                class="far fa-trash-alt me-2"></i>Delete</a>
-                                                        <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                class="far fa-check-circle me-2"></i>Mark as
-                                                            sent</a>
-                                                        <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                class="far fa-paper-plane me-2"></i>Send Invoice</a>
-                                                        <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                class="far fa-copy me-2"></i>Clone Invoice</a>
-                                                    </div>
-                                                </div>
+                                                <a href="edit-invoice.html"
+                                                    class="btn btn-sm btn-white text-success me-2"><i
+                                                        class="far fa-edit me-1"></i> Edit</a>
+                                                <a class="btn btn-sm btn-white text-danger" href="#"
+                                                    data-bs-toggle="modal" data-bs-target="#delete_paid"><i
+                                                        class="far fa-trash-alt me-1"></i>Delete</a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -393,7 +372,6 @@
                                                 </label>
                                                 <a href="view-invoice.html" class="invoice-link">IN093439#@10</a>
                                             </td>
-                                            <td>Food</td>
                                             <td>14 Mar 2022</td>
                                             <td>
                                                 <h2 class="table-avatar">
@@ -405,28 +383,14 @@
                                             </td>
                                             <td class="text-primary">$1,222</td>
                                             <td>18 Mar 2022</td>
-                                            <td><span class="badge bg-danger-light">Overdue</span></td>
+                                            <td><span class="badge bg-success-light">Paid</span></td>
                                             <td class="text-end">
-                                                <div class="dropdown dropdown-action">
-                                                    <a href="#" class="action-icon dropdown-toggle"
-                                                        data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                            class="fas fa-ellipsis-v"></i></a>
-                                                    <div class="dropdown-menu dropdown-menu-end">
-                                                        <a class="dropdown-item" href="edit-invoice.html"><i
-                                                                class="far fa-edit me-2"></i>Edit</a>
-                                                        <a class="dropdown-item" href="view-invoice.html"><i
-                                                                class="far fa-eye me-2"></i>View</a>
-                                                        <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                class="far fa-trash-alt me-2"></i>Delete</a>
-                                                        <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                class="far fa-check-circle me-2"></i>Mark as
-                                                            sent</a>
-                                                        <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                class="far fa-paper-plane me-2"></i>Send Invoice</a>
-                                                        <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                class="far fa-copy me-2"></i>Clone Invoice</a>
-                                                    </div>
-                                                </div>
+                                                <a href="edit-invoice.html"
+                                                    class="btn btn-sm btn-white text-success me-2"><i
+                                                        class="far fa-edit me-1"></i> Edit</a>
+                                                <a class="btn btn-sm btn-white text-danger" href="#"
+                                                    data-bs-toggle="modal" data-bs-target="#delete_paid"><i
+                                                        class="far fa-trash-alt me-1"></i>Delete</a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -437,7 +401,6 @@
                                                 </label>
                                                 <a href="view-invoice.html" class="invoice-link">IN093439#@11</a>
                                             </td>
-                                            <td>Marketing</td>
                                             <td>7 Mar 2022</td>
                                             <td>
                                                 <h2 class="table-avatar">
@@ -449,28 +412,14 @@
                                             </td>
                                             <td class="text-primary">$3,470</td>
                                             <td>10 Mar 2022</td>
-                                            <td><span class="badge bg-primary-light">Cancelled</span></td>
+                                            <td><span class="badge bg-success-light">Paid</span></td>
                                             <td class="text-end">
-                                                <div class="dropdown dropdown-action">
-                                                    <a href="#" class="action-icon dropdown-toggle"
-                                                        data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                            class="fas fa-ellipsis-v"></i></a>
-                                                    <div class="dropdown-menu dropdown-menu-end">
-                                                        <a class="dropdown-item" href="edit-invoice.html"><i
-                                                                class="far fa-edit me-2"></i>Edit</a>
-                                                        <a class="dropdown-item" href="view-invoice.html"><i
-                                                                class="far fa-eye me-2"></i>View</a>
-                                                        <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                class="far fa-trash-alt me-2"></i>Delete</a>
-                                                        <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                class="far fa-check-circle me-2"></i>Mark as
-                                                            sent</a>
-                                                        <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                class="far fa-paper-plane me-2"></i>Send Invoice</a>
-                                                        <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                class="far fa-copy me-2"></i>Clone Invoice</a>
-                                                    </div>
-                                                </div>
+                                                <a href="edit-invoice.html"
+                                                    class="btn btn-sm btn-white text-success me-2"><i
+                                                        class="far fa-edit me-1"></i> Edit</a>
+                                                <a class="btn btn-sm btn-white text-danger" href="#"
+                                                    data-bs-toggle="modal" data-bs-target="#delete_paid"><i
+                                                        class="far fa-trash-alt me-1"></i>Delete</a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -481,7 +430,6 @@
                                                 </label>
                                                 <a href="view-invoice.html" class="invoice-link">IN093439#@12</a>
                                             </td>
-                                            <td>Repairs</td>
                                             <td>24 Mar 2022</td>
                                             <td>
                                                 <h2 class="table-avatar">
@@ -495,26 +443,12 @@
                                             <td>30 Mar 2022</td>
                                             <td><span class="badge bg-success-light">Paid</span></td>
                                             <td class="text-end">
-                                                <div class="dropdown dropdown-action">
-                                                    <a href="#" class="action-icon dropdown-toggle"
-                                                        data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                            class="fas fa-ellipsis-v"></i></a>
-                                                    <div class="dropdown-menu dropdown-menu-end">
-                                                        <a class="dropdown-item" href="edit-invoice.html"><i
-                                                                class="far fa-edit me-2"></i>Edit</a>
-                                                        <a class="dropdown-item" href="view-invoice.html"><i
-                                                                class="far fa-eye me-2"></i>View</a>
-                                                        <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                class="far fa-trash-alt me-2"></i>Delete</a>
-                                                        <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                class="far fa-check-circle me-2"></i>Mark as
-                                                            sent</a>
-                                                        <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                class="far fa-paper-plane me-2"></i>Send Invoice</a>
-                                                        <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                class="far fa-copy me-2"></i>Clone Invoice</a>
-                                                    </div>
-                                                </div>
+                                                <a href="edit-invoice.html"
+                                                    class="btn btn-sm btn-white text-success me-2"><i
+                                                        class="far fa-edit me-1"></i> Edit</a>
+                                                <a class="btn btn-sm btn-white text-danger" href="#"
+                                                    data-bs-toggle="modal" data-bs-target="#delete_paid"><i
+                                                        class="far fa-trash-alt me-1"></i>Delete</a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -525,7 +459,6 @@
                                                 </label>
                                                 <a href="view-invoice.html" class="invoice-link">IN093439#@13</a>
                                             </td>
-                                            <td>Software</td>
                                             <td>17 Mar 2022</td>
                                             <td>
                                                 <h2 class="table-avatar">
@@ -537,28 +470,14 @@
                                             </td>
                                             <td class="text-primary">$5,200</td>
                                             <td>20 Mar 2022</td>
-                                            <td><span class="badge bg-danger-light">Overdue</span></td>
+                                            <td><span class="badge bg-success-light">Paid</span></td>
                                             <td class="text-end">
-                                                <div class="dropdown dropdown-action">
-                                                    <a href="#" class="action-icon dropdown-toggle"
-                                                        data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                            class="fas fa-ellipsis-v"></i></a>
-                                                    <div class="dropdown-menu dropdown-menu-end">
-                                                        <a class="dropdown-item" href="edit-invoice.html"><i
-                                                                class="far fa-edit me-2"></i>Edit</a>
-                                                        <a class="dropdown-item" href="view-invoice.html"><i
-                                                                class="far fa-eye me-2"></i>View</a>
-                                                        <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                class="far fa-trash-alt me-2"></i>Delete</a>
-                                                        <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                class="far fa-check-circle me-2"></i>Mark as
-                                                            sent</a>
-                                                        <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                class="far fa-paper-plane me-2"></i>Send Invoice</a>
-                                                        <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                class="far fa-copy me-2"></i>Clone Invoice</a>
-                                                    </div>
-                                                </div>
+                                                <a href="edit-invoice.html"
+                                                    class="btn btn-sm btn-white text-success me-2"><i
+                                                        class="far fa-edit me-1"></i> Edit</a>
+                                                <a class="btn btn-sm btn-white text-danger" href="#"
+                                                    data-bs-toggle="modal" data-bs-target="#delete_paid"><i
+                                                        class="far fa-trash-alt me-1"></i>Delete</a>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -570,6 +489,5 @@
             </div>
         </div>
     </div>
-@section('script')
-@endsection
+
 @endsection

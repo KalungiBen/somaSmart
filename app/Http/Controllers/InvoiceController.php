@@ -11,4 +11,10 @@ class InvoiceController extends Controller
     {
         return view('invoices.list_invoices');
     }
+
+    /** invoice paid page */
+    public function invoicePaid()
+    {
+        return view('invoices.paid_invoices');
+    }
 }

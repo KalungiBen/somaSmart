@@ -82,13 +82,13 @@
                         <li><a href="edit-subject.html">Subject Edit</a></li>
                     </ul>
                 </li>
-                <li class="submenu {{set_active(['invoice/list/page'])}}">
+                <li class="submenu {{set_active(['invoice/list/page','invoice/paid/page'])}}">
                     <a href="#"><i class="fas fa-clipboard"></i>
                         <span> Invoices</span>
                         <span class="menu-arrow"></span>
                     </a>
                     <ul>
-                        <li><a class="{{set_active(['invoice/list/page'])}}" href="{{ route('invoice/list/page') }}">Invoices List</a></li>
+                        <li><a class="{{set_active(['invoice/list/page','invoice/paid/page'])}}" href="{{ route('invoice/list/page') }}">Invoices List</a></li>
                         <li><a href="invoice-grid.html">Invoices Grid</a></li>
                         <li><a href="add-invoice.html">Add Invoices</a></li>
                         <li><a href="edit-invoice.html">Edit Invoices</a></li>

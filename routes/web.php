@@ -117,5 +117,6 @@ Route::group(['namespace' => 'App\Http\Controllers'],function()
     // ----------------------- invoice -----------------------------//
     Route::controller(InvoiceController::class)->group(function () {
         Route::get('invoice/list/page', 'invoiceList')->middleware('auth')->name('invoice/list/page'); // subjeinvoicect/list/page
+        Route::get('invoice/paid/page', 'invoicePaid')->middleware('auth')->name('invoice/paid/page'); // invoice/paid/page
     });
 });
