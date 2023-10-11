@@ -4,7 +4,6 @@
     {!! Toastr::message() !!} 
     <div class="page-wrapper">
         <div class="content container-fluid">
-
             <div class="page-header">
                 <div class="row align-items-center">
                     <div class="col">
@@ -12,7 +11,7 @@
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
                             <li class="breadcrumb-item"><a href="invoices.html">Invoice</a></li>
-                            <li class="breadcrumb-item active">Invoices Paid</li>
+                            <li class="breadcrumb-item active">Invoices Overdue</li>
                         </ul>
                     </div>
                     <div class="col-auto">
@@ -25,6 +24,7 @@
                     </div>
                 </div>
             </div>
+
 
             <div class="card report-card">
                 <div class="card-body pb-0">
@@ -135,11 +135,11 @@
                                                         <span class="checkmark"></span> All Invoices
                                                     </label>
                                                     <label class="custom_check w-100">
-                                                        <input type="checkbox" name="name" checked>
+                                                        <input type="checkbox" name="name">
                                                         <span class="checkmark"></span> Paid
                                                     </label>
                                                     <label class="custom_check w-100">
-                                                        <input type="checkbox" name="name">
+                                                        <input type="checkbox" name="name" checked>
                                                         <span class="checkmark"></span> Overdue
                                                     </label>
                                                     <label class="custom_check w-100">
@@ -233,8 +233,8 @@
                                 <div class="invoices-tabs">
                                     <ul>
                                         <li><a href="{{ route('invoice/list/page') }}">All Invoice</a></li>
-                                        <li><a class="active" href="{{ route('invoice/paid/page') }}">Paid</a></li>
-                                        <li><a href="{{ route('invoice/overdue/page') }}">Overdue</a></li>
+                                        <li><a href="{{ route('invoice/paid/page') }}">Paid</a></li>
+                                        <li><a class="active" href="{{ route('invoice/overdue/page') }}">Overdue</a></li>
                                         <li><a href="invoices-draft.html">Draft</a></li>
                                         <li><a href="invoices-recurring.html">Recurring</a></li>
                                         <li><a href="invoices-cancelled.html">Cancelled</a></li>
@@ -325,11 +325,11 @@
                                 <table class="table table-stripped table-hover datatable">
                                     <thead class="thead-light">
                                         <tr>
-                                            <th>Invoice number</th>
-                                            <th>Created on</th>
+                                            <th>Invoice ID</th>
                                             <th>Invoice to</th>
                                             <th>Amount</th>
-                                            <th>Paid on</th>
+                                            <th>Created on</th>
+                                            <th>Last date</th>
                                             <th>Status</th>
                                             <th class="text-end">Action</th>
                                         </tr>
@@ -343,7 +343,6 @@
                                                 </label>
                                                 <a href="view-invoice.html" class="invoice-link">IN093439#@09</a>
                                             </td>
-                                            <td>16 Mar 2022</td>
                                             <td>
                                                 <h2 class="table-avatar">
                                                     <a href="profile.html"><img
@@ -353,8 +352,9 @@
                                                 </h2>
                                             </td>
                                             <td class="text-primary">$1,54,220</td>
+                                            <td>16 Mar 2022</td>
                                             <td>23 Mar 2022</td>
-                                            <td><span class="badge bg-success-light">Paid</span></td>
+                                            <td><span class="badge bg-danger-light">Overdue 7 days</span></td>
                                             <td class="text-end">
                                                 <a href="edit-invoice.html"
                                                     class="btn btn-sm btn-white text-success me-2"><i
@@ -372,7 +372,6 @@
                                                 </label>
                                                 <a href="view-invoice.html" class="invoice-link">IN093439#@10</a>
                                             </td>
-                                            <td>14 Mar 2022</td>
                                             <td>
                                                 <h2 class="table-avatar">
                                                     <a href="profile.html"><img
@@ -382,8 +381,9 @@
                                                 </h2>
                                             </td>
                                             <td class="text-primary">$1,222</td>
+                                            <td>14 Mar 2022</td>
                                             <td>18 Mar 2022</td>
-                                            <td><span class="badge bg-success-light">Paid</span></td>
+                                            <td><span class="badge bg-danger-light">Overdue 4 days</span></td>
                                             <td class="text-end">
                                                 <a href="edit-invoice.html"
                                                     class="btn btn-sm btn-white text-success me-2"><i
@@ -401,7 +401,6 @@
                                                 </label>
                                                 <a href="view-invoice.html" class="invoice-link">IN093439#@11</a>
                                             </td>
-                                            <td>7 Mar 2022</td>
                                             <td>
                                                 <h2 class="table-avatar">
                                                     <a href="profile.html"><img
@@ -411,8 +410,9 @@
                                                 </h2>
                                             </td>
                                             <td class="text-primary">$3,470</td>
+                                            <td>7 Mar 2022</td>
                                             <td>10 Mar 2022</td>
-                                            <td><span class="badge bg-success-light">Paid</span></td>
+                                            <td><span class="badge bg-danger-light">Overdue 3 days</span></td>
                                             <td class="text-end">
                                                 <a href="edit-invoice.html"
                                                     class="btn btn-sm btn-white text-success me-2"><i
@@ -430,7 +430,6 @@
                                                 </label>
                                                 <a href="view-invoice.html" class="invoice-link">IN093439#@12</a>
                                             </td>
-                                            <td>24 Mar 2022</td>
                                             <td>
                                                 <h2 class="table-avatar">
                                                     <a href="profile.html"><img
@@ -440,8 +439,9 @@
                                                 </h2>
                                             </td>
                                             <td class="text-primary">$8,265</td>
+                                            <td>24 Mar 2022</td>
                                             <td>30 Mar 2022</td>
-                                            <td><span class="badge bg-success-light">Paid</span></td>
+                                            <td><span class="badge bg-danger-light">Overdue 6 days</span></td>
                                             <td class="text-end">
                                                 <a href="edit-invoice.html"
                                                     class="btn btn-sm btn-white text-success me-2"><i
@@ -459,7 +459,6 @@
                                                 </label>
                                                 <a href="view-invoice.html" class="invoice-link">IN093439#@13</a>
                                             </td>
-                                            <td>17 Mar 2022</td>
                                             <td>
                                                 <h2 class="table-avatar">
                                                     <a href="profile.html"><img
@@ -469,8 +468,9 @@
                                                 </h2>
                                             </td>
                                             <td class="text-primary">$5,200</td>
+                                            <td>17 Mar 2022</td>
                                             <td>20 Mar 2022</td>
-                                            <td><span class="badge bg-success-light">Paid</span></td>
+                                            <td><span class="badge bg-danger-light">Overdue 3 days</span></td>
                                             <td class="text-end">
                                                 <a href="edit-invoice.html"
                                                     class="btn btn-sm btn-white text-success me-2"><i
@@ -482,6 +482,30 @@
                                         </tr>
                                     </tbody>
                                 </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal custom-modal fade" id="delete_paid" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="form-header">
+                        <h3>Delete Invoice Overdue</h3>
+                        <p>Are you sure want to delete?</p>
+                    </div>
+                    <div class="modal-btn delete-action">
+                        <div class="row">
+                            <div class="col-6">
+                                <a href="javascript:void(0);" class="btn btn-primary paid-continue-btn">Delete</a>
+                            </div>
+                            <div class="col-6">
+                                <a href="javascript:void(0);" data-bs-dismiss="modal"
+                                    class="btn btn-primary paid-cancel-btn">Cancel</a>
                             </div>
                         </div>
                     </div>

@@ -17,4 +17,10 @@ class InvoiceController extends Controller
     {
         return view('invoices.paid_invoices');
     }
+
+    /** incoice overdue page*/
+    public function invoiceOverdue()
+    {
+        return view('invoices.overdue_invoices');
+    }
 }

@@ -4,7 +4,6 @@
     {!! Toastr::message() !!}
     <div class="page-wrapper">
         <div class="content container-fluid">
-
             <div class="page-header">
                 <div class="row align-items-center">
                     <div class="col">
@@ -237,14 +236,14 @@
                             <div class="col-lg-8 col-md-8">
                                 <div class="invoices-tabs">
                                     <ul>
-                                        <li><a href="invoices.html" class="active">All Invoice</a></li>
+                                        <li><a class="active" href="{{ route('invoice/list/page') }}">All Invoice</a></li>
                                         <li><a href="{{ route('invoice/paid/page') }}">Paid</a></li>
-                                        <li><a href="invoices-overdue.html">Overdue</a></li>
+                                        <li><a href="{{ route('invoice/overdue/page') }}">Overdue</a></li>
                                         <li><a href="invoices-draft.html">Draft</a></li>
                                         <li><a href="invoices-recurring.html">Recurring</a></li>
                                         <li><a href="invoices-cancelled.html">Cancelled</a></li>
                                     </ul>
-                                </div>
+                                </div> 
                             </div>
                             <div class="col-lg-4 col-md-4">
                                 <div class="invoices-settings-btn">
