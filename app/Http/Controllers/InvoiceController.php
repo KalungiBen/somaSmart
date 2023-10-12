@@ -23,4 +23,10 @@ class InvoiceController extends Controller
     {
         return view('invoices.overdue_invoices');
     }
+
+    /** invoice draft */
+    public function invoiceDraft()
+    {
+        return view('invoices.draft_invoices');
+    }
 }

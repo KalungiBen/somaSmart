@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('content')
     {{-- message --}}
-    {!! Toastr::message() !!} 
+    {!! Toastr::message() !!}
     <div class="page-wrapper">
         <div class="content container-fluid">
             <div class="page-header">
@@ -11,7 +11,7 @@
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
                             <li class="breadcrumb-item"><a href="invoices.html">Invoice</a></li>
-                            <li class="breadcrumb-item active">Invoices Overdue</li>
+                            <li class="breadcrumb-item active">Invoices Draft</li>
                         </ul>
                     </div>
                     <div class="col-auto">
@@ -138,11 +138,11 @@
                                                         <span class="checkmark"></span> Paid
                                                     </label>
                                                     <label class="custom_check w-100">
-                                                        <input type="checkbox" name="name" checked>
+                                                        <input type="checkbox" name="name">
                                                         <span class="checkmark"></span> Overdue
                                                     </label>
                                                     <label class="custom_check w-100">
-                                                        <input type="checkbox" name="name">
+                                                        <input type="checkbox" name="name" checked>
                                                         <span class="checkmark"></span> Draft
                                                     </label>
                                                     <label class="custom_check w-100">
@@ -233,8 +233,8 @@
                                     <ul>
                                         <li><a href="{{ route('invoice/list/page') }}">All Invoice</a></li>
                                         <li><a href="{{ route('invoice/paid/page') }}">Paid</a></li>
-                                        <li><a class="active" href="{{ route('invoice/overdue/page') }}">Overdue</a></li>
-                                        <li><a href="{{ route('invoice/draft/page') }}">Draft</a></li>
+                                        <li><a href="{{ route('invoice/overdue/page') }}">Overdue</a></li>
+                                        <li><a class="active" href="{{ route('invoice/draft/page') }}">Draft</a></li>
                                         <li><a href="invoices-recurring.html">Recurring</a></li>
                                         <li><a href="invoices-cancelled.html">Cancelled</a></li>
                                     </ul>
@@ -326,12 +326,9 @@
                                 <table class="table table-stripped table-hover datatable">
                                     <thead class="thead-light">
                                         <tr>
-                                            <th>Invoice ID</th>
                                             <th>Invoice to</th>
                                             <th>Amount</th>
                                             <th>Created on</th>
-                                            <th>Last date</th>
-                                            <th>Status</th>
                                             <th class="text-end">Action</th>
                                         </tr>
                                     </thead>
@@ -342,20 +339,15 @@
                                                     <input type="checkbox" name="invoice">
                                                     <span class="checkmark"></span>
                                                 </label>
-                                                <a href="view-invoice.html" class="invoice-link">IN093439#@09</a>
-                                            </td>
-                                            <td>
                                                 <h2 class="table-avatar">
                                                     <a href="profile.html"><img
                                                             class="avatar avatar-sm me-2 avatar-img rounded-circle"
-                                                            src="assets/img/profiles/avatar-04.jpg"
+                                                            src="{{ URL::to('/images/photo_defaults.jpg') }}"
                                                             alt="User Image"> Barbara Moore</a>
                                                 </h2>
                                             </td>
                                             <td class="text-primary">$1,54,220</td>
                                             <td>16 Mar 2022</td>
-                                            <td>23 Mar 2022</td>
-                                            <td><span class="badge bg-danger-light">Overdue 7 days</span></td>
                                             <td class="text-end">
                                                 <a href="edit-invoice.html"
                                                     class="btn btn-sm btn-white text-success me-2"><i
@@ -371,20 +363,15 @@
                                                     <input type="checkbox" name="invoice">
                                                     <span class="checkmark"></span>
                                                 </label>
-                                                <a href="view-invoice.html" class="invoice-link">IN093439#@10</a>
-                                            </td>
-                                            <td>
                                                 <h2 class="table-avatar">
                                                     <a href="profile.html"><img
                                                             class="avatar avatar-sm me-2 avatar-img rounded-circle"
-                                                            src="assets/img/profiles/avatar-06.jpg"
+                                                            src="{{ URL::to('/images/photo_defaults.jpg') }}"
                                                             alt="User Image"> Karlene Chaidez</a>
                                                 </h2>
                                             </td>
                                             <td class="text-primary">$1,222</td>
                                             <td>14 Mar 2022</td>
-                                            <td>18 Mar 2022</td>
-                                            <td><span class="badge bg-danger-light">Overdue 4 days</span></td>
                                             <td class="text-end">
                                                 <a href="edit-invoice.html"
                                                     class="btn btn-sm btn-white text-success me-2"><i
@@ -400,20 +387,15 @@
                                                     <input type="checkbox" name="invoice">
                                                     <span class="checkmark"></span>
                                                 </label>
-                                                <a href="view-invoice.html" class="invoice-link">IN093439#@11</a>
-                                            </td>
-                                            <td>
                                                 <h2 class="table-avatar">
                                                     <a href="profile.html"><img
                                                             class="avatar avatar-sm me-2 avatar-img rounded-circle"
-                                                            src="assets/img/profiles/avatar-08.jpg"
+                                                            src="{{ URL::to('/images/photo_defaults.jpg') }}"
                                                             alt="User Image"> Russell Copeland</a>
                                                 </h2>
                                             </td>
                                             <td class="text-primary">$3,470</td>
                                             <td>7 Mar 2022</td>
-                                            <td>10 Mar 2022</td>
-                                            <td><span class="badge bg-danger-light">Overdue 3 days</span></td>
                                             <td class="text-end">
                                                 <a href="edit-invoice.html"
                                                     class="btn btn-sm btn-white text-success me-2"><i
@@ -429,20 +411,15 @@
                                                     <input type="checkbox" name="invoice">
                                                     <span class="checkmark"></span>
                                                 </label>
-                                                <a href="view-invoice.html" class="invoice-link">IN093439#@12</a>
-                                            </td>
-                                            <td>
                                                 <h2 class="table-avatar">
                                                     <a href="profile.html"><img
                                                             class="avatar avatar-sm me-2 avatar-img rounded-circle"
-                                                            src="assets/img/profiles/avatar-10.jpg"
+                                                            src="{{ URL::to('/images/photo_defaults.jpg') }}"
                                                             alt="User Image"> Joseph Collins</a>
                                                 </h2>
                                             </td>
                                             <td class="text-primary">$8,265</td>
                                             <td>24 Mar 2022</td>
-                                            <td>30 Mar 2022</td>
-                                            <td><span class="badge bg-danger-light">Overdue 6 days</span></td>
                                             <td class="text-end">
                                                 <a href="edit-invoice.html"
                                                     class="btn btn-sm btn-white text-success me-2"><i
@@ -458,20 +435,15 @@
                                                     <input type="checkbox" name="invoice">
                                                     <span class="checkmark"></span>
                                                 </label>
-                                                <a href="view-invoice.html" class="invoice-link">IN093439#@13</a>
-                                            </td>
-                                            <td>
                                                 <h2 class="table-avatar">
                                                     <a href="profile.html"><img
                                                             class="avatar avatar-sm me-2 avatar-img rounded-circle"
-                                                            src="assets/img/profiles/avatar-11.jpg"
+                                                            src="{{ URL::to('/images/photo_defaults.jpg') }}"
                                                             alt="User Image"> Jennifer Floyd</a>
                                                 </h2>
                                             </td>
                                             <td class="text-primary">$5,200</td>
                                             <td>17 Mar 2022</td>
-                                            <td>20 Mar 2022</td>
-                                            <td><span class="badge bg-danger-light">Overdue 3 days</span></td>
                                             <td class="text-end">
                                                 <a href="edit-invoice.html"
                                                     class="btn btn-sm btn-white text-success me-2"><i
@@ -488,6 +460,7 @@
                     </div>
                 </div>
             </div>
+            
         </div>
     </div>
 
@@ -496,7 +469,7 @@
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="form-header">
-                        <h3>Delete Invoice Overdue</h3>
+                        <h3>Delete Invoice Draft</h3>
                         <p>Are you sure want to delete?</p>
                     </div>
                     <div class="modal-btn delete-action">
@@ -515,4 +488,6 @@
         </div>
     </div>
 
+@section('script')
+@endsection
 @endsection

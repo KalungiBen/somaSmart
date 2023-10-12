@@ -235,7 +235,7 @@
                                         <li><a href="{{ route('invoice/list/page') }}">All Invoice</a></li>
                                         <li><a class="active" href="{{ route('invoice/paid/page') }}">Paid</a></li>
                                         <li><a href="{{ route('invoice/overdue/page') }}">Overdue</a></li>
-                                        <li><a href="invoices-draft.html">Draft</a></li>
+                                        <li><a href="{{ route('invoice/draft/page') }}">Draft</a></li>
                                         <li><a href="invoices-recurring.html">Recurring</a></li>
                                         <li><a href="invoices-cancelled.html">Cancelled</a></li>
                                     </ul>
@@ -255,6 +255,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col-xl-3 col-sm-6 col-12">
                     <div class="card inovices-card">
@@ -317,6 +318,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col-sm-12">
                     <div class="card card-table">
