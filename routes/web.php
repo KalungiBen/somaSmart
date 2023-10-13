@@ -112,6 +112,8 @@ Route::group(['namespace' => 'App\Http\Controllers'],function()
     // ----------------------- subject -----------------------------//
     Route::controller(SubjectController::class)->group(function () {
         Route::get('subject/list/page', 'subjectList')->middleware('auth')->name('subject/list/page'); // subject/list/page
+        Route::get('subject/add/page', 'subjectAdd')->middleware('auth')->name('subject/add/page'); // subject/add/page
+        Route::get('subject/edit/page', 'subjectEdit')->middleware('auth')->name('subject/edit/page'); // subject/add/page
     });
 
     // ----------------------- invoice -----------------------------//

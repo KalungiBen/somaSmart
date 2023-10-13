@@ -71,17 +71,19 @@
                         <li><a href="{{ route('department/edit/page') }}" class="{{set_active(['department/edit/page'])}}">Department Edit</a></li>
                     </ul>
                 </li>
-                <li class="submenu {{set_active(['subject/list/page'])}}">
+
+                <li class="submenu {{set_active(['subject/list/page','subject/add/page','ssubject/edit/page'])}}">
                     <a href="#"><i class="fas fa-book-reader"></i>
                         <span> Subjects</span>
                         <span class="menu-arrow"></span>
                     </a>
                     <ul>
                         <li><a class="{{set_active(['subject/list/page'])}}" href="{{ route('subject/list/page') }}">Subject List</a></li>
-                        <li><a href="add-subject.html">Subject Add</a></li>
-                        <li><a href="edit-subject.html">Subject Edit</a></li>
+                        <li><a class="{{set_active(['subject/add/page'])}}" href="{{ route('subject/add/page') }}">Subject Add</a></li>
+                        <li><a class="{{set_active(['subject/edit/page'])}}" href="{{ route('subject/edit/page') }}">Subject Edit</a></li>
                     </ul>
                 </li>
+
                 <li class="submenu {{set_active(['invoice/list/page','invoice/paid/page','invoice/overdue/page','invoice/draft/page'])}}">
                     <a href="#"><i class="fas fa-clipboard"></i>
                         <span> Invoices</span>
@@ -96,9 +98,11 @@
                         <li><a href="invoices-settings.html">Invoices Settings</a></li>
                     </ul>
                 </li>
+
                 <li class="menu-title">
                     <span>Management</span>
                 </li>
+
                 <li class="submenu">
                     <a href="#"><i class="fas fa-file-invoice-dollar"></i>
                         <span> Accounts</span>

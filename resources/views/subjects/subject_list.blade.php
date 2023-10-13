@@ -42,6 +42,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col-sm-12">
                     <div class="card card-table">
@@ -53,10 +54,12 @@
                                         <h3 class="page-title">Subjects</h3>
                                     </div>
                                     <div class="col-auto text-end float-end ms-auto download-grp">
-                                        <a href="#" class="btn btn-outline-primary me-2"><i
-                                                class="fas fa-download"></i> Download</a>
-                                        <a href="add-subject.html" class="btn btn-primary"><i
-                                                class="fas fa-plus"></i></a>
+                                        <a href="#" class="btn btn-outline-primary me-2">
+                                            <i class="fas fa-download"></i> Download
+                                        </a>
+                                        <a href="add-subject.html" class="btn btn-primary">
+                                            <i class="fas fa-plus"></i>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -68,8 +71,7 @@
                                         <tr>
                                             <th>
                                                 <div class="form-check check-tables">
-                                                    <input class="form-check-input" type="checkbox"
-                                                        value="something">
+                                                    <input class="form-check-input" type="checkbox" value="something">
                                                 </div>
                                             </th>
                                             <th>ID</th>
@@ -107,8 +109,7 @@
                                         <tr>
                                             <td>
                                                 <div class="form-check check-tables">
-                                                    <input class="form-check-input" type="checkbox"
-                                                        value="something">
+                                                    <input class="form-check-input" type="checkbox" value="something">
                                                 </div>
                                             </td>
                                             <td>PRE2213</td>
@@ -132,8 +133,7 @@
                                         <tr>
                                             <td>
                                                 <div class="form-check check-tables">
-                                                    <input class="form-check-input" type="checkbox"
-                                                        value="something">
+                                                    <input class="form-check-input" type="checkbox" value="something">
                                                 </div>
                                             </td>
                                             <td>PRE2143</td>
@@ -154,81 +154,6 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check check-tables">
-                                                    <input class="form-check-input" type="checkbox"
-                                                        value="something">
-                                                </div>
-                                            </td>
-                                            <td>PRE2431</td>
-                                            <td>
-                                                <h2>
-                                                    <a>Geography</a>
-                                                </h2>
-                                            </td>
-                                            <td>8</td>
-                                            <td class="text-end">
-                                                <div class="actions">
-                                                    <a href="javascript:;" class="btn btn-sm bg-success-light me-2">
-                                                        <i class="feather-eye"></i>
-                                                    </a>
-                                                    <a href="edit-subject.html" class="btn btn-sm bg-danger-light">
-                                                        <i class="feather-edit"></i>
-                                                    </a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check check-tables">
-                                                    <input class="form-check-input" type="checkbox"
-                                                        value="something">
-                                                </div>
-                                            </td>
-                                            <td>PRE1534</td>
-                                            <td>
-                                                <h2>
-                                                    <a>Botony</a>
-                                                </h2>
-                                            </td>
-                                            <td>9</td>
-                                            <td class="text-end">
-                                                <div class="actions">
-                                                    <a href="javascript:;" class="btn btn-sm bg-success-light me-2">
-                                                        <i class="feather-eye"></i>
-                                                    </a>
-                                                    <a href="edit-subject.html" class="btn btn-sm bg-danger-light">
-                                                        <i class="feather-edit"></i>
-                                                    </a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check check-tables">
-                                                    <input class="form-check-input" type="checkbox"
-                                                        value="something">
-                                                </div>
-                                            </td>
-                                            <td>PRE2153</td>
-                                            <td>
-                                                <h2>
-                                                    <a>English</a>
-                                                </h2>
-                                            </td>
-                                            <td>4</td>
-                                            <td class="text-end">
-                                                <div class="actions">
-                                                    <a href="javascript:;" class="btn btn-sm bg-success-light me-2">
-                                                        <i class="feather-eye"></i>
-                                                    </a>
-                                                    <a href="edit-subject.html" class="btn btn-sm bg-danger-light">
-                                                        <i class="feather-edit"></i>
-                                                    </a>
-                                                </div>
-                                            </td>
-                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -236,14 +161,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
-
-        <footer>
-            <p>Copyright © 2022 Dreamguys.</p>
-        </footer>
-
     </div>
-@section('script')
-   
-@endsection
 @endsection
