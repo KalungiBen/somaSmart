@@ -28,7 +28,7 @@
                             <h4 class="user-name mb-0">{{ Session::get('name') }}</h4>
                             <h6 class="text-muted">{{ Session::get('position') }}</h6>
                             <div class="user-Location"><i class="fas fa-map-marker-alt"></i> Combodai Phnom Penh</div>
-                            <div class="about-text">Lorem ipsum dolor sit amet.</div>
+                            <div class="about-text">Khmer 009</div>
                         </div>
                         <div class="col-auto profile-btn">
                             <a href="" class="btn btn-primary">Edit</a>
@@ -79,10 +79,7 @@
                                         </div>
                                         <div class="row">
                                             <p class="col-sm-3 text-muted text-sm-end mb-0">Address</p>
-                                            <p class="col-sm-9 mb-0">4663 Agriculture Lane,<br>
-                                                Miami,<br>
-                                                Florida - 33165,<br>
-                                                United States.</p>
+                                            <p class="col-sm-9 mb-0">Phnome Phenh</p>
                                         </div>
                                     </div>
                                 </div>
@@ -95,7 +92,7 @@
                                             <span>Account Status</span>
                                             <a class="edit-link" href="#"><i class="far fa-edit me-1"></i>Edit</a>
                                         </h5>
-                                        <button class="btn btn-success" type="button"><i class="fe fe-check-verified"></i> Active</button>
+                                        <button class="btn btn-success" type="button"><i class="fe fe-check-verified"></i> {{ Session::get('status') }}</button>
                                     </div>
                                 </div>
 
@@ -164,6 +161,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>

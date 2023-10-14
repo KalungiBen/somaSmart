@@ -133,7 +133,6 @@
 </div>
 
 @section('script')
-
 {{-- delete js --}}
 <script>
     $(document).on('click','.user_delete',function()
