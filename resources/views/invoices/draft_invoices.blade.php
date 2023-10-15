@@ -340,21 +340,19 @@
                                                     <span class="checkmark"></span>
                                                 </label>
                                                 <h2 class="table-avatar">
-                                                    <a href="profile.html"><img
-                                                            class="avatar avatar-sm me-2 avatar-img rounded-circle"
-                                                            src="{{ URL::to('/images/photo_defaults.jpg') }}"
-                                                            alt="User Image"> Barbara Moore</a>
+                                                    <a href="profile.html">
+                                                        <img class="avatar avatar-sm me-2 avatar-img rounded-circle" src="{{ URL::to('/images/photo_defaults.jpg') }}" alt="User Image"> StarCode Moore</a>
                                                 </h2>
                                             </td>
                                             <td class="text-primary">$1,54,220</td>
                                             <td>16 Mar 2022</td>
                                             <td class="text-end">
                                                 <a href="edit-invoice.html"
-                                                    class="btn btn-sm btn-white text-success me-2"><i
-                                                        class="far fa-edit me-1"></i> Edit</a>
-                                                <a class="btn btn-sm btn-white text-danger" href="#"
-                                                    data-bs-toggle="modal" data-bs-target="#delete_paid"><i
-                                                        class="far fa-trash-alt me-1"></i>Delete</a>
+                                                    class="btn btn-sm btn-white text-success me-2">
+                                                    <i class="far fa-edit me-1"></i> Edit</a>
+                                                <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid">
+                                                    <i class="far fa-trash-alt me-1"></i>Delete
+                                                </a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -364,93 +362,19 @@
                                                     <span class="checkmark"></span>
                                                 </label>
                                                 <h2 class="table-avatar">
-                                                    <a href="profile.html"><img
-                                                            class="avatar avatar-sm me-2 avatar-img rounded-circle"
-                                                            src="{{ URL::to('/images/photo_defaults.jpg') }}"
-                                                            alt="User Image"> Karlene Chaidez</a>
+                                                    <a href="profile.html">
+                                                        <img class="avatar avatar-sm me-2 avatar-img rounded-circle" src="{{ URL::to('/images/photo_defaults.jpg') }}" alt="User Image"> StarCode Moore</a>
                                                 </h2>
                                             </td>
-                                            <td class="text-primary">$1,222</td>
-                                            <td>14 Mar 2022</td>
+                                            <td class="text-primary">$1,54,220</td>
+                                            <td>16 Mar 2022</td>
                                             <td class="text-end">
                                                 <a href="edit-invoice.html"
-                                                    class="btn btn-sm btn-white text-success me-2"><i
-                                                        class="far fa-edit me-1"></i> Edit</a>
-                                                <a class="btn btn-sm btn-white text-danger" href="#"
-                                                    data-bs-toggle="modal" data-bs-target="#delete_paid"><i
-                                                        class="far fa-trash-alt me-1"></i>Delete</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label class="custom_check">
-                                                    <input type="checkbox" name="invoice">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                                <h2 class="table-avatar">
-                                                    <a href="profile.html"><img
-                                                            class="avatar avatar-sm me-2 avatar-img rounded-circle"
-                                                            src="{{ URL::to('/images/photo_defaults.jpg') }}"
-                                                            alt="User Image"> Russell Copeland</a>
-                                                </h2>
-                                            </td>
-                                            <td class="text-primary">$3,470</td>
-                                            <td>7 Mar 2022</td>
-                                            <td class="text-end">
-                                                <a href="edit-invoice.html"
-                                                    class="btn btn-sm btn-white text-success me-2"><i
-                                                        class="far fa-edit me-1"></i> Edit</a>
-                                                <a class="btn btn-sm btn-white text-danger" href="#"
-                                                    data-bs-toggle="modal" data-bs-target="#delete_paid"><i
-                                                        class="far fa-trash-alt me-1"></i>Delete</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label class="custom_check">
-                                                    <input type="checkbox" name="invoice">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                                <h2 class="table-avatar">
-                                                    <a href="profile.html"><img
-                                                            class="avatar avatar-sm me-2 avatar-img rounded-circle"
-                                                            src="{{ URL::to('/images/photo_defaults.jpg') }}"
-                                                            alt="User Image"> Joseph Collins</a>
-                                                </h2>
-                                            </td>
-                                            <td class="text-primary">$8,265</td>
-                                            <td>24 Mar 2022</td>
-                                            <td class="text-end">
-                                                <a href="edit-invoice.html"
-                                                    class="btn btn-sm btn-white text-success me-2"><i
-                                                        class="far fa-edit me-1"></i> Edit</a>
-                                                <a class="btn btn-sm btn-white text-danger" href="#"
-                                                    data-bs-toggle="modal" data-bs-target="#delete_paid"><i
-                                                        class="far fa-trash-alt me-1"></i>Delete</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label class="custom_check">
-                                                    <input type="checkbox" name="invoice">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                                <h2 class="table-avatar">
-                                                    <a href="profile.html"><img
-                                                            class="avatar avatar-sm me-2 avatar-img rounded-circle"
-                                                            src="{{ URL::to('/images/photo_defaults.jpg') }}"
-                                                            alt="User Image"> Jennifer Floyd</a>
-                                                </h2>
-                                            </td>
-                                            <td class="text-primary">$5,200</td>
-                                            <td>17 Mar 2022</td>
-                                            <td class="text-end">
-                                                <a href="edit-invoice.html"
-                                                    class="btn btn-sm btn-white text-success me-2"><i
-                                                        class="far fa-edit me-1"></i> Edit</a>
-                                                <a class="btn btn-sm btn-white text-danger" href="#"
-                                                    data-bs-toggle="modal" data-bs-target="#delete_paid"><i
-                                                        class="far fa-trash-alt me-1"></i>Delete</a>
+                                                    class="btn btn-sm btn-white text-success me-2">
+                                                    <i class="far fa-edit me-1"></i> Edit</a>
+                                                <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid">
+                                                    <i class="far fa-trash-alt me-1"></i>Delete
+                                                </a>
                                             </td>
                                         </tr>
                                     </tbody>

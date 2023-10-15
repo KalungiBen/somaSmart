@@ -346,10 +346,9 @@
                                             </td>
                                             <td>
                                                 <h2 class="table-avatar">
-                                                    <a href="profile.html"><img
-                                                            class="avatar avatar-sm me-2 avatar-img rounded-circle"
-                                                            src="assets/img/profiles/avatar-04.jpg"
-                                                            alt="User Image"> Barbara Moore</a>
+                                                    <a href="profile.html">
+                                                        <img class="avatar avatar-sm me-2 avatar-img rounded-circle" src="{{ URL::to('/images/photo_defaults.jpg') }}" alt=""> Barbara Moore
+                                                    </a>
                                                 </h2>
                                             </td>
                                             <td class="text-primary">$1,54,220</td>
@@ -358,11 +357,12 @@
                                             <td><span class="badge bg-danger-light">Overdue 7 days</span></td>
                                             <td class="text-end">
                                                 <a href="edit-invoice.html"
-                                                    class="btn btn-sm btn-white text-success me-2"><i
-                                                        class="far fa-edit me-1"></i> Edit</a>
-                                                <a class="btn btn-sm btn-white text-danger" href="#"
-                                                    data-bs-toggle="modal" data-bs-target="#delete_paid"><i
-                                                        class="far fa-trash-alt me-1"></i>Delete</a>
+                                                    class="btn btn-sm btn-white text-success me-2">
+                                                    <i class="far fa-edit me-1"></i> Edit
+                                                </a>
+                                                <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid">
+                                                    <i class="far fa-trash-alt me-1"></i>Delete
+                                                </a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -371,114 +371,27 @@
                                                     <input type="checkbox" name="invoice">
                                                     <span class="checkmark"></span>
                                                 </label>
-                                                <a href="view-invoice.html" class="invoice-link">IN093439#@10</a>
+                                                <a href="view-invoice.html" class="invoice-link">IN093439#@09</a>
                                             </td>
                                             <td>
                                                 <h2 class="table-avatar">
-                                                    <a href="profile.html"><img
-                                                            class="avatar avatar-sm me-2 avatar-img rounded-circle"
-                                                            src="assets/img/profiles/avatar-06.jpg"
-                                                            alt="User Image"> Karlene Chaidez</a>
+                                                    <a href="profile.html">
+                                                        <img class="avatar avatar-sm me-2 avatar-img rounded-circle" src="{{ URL::to('/images/photo_defaults.jpg') }}" alt=""> StarCode Moore
+                                                    </a>
                                                 </h2>
                                             </td>
-                                            <td class="text-primary">$1,222</td>
-                                            <td>14 Mar 2022</td>
-                                            <td>18 Mar 2022</td>
-                                            <td><span class="badge bg-danger-light">Overdue 4 days</span></td>
+                                            <td class="text-primary">$1,54,220</td>
+                                            <td>16 Mar 2022</td>
+                                            <td>23 Mar 2022</td>
+                                            <td><span class="badge bg-danger-light">Overdue 7 days</span></td>
                                             <td class="text-end">
                                                 <a href="edit-invoice.html"
-                                                    class="btn btn-sm btn-white text-success me-2"><i
-                                                        class="far fa-edit me-1"></i> Edit</a>
-                                                <a class="btn btn-sm btn-white text-danger" href="#"
-                                                    data-bs-toggle="modal" data-bs-target="#delete_paid"><i
-                                                        class="far fa-trash-alt me-1"></i>Delete</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label class="custom_check">
-                                                    <input type="checkbox" name="invoice">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                                <a href="view-invoice.html" class="invoice-link">IN093439#@11</a>
-                                            </td>
-                                            <td>
-                                                <h2 class="table-avatar">
-                                                    <a href="profile.html"><img
-                                                            class="avatar avatar-sm me-2 avatar-img rounded-circle"
-                                                            src="assets/img/profiles/avatar-08.jpg"
-                                                            alt="User Image"> Russell Copeland</a>
-                                                </h2>
-                                            </td>
-                                            <td class="text-primary">$3,470</td>
-                                            <td>7 Mar 2022</td>
-                                            <td>10 Mar 2022</td>
-                                            <td><span class="badge bg-danger-light">Overdue 3 days</span></td>
-                                            <td class="text-end">
-                                                <a href="edit-invoice.html"
-                                                    class="btn btn-sm btn-white text-success me-2"><i
-                                                        class="far fa-edit me-1"></i> Edit</a>
-                                                <a class="btn btn-sm btn-white text-danger" href="#"
-                                                    data-bs-toggle="modal" data-bs-target="#delete_paid"><i
-                                                        class="far fa-trash-alt me-1"></i>Delete</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label class="custom_check">
-                                                    <input type="checkbox" name="invoice">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                                <a href="view-invoice.html" class="invoice-link">IN093439#@12</a>
-                                            </td>
-                                            <td>
-                                                <h2 class="table-avatar">
-                                                    <a href="profile.html"><img
-                                                            class="avatar avatar-sm me-2 avatar-img rounded-circle"
-                                                            src="assets/img/profiles/avatar-10.jpg"
-                                                            alt="User Image"> Joseph Collins</a>
-                                                </h2>
-                                            </td>
-                                            <td class="text-primary">$8,265</td>
-                                            <td>24 Mar 2022</td>
-                                            <td>30 Mar 2022</td>
-                                            <td><span class="badge bg-danger-light">Overdue 6 days</span></td>
-                                            <td class="text-end">
-                                                <a href="edit-invoice.html"
-                                                    class="btn btn-sm btn-white text-success me-2"><i
-                                                        class="far fa-edit me-1"></i> Edit</a>
-                                                <a class="btn btn-sm btn-white text-danger" href="#"
-                                                    data-bs-toggle="modal" data-bs-target="#delete_paid"><i
-                                                        class="far fa-trash-alt me-1"></i>Delete</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label class="custom_check">
-                                                    <input type="checkbox" name="invoice">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                                <a href="view-invoice.html" class="invoice-link">IN093439#@13</a>
-                                            </td>
-                                            <td>
-                                                <h2 class="table-avatar">
-                                                    <a href="profile.html"><img
-                                                            class="avatar avatar-sm me-2 avatar-img rounded-circle"
-                                                            src="assets/img/profiles/avatar-11.jpg"
-                                                            alt="User Image"> Jennifer Floyd</a>
-                                                </h2>
-                                            </td>
-                                            <td class="text-primary">$5,200</td>
-                                            <td>17 Mar 2022</td>
-                                            <td>20 Mar 2022</td>
-                                            <td><span class="badge bg-danger-light">Overdue 3 days</span></td>
-                                            <td class="text-end">
-                                                <a href="edit-invoice.html"
-                                                    class="btn btn-sm btn-white text-success me-2"><i
-                                                        class="far fa-edit me-1"></i> Edit</a>
-                                                <a class="btn btn-sm btn-white text-danger" href="#"
-                                                    data-bs-toggle="modal" data-bs-target="#delete_paid"><i
-                                                        class="far fa-trash-alt me-1"></i>Delete</a>
+                                                    class="btn btn-sm btn-white text-success me-2">
+                                                    <i class="far fa-edit me-1"></i> Edit
+                                                </a>
+                                                <a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid">
+                                                    <i class="far fa-trash-alt me-1"></i>Delete
+                                                </a>
                                             </td>
                                         </tr>
                                     </tbody>

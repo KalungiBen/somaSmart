@@ -177,7 +177,7 @@
 		{{-- content page --}}
         @yield('content')
         <footer>
-            <p>Copyright © 2022 Soeng Souy.</p>
+            <p>Copyright ©  <?php echo date('Y'); ?> Soeng Souy.</p>
         </footer>
     
     </div>
