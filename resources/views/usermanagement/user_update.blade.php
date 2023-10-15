@@ -46,6 +46,12 @@
                                     </div>
                                     <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms">
+                                            <label>Date Of Birth <span class="login-danger">*</span></label>
+                                            <input type="text" class="form-control datetimepicker" name="date_of_birth" placeholder="DD-MM-YYYY" value="{{ $users->date_of_birth }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group local-forms">
                                             <label>Status <span class="login-danger">*</span></label>
                                             <select class="form-control select" name="status">
                                                 <option disabled>Select Status</option>

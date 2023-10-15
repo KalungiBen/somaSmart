@@ -39,13 +39,14 @@ class UserManagementController extends Controller
             if (Session::get('role_name') === 'Admin' || Session::get('role_name') === 'Super Admin')
             {
                 $user_id       = $request->user_id;
-                $name         = $request->name;
-                $email        = $request->email;
-                $role_name    = $request->role_name;
-                $position     = $request->position;
-                $phone        = $request->phone_number;
-                $department   = $request->department;
-                $status       = $request->status;
+                $name          = $request->name;
+                $email         = $request->email;
+                $role_name     = $request->role_name;
+                $position      = $request->position;
+                $phone         = $request->phone_number;
+                $date_of_birth = $request->date_of_birth;
+                $department    = $request->department;
+                $status        = $request->status;
 
                 $image_name = $request->hidden_avatar;
                 $image = $request->file('avatar');
@@ -65,15 +66,16 @@ class UserManagementController extends Controller
                 }
             
                 $update = [
-                    'user_id'      => $user_id,
-                    'name'         => $name,
-                    'role_name'    => $role_name,
-                    'email'        => $email,
-                    'position'     => $position,
-                    'phone_number' => $phone,
-                    'department'   => $department,
-                    'status'       => $status,
-                    'avatar'       => $image_name,
+                    'user_id'       => $user_id,
+                    'name'          => $name,
+                    'role_name'     => $role_name,
+                    'email'         => $email,
+                    'position'      => $position,
+                    'phone_number'  => $phone,
+                    'date_of_birth' => $date_of_birth,
+                    'department'    => $department,
+                    'status'        => $status,
+                    'avatar'        => $image_name,
                 ];
 
                 User::where('user_id',$request->user_id)->update($update);
