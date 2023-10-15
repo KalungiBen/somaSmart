@@ -57,7 +57,7 @@
                                         <a href="#" class="btn btn-outline-primary me-2">
                                             <i class="fas fa-download"></i> Download
                                         </a>
-                                        <a href="add-subject.html" class="btn btn-primary">
+                                        <a href="{{ route('subject/add/page') }}" class="btn btn-primary">
                                             <i class="fas fa-plus"></i>
                                         </a>
                                     </div>
