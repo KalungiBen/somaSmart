@@ -50,7 +50,7 @@
             <ul class="nav user-menu">
                 <li class="nav-item dropdown noti-dropdown language-drop me-2">
                     <a href="#" class="dropdown-toggle nav-link header-nav-list" data-bs-toggle="dropdown">
-                        <img src="assets/img/icons/header-icon-01.svg" alt="">
+                        <img src="{{ URL::to('assets/img/icons/header-icon-01.svg') }}" alt="">
                     </a>
                     <div class="dropdown-menu ">
                         <div class="noti-content">
@@ -64,7 +64,7 @@
 
                 <li class="nav-item dropdown noti-dropdown me-2">
                     <a href="#" class="dropdown-toggle nav-link header-nav-list" data-bs-toggle="dropdown">
-                        <img src="assets/img/icons/header-icon-05.svg" alt="">
+                        <img src="{{ URL::to('assets/img/icons/header-icon-05.svg') }}" alt="">
                     </a>
                     <div class="dropdown-menu notifications">
                         <div class="topnav-dropdown-header">
@@ -78,7 +78,7 @@
                                         <div class="media d-flex">
                                             <span class="avatar avatar-sm flex-shrink-0">
                                                 <img class="avatar-img rounded-circle" alt="User Image"
-                                                    src="assets/img/profiles/avatar-02.jpg">
+                                                    src="{{ URL::to('assets/img/profiles/avatar-02.jpg') }}">
                                             </span>
                                             <div class="media-body flex-grow-1">
                                                 <p class="noti-details"><span class="noti-title">Carlson Tech</span> has
@@ -93,11 +93,15 @@
                                     <a href="#">
                                         <div class="media d-flex">
                                             <span class="avatar avatar-sm flex-shrink-0">
-                                                <img class="avatar-img rounded-circle" alt="User Image" src="assets/img/profiles/avatar-11.jpg">
+                                                <img class="avatar-img rounded-circle" alt="User Image" src="{{ URL::to('assets/img/profiles/avatar-11.jpg') }}">
                                             </span>
                                             <div class="media-body flex-grow-1">
-                                                <p class="noti-details"><span class="noti-title">International Software Inc</span> has sent you a invoice in the amount of <span class="noti-title">$218</span></p>
-                                                <p class="noti-time"><span class="notification-time">6 mins ago</span>
+                                                <p class="noti-details">
+                                                    <span class="noti-title">International Software Inc</span> has sent you a invoice in the amount of
+                                                    <span class="noti-title">$218</span>
+                                                </p>
+                                                <p class="noti-time">
+                                                    <span class="notification-time">6 mins ago</span>
                                                 </p>
                                             </div>
                                         </div>
@@ -107,7 +111,7 @@
                                     <a href="#">
                                         <div class="media d-flex">
                                             <span class="avatar avatar-sm flex-shrink-0">
-                                                <img class="avatar-img rounded-circle" alt="User Image" src="assets/img/profiles/avatar-17.jpg">
+                                                <img class="avatar-img rounded-circle" alt="User Image" src="{{ URL::to('') }}">
                                             </span>
                                             <div class="media-body flex-grow-1">
                                                 <p class="noti-details"><span class="noti-title">John Hendry</span> sent a cancellation request <span class="noti-title">Apple iPhone XR</span></p>
@@ -121,7 +125,7 @@
                                     <a href="#">
                                         <div class="media d-flex">
                                             <span class="avatar avatar-sm flex-shrink-0">
-                                                <img class="avatar-img rounded-circle" alt="User Image" src="assets/img/profiles/avatar-13.jpg">
+                                                <img class="avatar-img rounded-circle" alt="User Image" src="{{ URL::to('assets/img/profiles/avatar-13.jpg') }}">
                                             </span>
                                             <div class="media-body flex-grow-1">
                                                 <p class="noti-details"><span class="noti-title">Mercury Software Inc</span> added a new product <span class="noti-title">Apple MacBook Pro</span></p>
@@ -141,7 +145,7 @@
 
                 <li class="nav-item zoom-screen me-2">
                     <a href="#" class="nav-link header-nav-list win-maximize">
-                        <img src="assets/img/icons/header-icon-04.svg" alt="">
+                        <img src="{{ URL::to('assets/img/icons/header-icon-04.svg') }}" alt="">
                     </a>
                 </li>
 

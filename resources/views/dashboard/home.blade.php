@@ -29,7 +29,7 @@
                                 <h3>50055</h3>
                             </div>
                             <div class="db-icon">
-                                <img src="assets/img/icons/dash-icon-01.svg" alt="Dashboard Icon">
+                                <img src="{{ URL::to('assets/img/icons/dash-icon-01.svg') }}" alt="Dashboard Icon">
                             </div>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
                                 <h3>50+</h3>
                             </div>
                             <div class="db-icon">
-                                <img src="assets/img/icons/dash-icon-02.svg" alt="Dashboard Icon">
+                                <img src="{{ URL::to('assets/img/icons/dash-icon-02.svg') }}" alt="Dashboard Icon">
                             </div>
                         </div>
                     </div>
@@ -59,7 +59,7 @@
                                 <h3>30+</h3>
                             </div>
                             <div class="db-icon">
-                                <img src="assets/img/icons/dash-icon-03.svg" alt="Dashboard Icon">
+                                <img src="{{ URL::to('assets/img/icons/dash-icon-03.svg') }}" alt="Dashboard Icon">
                             </div>
                         </div>
                     </div>
@@ -74,7 +74,7 @@
                                 <h3>$505</h3>
                             </div>
                             <div class="db-icon">
-                                <img src="assets/img/icons/dash-icon-04.svg" alt="Dashboard Icon">
+                                <img src="{{ URL::to('assets/img/icons/dash-icon-04.svg') }}" alt="Dashboard Icon">
                             </div>
                         </div>
                     </div>
