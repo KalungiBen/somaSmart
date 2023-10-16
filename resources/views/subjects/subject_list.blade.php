@@ -47,7 +47,6 @@
                 <div class="col-sm-12">
                     <div class="card card-table">
                         <div class="card-body">
-
                             <div class="page-header">
                                 <div class="row align-items-center">
                                     <div class="col">
@@ -63,7 +62,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="table-responsive">
                                 <table
                                     class="table border-0 star-student table-hover table-center mb-0 datatable table-striped">
@@ -81,6 +79,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach($subjectList as $key => $value)
                                         <tr>
                                             <td>
                                                 <div class="form-check check-tables">
@@ -88,13 +87,13 @@
                                                         value="something">
                                                 </div>
                                             </td>
-                                            <td>PRE2209</td>
+                                            <td>{{ $value->subject_id }}</td>
                                             <td>
                                                 <h2>
-                                                    <a>Mathematics</a>
+                                                    <a>{{ $value->subject_name }}</a>
                                                 </h2>
                                             </td>
-                                            <td>5</td>
+                                            <td>{{ $value->class }}</td>
                                             <td class="text-end">
                                                 <div class="actions">
                                                     <a href="javascript:;" class="btn btn-sm bg-success-light me-2">
@@ -106,54 +105,7 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check check-tables">
-                                                    <input class="form-check-input" type="checkbox" value="something">
-                                                </div>
-                                            </td>
-                                            <td>PRE2213</td>
-                                            <td>
-                                                <h2>
-                                                    <a>History</a>
-                                                </h2>
-                                            </td>
-                                            <td>6</td>
-                                            <td class="text-end">
-                                                <div class="actions">
-                                                    <a href="javascript:;" class="btn btn-sm bg-success-light me-2">
-                                                        <i class="feather-eye"></i>
-                                                    </a>
-                                                    <a href="edit-subject.html" class="btn btn-sm bg-danger-light">
-                                                        <i class="feather-edit"></i>
-                                                    </a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check check-tables">
-                                                    <input class="form-check-input" type="checkbox" value="something">
-                                                </div>
-                                            </td>
-                                            <td>PRE2143</td>
-                                            <td>
-                                                <h2>
-                                                    <a>Science</a>
-                                                </h2>
-                                            </td>
-                                            <td>3</td>
-                                            <td class="text-end">
-                                                <div class="actions">
-                                                    <a href="javascript:;" class="btn btn-sm bg-success-light me-2">
-                                                        <i class="feather-eye"></i>
-                                                    </a>
-                                                    <a href="edit-subject.html" class="btn btn-sm bg-danger-light">
-                                                        <i class="feather-edit"></i>
-                                                    </a>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

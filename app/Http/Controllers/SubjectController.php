@@ -13,7 +13,8 @@ class SubjectController extends Controller
     /** index page */
     public function subjectList()
     {
-        return view('subjects.subject_list');
+        $subjectList = Subject::all();
+        return view('subjects.subject_list',compact('subjectList'));
     }
 
     /** subject add */
