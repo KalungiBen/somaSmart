@@ -29,24 +29,24 @@
                                     <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms">
                                             <label>Subject ID <span class="login-danger">*</span></label>
-                                            <input type="text" class="form-control" value="PRE1534" readonly>
+                                            <input type="text" class="form-control" value="{{ $subjectEdit->subject_id }}" readonly>
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms">
                                             <label>Subject Name <span class="login-danger">*</span></label>
-                                            <input type="text" class="form-control" value="Botony">
+                                            <input type="text" class="form-control" value="{{ $subjectEdit->subject_name }}">
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms">
                                             <label>Class <span class="login-danger">*</span></label>
-                                            <input type="text" class="form-control" value="9">
+                                            <input type="text" class="form-control" value="{{ $subjectEdit->class }}">
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="student-submit">
-                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                            <button type="submit" class="btn btn-primary">Update</button>
                                         </div>
                                     </div>
                                 </div>

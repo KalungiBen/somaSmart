@@ -72,15 +72,15 @@
                     </ul>
                 </li>
 
-                <li class="submenu {{set_active(['subject/list/page','subject/add/page','ssubject/edit/page'])}}">
+                <li class="submenu {{set_active(['subject/list/page','subject/add/page'])}} {{ request()->is('subject/edit/*') ? 'active' : '' }}">
                     <a href="#"><i class="fas fa-book-reader"></i>
                         <span> Subjects</span>
                         <span class="menu-arrow"></span>
                     </a>
                     <ul>
-                        <li><a class="{{set_active(['subject/list/page'])}}" href="{{ route('subject/list/page') }}">Subject List</a></li>
+                        <li><a class="{{set_active(['subject/list/page'])}} {{ request()->is('subject/edit/*') ? 'active' : '' }}" href="{{ route('subject/list/page') }}">Subject List</a></li>
                         <li><a class="{{set_active(['subject/add/page'])}}" href="{{ route('subject/add/page') }}">Subject Add</a></li>
-                        <li><a class="{{set_active(['subject/edit/page'])}}" href="{{ route('subject/edit/page') }}">Subject Edit</a></li>
+                        <li><a>Subject Edit</a></li>
                     </ul>
                 </li>
 

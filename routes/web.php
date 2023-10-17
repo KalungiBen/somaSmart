@@ -114,7 +114,7 @@ Route::group(['namespace' => 'App\Http\Controllers'],function()
         Route::get('subject/list/page', 'subjectList')->middleware('auth')->name('subject/list/page'); // subject/list/page
         Route::get('subject/add/page', 'subjectAdd')->middleware('auth')->name('subject/add/page'); // subject/add/page
         Route::post('subject/save', 'saveRecord')->name('subject/save'); // subject/save
-        Route::get('subject/edit/page', 'subjectEdit')->middleware('auth')->name('subject/edit/page'); // subject/add/page
+        Route::get('subject/edit/{subject_id}', 'subjectEdit'); // subject/edit/page
     });
 
     // ----------------------- invoice -----------------------------//

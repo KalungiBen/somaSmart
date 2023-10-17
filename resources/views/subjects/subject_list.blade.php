@@ -99,7 +99,7 @@
                                                     <a href="javascript:;" class="btn btn-sm bg-success-light me-2">
                                                         <i class="feather-eye"></i>
                                                     </a>
-                                                    <a href="edit-subject.html" class="btn btn-sm bg-danger-light">
+                                                    <a href="{{ url('subject/edit/'.$value->subject_id) }}" class="btn btn-sm bg-danger-light">
                                                         <i class="feather-edit"></i>
                                                     </a>
                                                 </div>

@@ -50,9 +50,10 @@ class SubjectController extends Controller
         }
     }
 
-    /** subject edit */
-    public function subjectEdit()
+    /** subject edit view */
+    public function subjectEdit($subject_id)
     {
-        return view('subjects.subject_edit');
+        $subjectEdit = Subject::where('subject_id',$subject_id)->first();
+        return view('subjects.subject_edit',compact('subjectEdit'));
     }
 }
