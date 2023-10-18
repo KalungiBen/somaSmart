@@ -56,4 +56,28 @@ class SubjectController extends Controller
         $subjectEdit = Subject::where('subject_id',$subject_id)->first();
         return view('subjects.subject_edit',compact('subjectEdit'));
     }
+
+    /** update record */
+    public function updateRecord(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            
+            $updateRecord = [
+                'subject_name' => $request->subject_name,
+                'class'        => $request->class,
+            ];
+
+            Subject::where('subject_id',$request->subject_id)->update($updateRecord);
+            Toastr::success('Has been update successfully :)','Success');
+            DB::commit();
+            return redirect()->back();
+           
+        } catch(\Exception $e) {
+            \Log::info($e);
+            DB::rollback();
+            Toastr::error('Fail, update record:)','Error');
+            return redirect()->back();
+        }
+    }
 }
