@@ -115,6 +115,7 @@ Route::group(['namespace' => 'App\Http\Controllers'],function()
         Route::get('subject/add/page', 'subjectAdd')->middleware('auth')->name('subject/add/page'); // subject/add/page
         Route::post('subject/save', 'saveRecord')->name('subject/save'); // subject/save
         Route::post('subject/update', 'updateRecord')->name('subject/update'); // subject/update
+        Route::post('subject/delete', 'deleteRecord')->name('subject/delete'); // subject/delete
         Route::get('subject/edit/{subject_id}', 'subjectEdit'); // subject/edit/page
     });
 

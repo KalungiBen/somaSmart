@@ -87,7 +87,7 @@
                                                         value="something">
                                                 </div>
                                             </td>
-                                            <td>{{ $value->subject_id }}</td>
+                                            <td class="subject_id">{{ $value->subject_id }}</td>
                                             <td>
                                                 <h2>
                                                     <a>{{ $value->subject_name }}</a>
@@ -96,11 +96,11 @@
                                             <td>{{ $value->class }}</td>
                                             <td class="text-end">
                                                 <div class="actions">
-                                                    <a href="javascript:;" class="btn btn-sm bg-success-light me-2">
-                                                        <i class="feather-eye"></i>
-                                                    </a>
                                                     <a href="{{ url('subject/edit/'.$value->subject_id) }}" class="btn btn-sm bg-danger-light">
                                                         <i class="feather-edit"></i>
+                                                    </a>
+                                                    <a class="btn btn-sm bg-danger-light delete" data-bs-toggle="modal" data-bs-target="#delete">
+                                                        <i class="feather-trash-2 me-1"></i>
                                                     </a>
                                                 </div>
                                             </td>
@@ -116,4 +116,45 @@
 
         </div>
     </div>
+
+    {{-- model delete --}}
+    <div class="modal fade contentmodal" id="delete" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content doctor-profile">
+                <div class="modal-header pb-0 border-bottom-0  justify-content-end">
+                    <button type="button" class="close-btn" data-bs-dismiss="modal" aria-label="Close"><i
+                        class="feather-x-circle"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('subject/delete') }}" method="POST">
+                        @csrf
+                        <div class="delete-wrap text-center">
+                            <div class="del-icon">
+                                <i class="feather-x-circle"></i>
+                            </div>
+                            <input type="hidden" name="subject_id" class="e_subject_id" value="">
+                            <h2>Sure you want to delete</h2>
+                            <div class="submit-section">
+                                <button type="submit" class="btn btn-success me-2">Yes</button>
+                                <a class="btn btn-danger" data-bs-dismiss="modal">No</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @section('script')
+        {{-- delete js --}}
+        <script>
+            $(document).on('click','.delete',function()
+            {
+                var _this = $(this).parents('tr');
+                $('.e_subject_id').val(_this.find('.subject_id').text());
+            });
+        </script>
+    @endsection
+
 @endsection

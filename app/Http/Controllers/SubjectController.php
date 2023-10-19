@@ -80,4 +80,21 @@ class SubjectController extends Controller
             return redirect()->back();
         }
     }
+
+    /** delete record */
+    public function deleteRecord(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            Subject::where('subject_id',$request->subject_id)->delete();
+            DB::commit();
+            Toastr::success('Deleted record successfully :)','Success');
+            return redirect()->back();
+        } catch(\Exception $e) {
+            \Log::info($e);
+            DB::rollback();
+            Toastr::error('Deleted record fail :)','Error');
+            return redirect()->back();
+        }
+    }
 }
