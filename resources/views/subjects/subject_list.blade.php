@@ -113,17 +113,16 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 
-    {{-- model delete --}}
+    {{-- model elete --}}
     <div class="modal fade contentmodal" id="delete" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content doctor-profile">
                 <div class="modal-header pb-0 border-bottom-0  justify-content-end">
-                    <button type="button" class="close-btn" data-bs-dismiss="modal" aria-label="Close"><i
-                        class="feather-x-circle"></i>
+                    <button type="button" class="close-btn" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="feather-x-circle"></i>
                     </button>
                 </div>
                 <div class="modal-body">
