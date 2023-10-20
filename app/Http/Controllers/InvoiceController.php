@@ -29,4 +29,10 @@ class InvoiceController extends Controller
     {
         return view('invoices.draft_invoices');
     }
+
+    /** recurring invoices.blade */
+    public function invoiceRecurring()
+    {
+        return view('invoices.recurring_invoices');
+    }
 }

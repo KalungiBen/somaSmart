@@ -235,7 +235,7 @@
                                         <li><a href="{{ route('invoice/paid/page') }}">Paid</a></li>
                                         <li><a href="{{ route('invoice/overdue/page') }}">Overdue</a></li>
                                         <li><a class="active" href="{{ route('invoice/draft/page') }}">Draft</a></li>
-                                        <li><a href="invoices-recurring.html">Recurring</a></li>
+                                        <li><a href="{{ route('invoice/recurring/page') }}">Recurring</a></li>
                                         <li><a href="invoices-cancelled.html">Cancelled</a></li>
                                     </ul>
                                 </div>
@@ -341,7 +341,8 @@
                                                 </label>
                                                 <h2 class="table-avatar">
                                                     <a href="profile.html">
-                                                        <img class="avatar avatar-sm me-2 avatar-img rounded-circle" src="{{ URL::to('/images/photo_defaults.jpg') }}" alt="User Image"> StarCode Moore</a>
+                                                        <img class="avatar avatar-sm me-2 avatar-img rounded-circle" src="{{ URL::to('/images/photo_defaults.jpg') }}" alt="User Image"> StarCode Moore
+                                                    </a>
                                                 </h2>
                                             </td>
                                             <td class="text-primary">$1,54,220</td>
