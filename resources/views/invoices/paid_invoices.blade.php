@@ -237,7 +237,7 @@
                                         <li><a href="{{ route('invoice/overdue/page') }}">Overdue</a></li>
                                         <li><a href="{{ route('invoice/draft/page') }}">Draft</a></li>
                                         <li><a href="{{ route('invoice/recurring/page') }}">Recurring</a></li>
-                                        <li><a href="invoices-cancelled.html">Cancelled</a></li>
+                                        <li><a href="{{ route('invoice/cancelled/page') }}">Cancelled</a></li>
                                     </ul>
                                 </div>
                             </div>

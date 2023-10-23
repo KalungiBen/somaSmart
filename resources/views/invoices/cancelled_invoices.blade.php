@@ -2,23 +2,20 @@
 @section('content')
     {{-- message --}}
     {!! Toastr::message() !!}
+
     <div class="page-wrapper">
         <div class="content container-fluid">
+
             <div class="page-header">
                 <div class="row align-items-center">
                     <div class="col">
                         <h3 class="page-title">Invoices</h3>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Invoices</li>
+                            <li class="breadcrumb-item"><a href="invoices.html">Invoice</a></li>
+                            <li class="breadcrumb-item active">Invoices Cancelled</li>
                         </ul>
                     </div>
-                </div>
-            </div>
-
-            <div class="page-header">
-                <div class="row align-items-center">
-                    <div class="col"></div>
                     <div class="col-auto">
                         <a href="invoices.html" class="invoices-links active">
                             <i class="feather feather-list"></i>
@@ -135,7 +132,7 @@
                                                 <p class="checkbox-title">By Status</p>
                                                 <div class="selectBox-cont">
                                                     <label class="custom_check w-100">
-                                                        <input type="checkbox" name="name" checked>
+                                                        <input type="checkbox" name="name">
                                                         <span class="checkmark"></span> All Invoices
                                                     </label>
                                                     <label class="custom_check w-100">
@@ -155,7 +152,7 @@
                                                         <span class="checkmark"></span> Recurring
                                                     </label>
                                                     <label class="custom_check w-100">
-                                                        <input type="checkbox" name="name">
+                                                        <input type="checkbox" name="name" checked>
                                                         <span class="checkmark"></span> Cancelled
                                                     </label>
                                                 </div>
@@ -236,14 +233,14 @@
                             <div class="col-lg-8 col-md-8">
                                 <div class="invoices-tabs">
                                     <ul>
-                                        <li><a class="active" href="{{ route('invoice/list/page') }}">All Invoice</a></li>
+                                        <li><a href="{{ route('invoice/list/page') }}">All Invoice</a></li>
                                         <li><a href="{{ route('invoice/paid/page') }}">Paid</a></li>
                                         <li><a href="{{ route('invoice/overdue/page') }}">Overdue</a></li>
                                         <li><a href="{{ route('invoice/draft/page') }}">Draft</a></li>
                                         <li><a href="{{ route('invoice/recurring/page') }}">Recurring</a></li>
-                                        <li><a href="{{ route('invoice/cancelled/page') }}">Cancelled</a></li>
+                                        <li><a class="active" href="{{ route('invoice/cancelled/page') }}">Cancelled</a></li>
                                     </ul>
-                                </div> 
+                                </div>
                             </div>
                             <div class="col-lg-4 col-md-4">
                                 <div class="invoices-settings-btn">
@@ -259,7 +256,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="row">
                 <div class="col-xl-3 col-sm-6 col-12">
                     <div class="card inovices-card">
@@ -332,12 +328,10 @@
                                     <thead class="thead-light">
                                         <tr>
                                             <th>Invoice ID</th>
-                                            <th>Category</th>
-                                            <th>Created on</th>
                                             <th>Invoice to</th>
                                             <th>Amount</th>
-                                            <th>Due date</th>
-                                            <th>Status</th>
+                                            <th>Created on</th>
+                                            <th>Cancelled on</th>
                                             <th class="text-end">Action</th>
                                         </tr>
                                     </thead>
@@ -350,45 +344,131 @@
                                                 </label>
                                                 <a href="view-invoice.html" class="invoice-link">IN093439#@09</a>
                                             </td>
-                                            <td>Advertising</td>
-                                            <td>16 Mar 2022</td>
                                             <td>
                                                 <h2 class="table-avatar">
                                                     <a href="profile.html">
-                                                        <img class="avatar avatar-sm me-2 avatar-img rounded-circle" src="{{ URL::to('/images/photo_defaults.jpg') }}" alt=""> Barbara Moore
+                                                        <img class="avatar avatar-sm me-2 avatar-img rounded-circle" src="{{ URL::to('/images/photo_defaults.jpg') }}" alt="User Image"> StarCode Moore
                                                     </a>
                                                 </h2>
                                             </td>
                                             <td class="text-primary">$1,54,220</td>
+                                            <td>16 Mar 2022</td>
                                             <td>23 Mar 2022</td>
-                                            <td><span class="badge bg-success-light">Paid</span></td>
                                             <td class="text-end">
-                                                <div class="dropdown dropdown-action">
-                                                    <a href="#" class="action-icon dropdown-toggle"
-                                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                                        <i class="fas fa-ellipsis-v"></i>
+                                                <a href="edit-invoice.html"
+                                                    class="btn btn-sm btn-white text-success me-2"><i
+                                                        class="far fa-edit me-1"></i> Edit</a>
+                                                <a class="btn btn-sm btn-white text-danger" href="#"
+                                                    data-bs-toggle="modal" data-bs-target="#delete_paid"><i
+                                                        class="far fa-trash-alt me-1"></i>Delete</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label class="custom_check">
+                                                    <input type="checkbox" name="invoice">
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                                <a href="view-invoice.html" class="invoice-link">IN093439#@10</a>
+                                            </td>
+                                            <td>
+                                                <h2 class="table-avatar">
+                                                    <a href="profile.html">
+                                                        <img class="avatar avatar-sm me-2 avatar-img rounded-circle" src="{{ URL::to('/images/photo_defaults.jpg') }}" alt="User Image"> StarCode Moore
                                                     </a>
-                                                    <div class="dropdown-menu dropdown-menu-end">
-                                                        <a class="dropdown-item" href="edit-invoice.html">
-                                                            <i class="far fa-edit me-2"></i>Edit
-                                                        </a>
-                                                        <a class="dropdown-item" href="view-invoice.html">
-                                                            <i class="far fa-eye me-2"></i>View
-                                                        </a>
-                                                        <a class="dropdown-item" href="javascript:void(0);">
-                                                            <i class="far fa-trash-alt me-2"></i>Delete
-                                                        </a>
-                                                        <a class="dropdown-item" href="javascript:void(0);">
-                                                            <i class="far fa-check-circle me-2"></i>Mark as sent
-                                                        </a>
-                                                        <a class="dropdown-item" href="javascript:void(0);">
-                                                            <i class="far fa-paper-plane me-2"></i>Send Invoice
-                                                        </a>
-                                                        <a class="dropdown-item" href="#">
-                                                            <i class="far fa-copy me-2"></i>Clone Invoice
-                                                        </a>
-                                                    </div>
-                                                </div>
+                                                </h2>
+                                            </td>
+                                            <td class="text-primary">$1,222</td>
+                                            <td>14 Mar 2022</td>
+                                            <td>18 Mar 2022</td>
+                                            <td class="text-end">
+                                                <a href="edit-invoice.html"
+                                                    class="btn btn-sm btn-white text-success me-2"><i
+                                                        class="far fa-edit me-1"></i> Edit</a>
+                                                <a class="btn btn-sm btn-white text-danger" href="#"
+                                                    data-bs-toggle="modal" data-bs-target="#delete_paid"><i
+                                                        class="far fa-trash-alt me-1"></i>Delete</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label class="custom_check">
+                                                    <input type="checkbox" name="invoice">
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                                <a href="view-invoice.html" class="invoice-link">IN093439#@11</a>
+                                            </td>
+                                            <td>
+                                                <h2 class="table-avatar">
+                                                    <a href="profile.html">
+                                                        <img class="avatar avatar-sm me-2 avatar-img rounded-circle" src="{{ URL::to('/images/photo_defaults.jpg') }}" alt="User Image"> StarCode Moore
+                                                    </a>
+                                                </h2>
+                                            </td>
+                                            <td class="text-primary">$3,470</td>
+                                            <td>7 Mar 2022</td>
+                                            <td>10 Mar 2022</td>
+                                            <td class="text-end">
+                                                <a href="edit-invoice.html"
+                                                    class="btn btn-sm btn-white text-success me-2"><i
+                                                        class="far fa-edit me-1"></i> Edit</a>
+                                                <a class="btn btn-sm btn-white text-danger" href="#"
+                                                    data-bs-toggle="modal" data-bs-target="#delete_paid"><i
+                                                        class="far fa-trash-alt me-1"></i>Delete</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label class="custom_check">
+                                                    <input type="checkbox" name="invoice">
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                                <a href="view-invoice.html" class="invoice-link">IN093439#@12</a>
+                                            </td>
+                                            <td>
+                                                <h2 class="table-avatar">
+                                                    <a href="profile.html">
+                                                        <img class="avatar avatar-sm me-2 avatar-img rounded-circle" src="{{ URL::to('/images/photo_defaults.jpg') }}" alt="User Image"> StarCode Moore
+                                                    </a>
+                                                </h2>
+                                            </td>
+                                            <td class="text-primary">$8,265</td>
+                                            <td>24 Mar 2022</td>
+                                            <td>30 Mar 2022</td>
+                                            <td class="text-end">
+                                                <a href="edit-invoice.html"
+                                                    class="btn btn-sm btn-white text-success me-2"><i
+                                                        class="far fa-edit me-1"></i> Edit</a>
+                                                <a class="btn btn-sm btn-white text-danger" href="#"
+                                                    data-bs-toggle="modal" data-bs-target="#delete_paid"><i
+                                                        class="far fa-trash-alt me-1"></i>Delete</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label class="custom_check">
+                                                    <input type="checkbox" name="invoice">
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                                <a href="view-invoice.html" class="invoice-link">IN093439#@13</a>
+                                            </td>
+                                            <td>
+                                                <h2 class="table-avatar">
+                                                    <a href="profile.html">
+                                                        <img class="avatar avatar-sm me-2 avatar-img rounded-circle" src="{{ URL::to('/images/photo_defaults.jpg') }}" alt="User Image"> StarCode Moore
+                                                    </a>
+                                                </h2>
+                                            </td>
+                                            <td class="text-primary">$5,200</td>
+                                            <td>17 Mar 2022</td>
+                                            <td>20 Mar 2022</td>
+                                            <td class="text-end">
+                                                <a href="edit-invoice.html"
+                                                    class="btn btn-sm btn-white text-success me-2"><i
+                                                        class="far fa-edit me-1"></i> Edit</a>
+                                                <a class="btn btn-sm btn-white text-danger" href="#"
+                                                    data-bs-toggle="modal" data-bs-target="#delete_paid"><i
+                                                        class="far fa-trash-alt me-1"></i>Delete</a>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -401,6 +481,29 @@
 
         </div>
     </div>
-@section('script')
-@endsection
+
+    <div class="modal custom-modal fade" id="delete_paid" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="form-header">
+                        <h3>Delete Invoice Cancelled</h3>
+                        <p>Are you sure want to delete?</p>
+                    </div>
+                    <div class="modal-btn delete-action">
+                        <div class="row">
+                            <div class="col-6">
+                                <a href="javascript:void(0);" class="btn btn-primary paid-continue-btn">Delete</a>
+                            </div>
+                            <div class="col-6">
+                                <a href="javascript:void(0);" data-bs-dismiss="modal"
+                                    class="btn btn-primary paid-cancel-btn">Cancel</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @endsection

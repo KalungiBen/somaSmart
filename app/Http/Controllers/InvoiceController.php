@@ -35,4 +35,10 @@ class InvoiceController extends Controller
     {
         return view('invoices.recurring_invoices');
     }
+
+    /** invoice cancelled */
+    public function invoiceCancelled()
+    {
+        return view('invoices.cancelled_invoices');
+    }
 }
