@@ -41,4 +41,10 @@ class InvoiceController extends Controller
     {
         return view('invoices.cancelled_invoices');
     }
+
+    /** invoice grid */
+    public function invoiceGrid()
+    {
+        return view('invoices.grid_invoice');
+    }
 }

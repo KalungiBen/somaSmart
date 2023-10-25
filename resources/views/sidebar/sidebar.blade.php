@@ -84,14 +84,14 @@
                     </ul>
                 </li>
 
-                <li class="submenu {{set_active(['invoice/list/page','invoice/paid/page','invoice/overdue/page','invoice/draft/page','invoice/recurring/page','invoice/cancelled/page'])}}">
+                <li class="submenu {{set_active(['invoice/list/page','invoice/paid/page','invoice/overdue/page','invoice/draft/page','invoice/recurring/page','invoice/cancelled/page','invoice/grid/page'])}}">
                     <a href="#"><i class="fas fa-clipboard"></i>
                         <span> Invoices</span>
                         <span class="menu-arrow"></span>
                     </a>
                     <ul>
                         <li><a class="{{set_active(['invoice/list/page','invoice/paid/page','invoice/overdue/page','invoice/draft/page','invoice/recurring/page','invoice/cancelled/page'])}}" href="{{ route('invoice/list/page') }}">Invoices List</a></li>
-                        <li><a href="invoice-grid.html">Invoices Grid</a></li>
+                        <li><a class="{{set_active(['invoice/grid/page'])}}" href="{{ route('invoice/grid/page') }}">Invoices Grid</a></li>
                         <li><a href="add-invoice.html">Add Invoices</a></li>
                         <li><a href="edit-invoice.html">Edit Invoices</a></li>
                         <li><a href="view-invoice.html">Invoices Details</a></li>

@@ -16,10 +16,10 @@
                         </ul>
                     </div>
                     <div class="col-auto">
-                        <a href="invoices.html" class="invoices-links active">
+                        <a href="{{ route('invoice/paid/page') }}" class="invoices-links active">
                             <i class="feather feather-list"></i>
                         </a>
-                        <a href="invoice-grid.html" class="invoices-links">
+                        <a href="{{ route('invoice/grid/page') }}" class="invoices-links">
                             <i class="feather feather-grid"></i>
                         </a>
                     </div>
