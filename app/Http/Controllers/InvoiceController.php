@@ -9,37 +9,37 @@ class InvoiceController extends Controller
     /** index page */
     public function invoiceList()
     {
-        return view('invoices.list_invoices');
+        return view('invoices.tab.list_invoices');
     }
 
     /** invoice paid page */
     public function invoicePaid()
     {
-        return view('invoices.paid_invoices');
+        return view('invoices.tab.paid_invoices');
     }
 
     /** incoice overdue page*/
     public function invoiceOverdue()
     {
-        return view('invoices.overdue_invoices');
+        return view('invoices.tab.overdue_invoices');
     }
 
     /** invoice draft */
     public function invoiceDraft()
     {
-        return view('invoices.draft_invoices');
+        return view('invoices.tab.draft_invoices');
     }
 
     /** recurring invoices.blade */
     public function invoiceRecurring()
     {
-        return view('invoices.recurring_invoices');
+        return view('invoices.tab.recurring_invoices');
     }
 
     /** invoice cancelled */
     public function invoiceCancelled()
     {
-        return view('invoices.cancelled_invoices');
+        return view('invoices.tab.cancelled_invoices');
     }
 
     /** invoice grid */
