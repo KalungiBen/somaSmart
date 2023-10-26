@@ -100,7 +100,7 @@
                                                         <i class="feather-edit"></i>
                                                     </a>
                                                     <a class="btn btn-sm bg-danger-light delete" data-bs-toggle="modal" data-bs-target="#delete">
-                                                        <i class="feather-trash-2 me-1"></i>
+                                                        <i class="fe fe-trash-2"></i>
                                                     </a>
                                                 </div>
                                             </td>
@@ -117,29 +117,32 @@
     </div>
 
     {{-- model elete --}}
-    <div class="modal fade contentmodal" id="delete" tabindex="-1" aria-hidden="true">
+    <div class="modal custom-modal fade" id="delete" role="dialog">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content doctor-profile">
-                <div class="modal-header pb-0 border-bottom-0  justify-content-end">
-                    <button type="button" class="close-btn" data-bs-dismiss="modal" aria-label="Close">
-                        <i class="feather-x-circle"></i>
-                    </button>
-                </div>
+            <div class="modal-content">
                 <div class="modal-body">
-                    <form action="{{ route('subject/delete') }}" method="POST">
-                        @csrf
-                        <div class="delete-wrap text-center">
-                            <div class="del-icon">
-                                <i class="feather-x-circle"></i>
-                            </div>
-                            <input type="hidden" name="subject_id" class="e_subject_id" value="">
-                            <h2>Sure you want to delete</h2>
-                            <div class="submit-section">
-                                <button type="submit" class="btn btn-success me-2">Yes</button>
-                                <a class="btn btn-danger" data-bs-dismiss="modal">No</a>
-                            </div>
+                    <div class="form-header">
+                        <h3>Delete Subject</h3>
+                        <p>Are you sure want to delete?</p>
+                    </div>
+                    <div class="modal-btn delete-action">
+                        <div class="row">
+                            <form action="{{ route('subject/delete') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="subject_id" class="e_subject_id" value="">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <button type="submit" class="btn btn-primary paid-continue-btn" style="width: 100%;">Delete</button>
+                                    </div>
+                                    <div class="col-6">
+                                        <a data-bs-dismiss="modal"
+                                            class="btn btn-primary paid-cancel-btn">Cancel
+                                        </a>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>

@@ -244,7 +244,7 @@
                                     <a href="invoices-settings.html" class="invoices-settings-icon">
                                         <i class="feather feather-settings"></i>
                                     </a>
-                                    <a href="add-invoice.html" class="btn">
+                                    <a href="{{ route('invoice/add/page') }}" class="btn">
                                         <i class="feather feather-plus-circle"></i> New Invoice
                                     </a>
                                 </div>
