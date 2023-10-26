@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{ URL::to('assets/css/bootstrap-datetimepicker.min.cs') }}s">
     <link rel="stylesheet" href="{{ URL::to('assets/plugins/fontawesome/css/fontawesome.min.css') }}">
     <link rel="stylesheet" href="{{ URL::to('assets/plugins/fontawesome/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::to('assets/plugins/icons/feather/feather.css') }}">
     <link rel="stylesheet" href="{{ URL::to('assets/plugins/simple-calendar/simple-calendar.css') }}">
     <link rel="stylesheet" href="{{ URL::to('assets/plugins/datatables/datatables.min.css') }}">
     <link rel="stylesheet" href="{{ URL::to('assets/plugins/select2/css/select2.min.css') }}">

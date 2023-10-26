@@ -47,4 +47,10 @@ class InvoiceController extends Controller
     {
         return view('invoices.grid_invoice');
     }
+    
+    /** invoice add */
+    public function invoiceAdd()
+    {
+        return view('invoices.invoice_add');
+    }
 }
