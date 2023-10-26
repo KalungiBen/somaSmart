@@ -9,7 +9,7 @@
                     <div class="col">
                         <h3 class="page-title">Invoices</h3>
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
                             <li class="breadcrumb-item"><a href="invoices.html">Invoice</a></li>
                             <li class="breadcrumb-item active">Invoices Draft</li>
                         </ul>
