@@ -53,4 +53,10 @@ class InvoiceController extends Controller
     {
         return view('invoices.invoice_add');
     }
+
+    /** invoice edit */
+    public function invoiceEdit()
+    {
+        return view('invoices.invoice_edit');
+    }
 }

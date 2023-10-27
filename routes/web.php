@@ -129,5 +129,6 @@ Route::group(['namespace' => 'App\Http\Controllers'],function()
         Route::get('invoice/cancelled/page', 'invoiceCancelled')->middleware('auth')->name('invoice/cancelled/page'); // invoice/cancelled/page
         Route::get('invoice/grid/page', 'invoiceGrid')->middleware('auth')->name('invoice/grid/page'); // invoice/grid/page
         Route::get('invoice/add/page', 'invoiceAdd')->middleware('auth')->name('invoice/add/page'); // invoice/add/page
+        Route::get('invoice/edit/page', 'invoiceEdit')->middleware('auth')->name('invoice/edit/page'); // invoice/edit/page
     });
 });
