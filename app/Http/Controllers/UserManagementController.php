@@ -17,11 +17,10 @@ use App\Rules\MatchOldPassword;
 
 class UserManagementController extends Controller
 {
-    // index page
+    /** index page */
     public function index()
     {
-        $users = User::all();
-        return view('usermanagement.list_users',compact('users'));
+        return view('usermanagement.list_users');
     }
 
     /** user view */
@@ -135,5 +134,122 @@ class UserManagementController extends Controller
         DB::commit();
         Toastr::success('User change successfully :)','Success');
         return redirect()->intended('home');
+    }
+
+    /** get users data */
+    public function getUsersData(Request $request)
+    {
+        $draw            = $request->get('draw');
+        $start           = $request->get("start");
+        $rowPerPage      = $request->get("length"); // total number of rows per page
+        $columnIndex_arr = $request->get('order');
+        $columnName_arr  = $request->get('columns');
+        $order_arr       = $request->get('order');
+        $search_arr      = $request->get('search');
+
+        $columnIndex     = $columnIndex_arr[0]['column']; // Column index
+        $columnName      = $columnName_arr[$columnIndex]['data']; // Column name
+        $columnSortOrder = $order_arr[0]['dir']; // asc or desc
+        $searchValue     = $search_arr['value']; // Search value
+
+        $users =  DB::table('users');
+        $totalRecords = $users->count();
+
+        $totalRecordsWithFilter = $users->where(function ($query) use ($searchValue) {
+            $query->where('name', 'like', '%' . $searchValue . '%');
+            $query->orWhere('email', 'like', '%' . $searchValue . '%');
+            $query->orWhere('position', 'like', '%' . $searchValue . '%');
+            $query->orWhere('phone_number', 'like', '%' . $searchValue . '%');
+            $query->orWhere('status', 'like', '%' . $searchValue . '%');
+        })->count();
+
+        if ($columnName == 'name') {
+            $columnName = 'name';
+        }
+        $records = $users->orderBy($columnName, $columnSortOrder)
+            ->where(function ($query) use ($searchValue) {
+                $query->where('name', 'like', '%' . $searchValue . '%');
+                $query->orWhere('email', 'like', '%' . $searchValue . '%');
+                $query->orWhere('position', 'like', '%' . $searchValue . '%');
+                $query->orWhere('phone_number', 'like', '%' . $searchValue . '%');
+                $query->orWhere('status', 'like', '%' . $searchValue . '%');
+            })
+            ->skip($start)
+            ->take($rowPerPage)
+            ->get();
+        $data_arr = [];
+        
+        foreach ($records as $key => $record) {
+            $modify = '
+                <td class="text-right">
+                    <div class="dropdown dropdown-action">
+                        <a href="" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-ellipsis-v ellipse_color"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="'.url('users/add/edit/'.$record->user_id).'">
+                                <i class="fas fa-pencil-alt m-r-5"></i> Edit
+                            </a>
+                            <a class="dropdown-item" href="'.url('users/delete/'.$record->id).'">
+                            <i class="fas fa-trash-alt m-r-5"></i> Delete
+                        </a>
+                        </div>
+                    </div>
+                </td>
+            ';
+            $avatar = '
+                <td>
+                    <h2 class="table-avatar">
+                        <a class="avatar avatar-sm me-2">
+                            <img class="avatar-img rounded-circle"src="/images/'.$record->avatar.'"alt="'.$record->name.'">
+                        </a>
+                    </h2>
+                </td>
+            ';
+            if ($record->status === 'Active') {
+                $status = '<td><span class="badge bg-success-dark">'.$record->status.'</span></td>';
+            } elseif ($record->status === 'Disable') {
+                $status = '<td><span class="badge bg-danger-dark">'.$record->status.'</span></td>';
+            }  elseif ($record->status === 'Inactive') {
+                $status = '<td><span class="badge badge-warning">'.$record->status.'</span></td>';
+            } else {
+                $status = '<td><span class="badge badge-secondary">'.$record->status.'</span></td>';
+            }
+
+            $modify = '
+                <td class="text-end"> 
+                    <div class="actions">
+                        <a href="'.url('view/user/edit/'.$record->user_id).'" class="btn btn-sm bg-danger-light">
+                            <i class="feather-edit"></i>
+                        </a>
+                        <a class="btn btn-sm bg-danger-light user_delete" data-bs-toggle="modal" data-bs-target="#deleteUser">
+                        <i class="fe fe-trash-2"></i>
+                        </a>
+                    </div>
+                </td>
+            ';
+           
+            $data_arr [] = [
+                "user_id"      => $record->user_id,
+                "avatar"       => $avatar,
+                "name"         => $record->name,
+                "email"        => $record->email,
+                "position"     => $record->position,
+                "phone_number" => $record->phone_number,
+                "join_date"    => $record->join_date,
+                "status"       => $status, 
+                "modify"       => $modify, 
+            ];
+        }
+
+        
+
+        $response = [
+            "draw"                 => intval($draw),
+            "iTotalRecords"        => $totalRecords,
+            "iTotalDisplayRecords" => $totalRecordsWithFilter,
+            "aaData"               => $data_arr
+        ];
+        return response()->json($response);
     }
 }

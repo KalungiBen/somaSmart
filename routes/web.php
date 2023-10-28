@@ -72,6 +72,8 @@ Route::group(['namespace' => 'App\Http\Controllers'],function()
         Route::get('view/user/edit/{id}', 'userView')->middleware('auth');
         Route::post('user/update', 'userUpdate')->name('user/update');
         Route::post('user/delete', 'userDelete')->name('user/delete');
+        Route::get('get-users-data', 'getUsersData')->name('get-users-data'); /** get all data users */
+
     });
 
     // ------------------------ setting -------------------------------//
