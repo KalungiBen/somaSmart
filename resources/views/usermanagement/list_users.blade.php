@@ -73,32 +73,34 @@
     </div>
 </div>
 
-
-{{-- model user delete --}}
-<div class="modal fade contentmodal" id="deleteUser" tabindex="-1" aria-hidden="true">
+{{-- model elete --}}
+<div class="modal custom-modal fade" id="delete" role="dialog">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content doctor-profile">
-            <div class="modal-header pb-0 border-bottom-0  justify-content-end">
-                <button type="button" class="close-btn" data-bs-dismiss="modal" aria-label="Close"><i
-                    class="feather-x-circle"></i>
-                </button>
-            </div>
+        <div class="modal-content">
             <div class="modal-body">
-                <form action="{{ route('user/delete') }}" method="POST">
-                    @csrf
-                    <div class="delete-wrap text-center">
-                        <div class="del-icon">
-                            <i class="feather-x-circle"></i>
-                        </div>
-                        <input type="hidden" name="user_id" class="e_user_id" value="">
-                        <input type="hidden" name="avatar" class="e_avatar" value="">
-                        <h2>Sure you want to delete</h2>
-                        <div class="submit-section">
-                            <button type="submit" class="btn btn-success me-2">Yes</button>
-                            <a class="btn btn-danger" data-bs-dismiss="modal">No</a>
-                        </div>
+                <div class="form-header">
+                    <h3>Delete User</h3>
+                    <p>Are you sure want to delete?</p>
+                </div>
+                <div class="modal-btn delete-action">
+                    <div class="row">
+                        <form action="{{ route('user/delete') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="user_id" class="e_user_id" value="">
+                            <input type="hidden" name="avatar" class="e_avatar" value= "">
+                            <div class="row">
+                                <div class="col-6">
+                                    <button type="submit" class="btn btn-primary paid-continue-btn" style="width: 100%;">Delete</button>
+                                </div>
+                                <div class="col-6">
+                                    <a data-bs-dismiss="modal"
+                                        class="btn btn-primary paid-cancel-btn">Cancel
+                                    </a>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
@@ -107,11 +109,11 @@
 @section('script')
 {{-- delete js --}}
 <script>
-    $(document).on('click','.user_delete',function()
+    $(document).on('click','.delete',function()
     {
         var _this = $(this).parents('tr');
-        $('.e_user_id').val(_this.find('.user_id').text());
-        $('.e_avatar').val(_this.find('.avatar').text());
+        $('.e_user_id').val(_this.find('.user_id').data('user_id'));
+        $('.e_avatar').val(_this.find('.avatar').data('avatar'));
     });
 </script>
 

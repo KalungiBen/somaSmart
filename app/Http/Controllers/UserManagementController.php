@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use DB;
 use Auth;
 use Session;
+use Log;
 use Carbon\Carbon;
 use App\Models\User;
 use Brian2694\Toastr\Facades\Toastr;
@@ -97,9 +98,9 @@ class UserManagementController extends Controller
     {
         DB::beginTransaction();
         try {
-            if (Session::get('role_name') === 'Super Admin')
+            if (Session::get('role_name') === 'Super Admin' || Session::get('role_name') === 'Admin')
             {
-                if ($request->avatar =='photo_defaults.jpg')
+                if ($request->avatar == 'photo_defaults.jpg')
                 {
                     User::destroy($request->user_id);
                 } else {
@@ -115,6 +116,7 @@ class UserManagementController extends Controller
             return redirect()->back();
     
         } catch(\Exception $e) {
+            Log::info($e);
             DB::rollback();
             Toastr::error('User deleted fail :)','Error');
             return redirect()->back();
@@ -200,8 +202,8 @@ class UserManagementController extends Controller
             $avatar = '
                 <td>
                     <h2 class="table-avatar">
-                        <a class="avatar avatar-sm me-2">
-                            <img class="avatar-img rounded-circle"src="/images/'.$record->avatar.'"alt="'.$record->name.'">
+                        <a class="avatar-sm me-2">
+                            <img class="avatar-img rounded-circle avatar" data-avatar='.$record->avatar.' src="/images/'.$record->avatar.'"alt="'.$record->name.'">
                         </a>
                     </h2>
                 </td>
@@ -222,7 +224,7 @@ class UserManagementController extends Controller
                         <a href="'.url('view/user/edit/'.$record->user_id).'" class="btn btn-sm bg-danger-light">
                             <i class="feather-edit"></i>
                         </a>
-                        <a class="btn btn-sm bg-danger-light user_delete" data-bs-toggle="modal" data-bs-target="#deleteUser">
+                        <a class="btn btn-sm bg-danger-light delete user_id" data-bs-toggle="modal" data-user_id="'.$record->user_id.'" data-bs-target="#delete">
                         <i class="fe fe-trash-2"></i>
                         </a>
                     </div>
@@ -241,8 +243,6 @@ class UserManagementController extends Controller
                 "modify"       => $modify, 
             ];
         }
-
-        
 
         $response = [
             "draw"                 => intval($draw),
