@@ -12,7 +12,8 @@
                     </a>
                 </li>
                 <li class="submenu {{set_active(['home','teacher/dashboard','student/dashboard'])}}">
-                    <a href="#"><i class="feather-grid"></i>
+                    <a>
+                        <i class="fas fa-tachometer-alt"></i>
                         <span> Dashboard</span> 
                         <span class="menu-arrow"></span>
                     </a>
@@ -24,7 +25,8 @@
                 </li>
                 @if (Session::get('role_name') === 'Admin' || Session::get('role_name') === 'Super Admin')
                 <li class="submenu {{set_active(['list/users'])}} {{ (request()->is('view/user/edit/*')) ? 'active' : '' }}">
-                    <a href="#"><i class="fas fa-shield-alt"></i>
+                    <a href="#">
+                        <i class="fas fa-shield-alt"></i>
                         <span>User Management</span> 
                         <span class="menu-arrow"></span>
                     </a>
