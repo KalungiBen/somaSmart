@@ -85,7 +85,7 @@ class LoginController extends Controller
                 Session::put('position', $user->position);
                 Session::put('department', $user->department);
                 Toastr::success('Login successfully :)','Success');
-                return redirect()->intended('home');
+                return redirect()->route('home');
             } else {
                 Toastr::error('fail, WRONG USERNAME OR PASSWORD :)','Error');
                 return redirect('login');

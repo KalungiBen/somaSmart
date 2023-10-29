@@ -24,7 +24,9 @@ class CreateRoleTypeUsersTable extends Migration
             ['role_type' => 'Super Admin'],
             ['role_type' => 'Normal User'],
             ['role_type' => 'Teachers'],
-            ['role_type' => 'Student']
+            ['role_type' => 'Student'],
+            ['role_type' => 'Staff'],
+            ['role_type' => 'Client'],
         ]);
     }
 

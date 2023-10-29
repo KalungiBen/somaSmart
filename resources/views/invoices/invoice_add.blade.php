@@ -10,7 +10,7 @@
                     <div class="col">
                         <ul class="breadcrumb invoices-breadcrumb">
                             <li class="breadcrumb-item invoices-breadcrumb-item">
-                                <a href="invoices.html">
+                                <a href="{{ route('invoice/list/page') }}">
                                     <i class="fe fe-chevron-left"></i> Back to Invoice List
                                 </a>
                             </li>
@@ -46,14 +46,14 @@
                                                 <div class="multipleSelection">
                                                     <div class="selectBox">
                                                         <p class="mb-0">Select Customer</p>
-                                                        <span class="down-icon"><i
-                                                                class="fas fa-chevron-down"></i></span>
+                                                        <span class="down-icon">
+                                                            <i class="fas fa-chevron-down"></i>
+                                                        </span>
                                                     </div>
                                                     <div id="checkBoxes-one">
                                                         <p class="checkbox-title">Customer Search</p>
                                                         <div class="form-custom">
-                                                            <input type="text" class="form-control bg-grey"
-                                                                placeholder="Enter Customer Name">
+                                                            <input type="text" class="form-control bg-grey" placeholder="Enter Customer Name">
                                                         </div>
                                                         <div class="selectBox-cont">
                                                             <label class="custom_check w-100">
@@ -94,33 +94,29 @@
                                             </div>
                                             <div class="form-group">
                                                 <label>Po Number</label>
-                                                <input class="form-control" type="text"
-                                                    placeholder="Enter Reference Number">
+                                                <input class="form-control" type="text" placeholder="Enter Reference Number">
                                             </div>
                                         </div>
+                                        
                                         <div class="col-xl-5 col-md-6 col-sm-12 col-12">
                                             <h4 class="invoice-details-title">Invoice details</h4>
                                             <div class="invoice-details-box">
                                                 <div class="invoice-inner-head">
-                                                    <span>Invoice No. <a
-                                                            href="view-invoice.html">IN093439#@09</a></span>
+                                                    <span>Invoice No. <a href="view-invoice.html">IN093439#@09</a></span>
                                                 </div>
                                                 <div class="invoice-inner-footer">
                                                     <div class="row align-items-center">
                                                         <div class="col-lg-6 col-md-6">
                                                             <div class="invoice-inner-date">
                                                                 <span>
-                                                                    Date <input class="form-control datetimepicker"
-                                                                        type="text" placeholder="15/02/2022">
+                                                                    Date <input class="form-control datetimepicker" type="text" placeholder="15/02/2022">
                                                                 </span>
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-6 col-md-6">
                                                             <div class="invoice-inner-date invoice-inner-datepic">
                                                                 <span>
-                                                                    Due Date <input
-                                                                        class="form-control datetimepicker"
-                                                                        type="text" placeholder="Select">
+                                                                    Due Date <input class="form-control datetimepicker" type="text" placeholder="Select">
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -128,6 +124,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        
                                         <div class="col-xl-3 col-md-12 col-sm-12 col-12">
                                             <div class="inovices-month-info">
                                                 <div class="form-group mb-0">
@@ -156,26 +153,31 @@
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <input class="form-control" type="text"
-                                                                    placeholder="Enter Months">
+                                                                <input class="form-control" type="text" placeholder="Enter Months">
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+
                                     </div>
                                 </div>
+
                                 <div class="invoice-item">
                                     <div class="row">
                                         <div class="col-xl-4 col-lg-6 col-md-6">
                                             <div class="invoice-info">
-                                                <strong class="customer-text">Invoice From <a class="small"
-                                                        href="edit-invoice.html">Edit Address</a></strong>
+                                                <strong class="customer-text">Invoice From 
+                                                    <a class="small" href="edit-invoice.html">Edit Address</a>
+                                                </strong>
                                                 <p class="invoice-details invoice-details-two">
-                                                    Darren Elder <br>
-                                                    806 Twin Willow Lane, Old Forge,<br>
-                                                    Newyork, USA <br>
+                                                    Darren Elder 
+                                                    <br>
+                                                    806 Twin Willow Lane, Old Forge,
+                                                    <br>
+                                                    Newyork, USA 
+                                                    <br>
                                                 </p>
                                             </div>
                                         </div>
@@ -183,14 +185,18 @@
                                             <div class="invoice-info">
                                                 <strong class="customer-text">Invoice To</strong>
                                                 <p class="invoice-details invoice-details-two">
-                                                    Walter Roberson <br>
-                                                    299 Star Trek Drive, Panama City, <br>
-                                                    Florida, 32405, USA <br>
+                                                    Walter Roberson
+                                                    <br>
+                                                    299 Star Trek Drive, Panama City,
+                                                    <br>
+                                                    Florida, 32405, USA
+                                                    <br>
                                                 </p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="invoice-add-table">
                                     <h4>Item Details</h4>
                                     <div class="table-responsive">
@@ -242,6 +248,7 @@
                                         </table>
                                     </div>
                                 </div>
+
                                 <div class="row">
                                     <div class="col-lg-7 col-md-6">
                                         <div class="invoice-fields">
@@ -370,7 +377,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="invoice-logo">
-                                                    <img src="assets/img/logo.png" alt="logo">
+                                                    <img src="{{ URL::to('assets/img/logo.png') }}" alt="logo">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -386,10 +393,8 @@
 
                                     <div class="invoice-item invoice-item-bg">
                                         <div class="invoice-circle-img">
-                                            <img src="assets/img/invoice-circle1.png" alt=""
-                                                class="invoice-circle1">
-                                            <img src="assets/img/invoice-circle2.png" alt=""
-                                                class="invoice-circle2">
+                                            <img src="{{ URL::to('assets/img/invoice-circle1.png') }}" alt="" class="invoice-circle1">
+                                            <img src="assets/img/invoice-circle2.png" alt=""class="invoice-circle2">
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-4 col-md-12">
@@ -516,8 +521,8 @@
                                             <div class="col-lg-4 col-md-4">
                                                 <div class="invoice-sign text-end">
                                                     <img class="img-fluid d-inline-block"
-                                                        src="assets/img/signature.png" alt="sign">
-                                                    <span class="d-block">Harristemp</span>
+                                                        src="{{ URL::to('assets/img/signature.png') }}" alt="sign">
+                                                    <span class="d-block">{{ Session::get('name') }}</span>
                                                 </div>
                                             </div>
                                         </div>

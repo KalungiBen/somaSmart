@@ -22,7 +22,7 @@ class TeacherController extends Controller
     public function teacherList()
     {
         $listTeacher = DB::table('users')
-            ->join('teachers','teachers.teacher_id','users.user_id')
+            ->join('teachers','teachers.user_id','users.user_id')
             ->select('users.user_id','users.name','users.avatar','teachers.id','teachers.gender','teachers.mobile','teachers.address')
             ->get();
         return view('teacher.list-teachers',compact('listTeacher'));
