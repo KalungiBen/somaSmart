@@ -1,9 +1,10 @@
 
 @extends('layouts.master')
 @section('content')
+{{-- message --}}
+{!! Toastr::message() !!}
 <div class="page-wrapper">
     <div class="content container-fluid">
-        
         <div class="page-header">
             <div class="row align-items-center">
                 <div class="col">
@@ -15,8 +16,7 @@
                 </div>
             </div>
         </div>
-        {{-- message --}}
-        {!! Toastr::message() !!}
+
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
@@ -29,13 +29,24 @@
                                 </div>
                                 <div class="col-12 col-sm-4">
                                     <div class="form-group local-forms">
-                                        <label>Name <span class="login-danger">*</span></label>
-                                        <input type="text" class="form-control @error('full_name') is-invalid @enderror" name="full_name" placeholder="Enter Name" value="{{ old('full_name') }}">
+                                        <label>Full Name<span class="login-danger">*</span></label>
+                                        <select class="select select2s-hidden-accessible @error('full_name') is-invalid @enderror" style="width: 100%;" tabindex="-1" aria-hidden="true" id="full_name" name="full_name">
+                                            <option selected disabled>-- Select Name --</option>
+                                            @foreach($users as $key => $names)
+                                                <option value="{{ $names->name }}"data-teacher_id={{ $names->user_id }} {{ old('full_name') == $names->name ? "selected" :""}}>{{ $names->name }}</option>
+                                            @endforeach
+                                        </select>
                                         @error('full_name')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-4">
+                                    <div class="form-group local-forms">
+                                        <label>Teacher ID <span class="login-danger">*</span></label>
+                                        <input type="text" class="form-control" name="teacher_id" id="teacher_id" placeholder="Teacher ID" value="{{ old('teacher_id') }}" readonly>
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-4">
@@ -55,50 +66,6 @@
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-4">
-                                    <div class="form-group local-forms calendar-icon">
-                                        <label>Date Of Birth <span class="login-danger">*</span></label>
-                                        <input type="text" class="form-control datetimepicker @error('date_of_birth') is-invalid @enderror" name="date_of_birth" placeholder="DD-MM-YYYY" value="{{ old('date_of_birth') }}">
-                                        @error('date_of_birth')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-4">
-                                    <div class="form-group local-forms">
-                                        <label>Mobile <span class="login-danger">*</span></label>
-                                        <input type="text" class="form-control @error('mobile') is-invalid @enderror" name="mobile" placeholder="Enter Phone" value="{{ old('mobile') }}">
-                                        @error('mobile')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-4">
-                                    <div class="form-group local-forms calendar-icon">
-                                        <label>Joining Date <span class="login-danger">*</span></label>
-                                        <input type="text" class="form-control datetimepicker @error('joining_date') is-invalid @enderror" name="joining_date" placeholder="DD-MM-YYYY" value="{{ old('joining_date') }}">
-                                        @error('joining_date')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-4 local-forms">
-                                    <div class="form-group">
-                                        <label>Qualification <span class="login-danger">*</span></label>
-                                        <input type="text" class="form-control @error('qualification') is-invalid @enderror" name="qualification" placeholder="Enter Joining Date" value="{{ old('qualification') }}">
-                                        @error('qualification')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-4">
                                     <div class="form-group local-forms">
                                         <label>Experience <span class="login-danger">*</span></label>
                                         <input type="text" class="form-control @error('experience') is-invalid @enderror" name="experience" placeholder="Enter Experience" value="{{ old('experience') }}">
@@ -109,53 +76,18 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-12">
-                                    <h5 class="form-title"><span>Login Details</span></h5>
-                                </div>
                                 <div class="col-12 col-sm-4">
-                                    <div class="form-group local-forms">
-                                        <label>Username <span class="login-danger">*</span></label>
-                                        <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" placeholder="Enter Username" value="{{ old('username') }}">
-                                        @error('username')
+                                    <div class="form-group local-forms calendar-icon">
+                                        <label>Qualification <span class="login-danger">*</span></label>
+                                        <input type="text" class="form-control datetimepicker @error('qualification') is-invalid @enderror" name="qualification" placeholder="DD-MM-YYYY" value="{{ old('qualification') }}">
+                                        @error('qualification')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-12 col-sm-4">
-                                    <div class="form-group local-forms">
-                                        <label>Email ID <span class="login-danger">*</span></label>
-                                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Enter Mail Id" value="{{ old('email') }}">
-                                        @error('email')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-4">
-                                    <div class="form-group local-forms">
-                                        <label>Password <span class="login-danger">*</span></label>
-                                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Enter Password" value="{{ old('password') }}">
-                                        @error('password')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-4">
-                                    <div class="form-group local-forms">
-                                        <label>Repeat Password <span class="login-danger">*</span></label>
-                                        <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" placeholder="Repeat Password" value="{{ old('password_confirmation') }}">
-                                        @error('password_confirmation')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
+
                                 <div class="col-12">
                                     <h5 class="form-title"><span>Address</span></h5>
                                 </div>
@@ -227,4 +159,13 @@
         </div>
     </div>
 </div>
+@section('script')
+<script>
+    // select auto teacher id
+    $('#full_name').on('change',function()
+    {
+        $('#teacher_id').val($(this).find(':selected').data('teacher_id'));
+    });
+</script>
+@endsection
 @endsection

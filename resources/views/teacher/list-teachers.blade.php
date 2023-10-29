@@ -51,10 +51,10 @@
                                     <h3 class="page-title">Teachers</h3>
                                 </div>
                                 <div class="col-auto text-end float-end ms-auto download-grp">
-                                    <a href="teachers.html" class="btn btn-outline-gray me-2 active"><i
-                                            class="feather-list"></i></a>
-                                    <a href="{{ route('teacher/grid/page') }}" class="btn btn-outline-gray me-2"><i
-                                            class="feather-grid"></i></a>
+                                    <a href="teachers.html" class="btn btn-outline-gray me-2 active">
+                                        <i class="fa fa-list" aria-hidden="true"></i>
+                                    <a href="{{ route('teacher/grid/page') }}" class="btn btn-outline-gray me-2">
+                                        <i class="fa fa-th" aria-hidden="true"></i>
                                     <a href="#" class="btn btn-outline-primary me-2"><i
                                             class="fas fa-download"></i> Download</a>
                                     <a href="{{ route('teacher/add/page') }}" class="btn btn-primary"><i class="fas fa-plus"></i></a>
@@ -91,7 +91,8 @@
                                                     value="something">
                                             </div>
                                         </td>
-                                        <td hidden class="id">{{ $list->id }}</td>
+                                        <td hidden class="user_id
+                                        ">{{ $list->user_id }}</td>
                                         <td>{{ $list->user_id }}</td>
                                         <td>
                                             <h2 class="table-avatar">
@@ -113,7 +114,7 @@
                                         <td>{{ $list->address }}</td>
                                         <td class="text-end">
                                             <div class="actions">
-                                                <a href="{{ url('teacher/edit/'.$list->id) }}" class="btn btn-sm bg-danger-light">
+                                                <a href="{{ url('teacher/edit/'.$list->user_id) }}" class="btn btn-sm bg-danger-light">
                                                     <i class="feather-edit"></i>
                                                 </a>
                                                 <a class="btn btn-sm bg-danger-light teacher_delete" data-bs-toggle="modal" data-bs-target="#teacherDelete">
@@ -149,7 +150,7 @@
                         <div class="del-icon">
                             <i class="feather-x-circle"></i>
                         </div>
-                        <input type="hidden" name="id" class="e_id" value="">
+                        <input type="hidden" name="id" class="e_user_id" value="">
                         <h2>Sure you want to delete</h2>
                         <div class="submit-section">
                             <button type="submit" class="btn btn-success me-2">Yes</button>
@@ -168,7 +169,7 @@
         $(document).on('click','.teacher_delete',function()
         {
             var _this = $(this).parents('tr');
-            $('.e_id').val(_this.find('.id').text());
+            $('.e_user_id').val(_this.find('.user_id').text());
         });
     </script>
 @endsection

@@ -201,5 +201,12 @@
     <script src="{{ URL::to('assets/plugins/select2/js/select2.min.js') }}"></script>
     <script src="{{ URL::to('assets/js/script.js') }}"></script>
     @yield('script')
+    <script>
+        $(document).ready(function() {
+            $('.select2s-hidden-accessible').select2({
+                closeOnSelect: false
+            });
+        });
+    </script>
 </body>
 </html>

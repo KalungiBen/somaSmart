@@ -15,16 +15,15 @@ class TeacherController extends Controller
     /** add teacher page */
     public function teacherAdd()
     {
-        return view('teacher.add-teacher');
+        $users = User::where('role_name','Teachers')->get();
+        return view('teacher.add-teacher',compact('users'));
     }
 
     /** teacher list */
     public function teacherList()
     {
-        $listTeacher = DB::table('users')
-            ->join('teachers','teachers.user_id','users.user_id')
-            ->select('users.user_id','users.name','users.avatar','teachers.id','teachers.gender','teachers.mobile','teachers.address')
-            ->get();
+        $listTeacher = Teacher::join('users', 'teachers.user_id','users.user_id')
+                    ->select('users.date_of_birth','users.join_date','users.phone_number','teachers.*')->get();
         return view('teacher.list-teachers',compact('listTeacher'));
     }
 
@@ -39,49 +38,25 @@ class TeacherController extends Controller
     public function saveRecord(Request $request)
     {
         $request->validate([
-            'full_name'       => 'required|string',
-            'gender'          => 'required|string',
-            'date_of_birth'   => 'required|string',
-            'mobile'          => 'required|string',
-            'joining_date'    => 'required|string',
-            'qualification'   => 'required|string',
-            'experience'      => 'required|string',
-            'username'        => 'required|string',
-            'email'           => 'required|string',
-            'password'        => 'required|string|min:8|confirmed',
-            'password_confirmation' => 'required',
-            'address'         => 'required|string',
-            'city'            => 'required|string',
-            'state'           => 'required|string',
-            'zip_code'        => 'required|string',
-            'country'         => 'required|string',
+            'full_name'     => 'required|string',
+            'gender'        => 'required|string',
+            'experience'    => 'required|string',
+            'qualification' => 'required|string',
+            'address'       => 'required|string',
+            'city'          => 'required|string',
+            'state'         => 'required|string',
+            'zip_code'      => 'required|string',
+            'country'       => 'required|string',
         ]);
 
         try {
-        
-            $dt        = Carbon::now();
-            $todayDate = $dt->toDayDateTimeString();
-            
-                 
-            User::create([
-                'name'      => $request->full_name,
-                'email'     => $request->email,
-                'join_date' => $todayDate,
-                'role_name' => 'Teacher',
-                'password'  => Hash::make($request->password),
-            ]);
-            $user_id = DB::table('users')->select('user_id')->orderBy('id','DESC')->first();
-            
+
             $saveRecord = new Teacher;
-            $saveRecord->teacher_id    = $user_id->user_id;
             $saveRecord->full_name     = $request->full_name;
+            $saveRecord->user_id       = $request->teacher_id;
             $saveRecord->gender        = $request->gender;
-            $saveRecord->date_of_birth = $request->date_of_birth;
-            $saveRecord->mobile        = $request->mobile;
-            $saveRecord->joining_date  = $request->joining_date;
-            $saveRecord->qualification = $request->qualification;
             $saveRecord->experience    = $request->experience;
-            $saveRecord->username      = $request->username;
+            $saveRecord->qualification = $request->qualification;
             $saveRecord->address       = $request->address;
             $saveRecord->city          = $request->city;
             $saveRecord->state         = $request->state;
@@ -100,9 +75,11 @@ class TeacherController extends Controller
     }
 
     /** edit record */
-    public function editRecord($id)
+    public function editRecord($user_id)
     {
-        $teacher = Teacher::where('id',$id)->first();
+        $teacher = Teacher::join('users', 'teachers.user_id','users.user_id')
+                    ->select('users.date_of_birth','users.join_date','users.phone_number','teachers.*')
+                    ->where('users.user_id', $user_id)->first();
         return view('teacher.edit-teacher',compact('teacher'));
     }
 
