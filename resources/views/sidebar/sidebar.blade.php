@@ -86,7 +86,7 @@
                     </ul>
                 </li>
 
-                <li class="submenu {{set_active(['invoice/list/page','invoice/paid/page','invoice/overdue/page','invoice/draft/page','invoice/recurring/page','invoice/cancelled/page','invoice/grid/page','invoice/add/page','invoice/edit/page'])}}">
+                <li class="submenu {{set_active(['invoice/list/page','invoice/paid/page','invoice/overdue/page','invoice/draft/page','invoice/recurring/page','invoice/cancelled/page','invoice/grid/page','invoice/add/page','invoice/edit/page','invoice/view/page'])}}">
                     <a href="#"><i class="fas fa-clipboard"></i>
                         <span> Invoices</span>
                         <span class="menu-arrow"></span>
@@ -96,7 +96,7 @@
                         <li><a class="{{set_active(['invoice/grid/page'])}}" href="{{ route('invoice/grid/page') }}">Invoices Grid</a></li>
                         <li><a class="{{set_active(['invoice/add/page'])}}" href="{{ route('invoice/add/page') }}">Add Invoices</a></li>
                         <li><a class="{{set_active(['invoice/edit/page'])}}" href="{{ route('invoice/edit/page') }}">Edit Invoices</a></li>
-                        <li><a href="view-invoice.html">Invoices Details</a></li>
+                        <li><a class="{{set_active(['invoice/view/page'])}}" href="{{ route('invoice/view/page') }}">Invoices Details</a></li>
                         <li><a href="invoices-settings.html">Invoices Settings</a></li>
                     </ul>
                 </li>
