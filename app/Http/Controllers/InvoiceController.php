@@ -65,4 +65,10 @@ class InvoiceController extends Controller
     {
         return view('invoices.invoice_view');
     }
+
+    /** invoice settings */
+    public function invoiceSettings()
+    {
+        return view('invoices.settings_invoices');
+    }
 }
