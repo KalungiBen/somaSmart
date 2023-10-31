@@ -69,6 +69,18 @@ class InvoiceController extends Controller
     /** invoice settings */
     public function invoiceSettings()
     {
-        return view('invoices.settings_invoices');
+        return view('invoices.settings.settings_invoices');
+    }
+
+    /** invoice settingst tax */
+    public function invoiceSettingsTax()
+    {
+        return view('invoices.settings.settings_tax');
+    }
+
+    /** invoice settings bank */
+    public function invoiceSettingsBank()
+    {
+        return view('invoices.settings.settings_bank');
     }
 }

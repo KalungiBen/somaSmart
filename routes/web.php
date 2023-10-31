@@ -134,5 +134,7 @@ Route::group(['namespace' => 'App\Http\Controllers'],function()
         Route::get('invoice/edit/page', 'invoiceEdit')->middleware('auth')->name('invoice/edit/page'); // invoice/edit/page
         Route::get('invoice/view/page', 'invoiceView')->middleware('auth')->name('invoice/view/page'); // invoice/view/page
         Route::get('invoice/settings/page', 'invoiceSettings')->middleware('auth')->name('invoice/settings/page'); // invoice/settings/page
+        Route::get('invoice/settings/tax/page', 'invoiceSettingsTax')->middleware('auth')->name('invoice/settings/tax/page'); // invoice/settings/tax/page
+        Route::get('invoice/settings/bank/page', 'invoiceSettingsBank')->middleware('auth')->name('invoice/settings/bank/page'); // invoice/settings/bank/page
     });
 });
