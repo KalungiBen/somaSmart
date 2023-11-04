@@ -18,16 +18,9 @@
                     </div>
                     <div class="col-auto">
                         <div class="invoices-create-btn">
-                            <a class="invoices-preview-link" href="#" data-bs-toggle="modal"
-                                data-bs-target="#invoices_preview"><i class="fe fe-eye"></i> Preview</a>
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#delete_invoices_details"
-                                class="btn delete-invoice-btn">
-                                Delete Invoice
-                            </a>
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#save_invocies_details"
-                                class="btn save-invoice-btn">
-                                Save Draft
-                            </a>
+                            <a class="invoices-preview-link" href="#" data-bs-toggle="modal" data-bs-target="#invoices_preview"><i class="fe fe-eye"></i> Preview</a>
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#delete_invoices_details" class="btn delete-invoice-btn">Delete Invoice</a>
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#save_invocies_details" class="btn save-invoice-btn">Save Draft</a>
                         </div>
                     </div>
                 </div>
@@ -43,58 +36,16 @@
                                         <div class="col-xl-4 col-md-6 col-sm-12 col-12">
                                             <div class="form-group">
                                                 <label>Customer Name</label>
-                                                <div class="multipleSelection">
-                                                    <div class="selectBox">
-                                                        <p class="mb-0">Select Customer</p>
-                                                        <span class="down-icon">
-                                                            <i class="fas fa-chevron-down"></i>
-                                                        </span>
-                                                    </div>
-                                                    <div id="checkBoxes-one">
-                                                        <p class="checkbox-title">Customer Search</p>
-                                                        <div class="form-custom">
-                                                            <input type="text" class="form-control bg-grey" placeholder="Enter Customer Name">
-                                                        </div>
-                                                        <div class="selectBox-cont">
-                                                            <label class="custom_check w-100">
-                                                                <input type="checkbox" name="username">
-                                                                <span class="checkmark"></span> Brian Johnson
-                                                            </label>
-                                                            <label class="custom_check w-100">
-                                                                <input type="checkbox" name="username">
-                                                                <span class="checkmark"></span> Russell Copeland
-                                                            </label>
-                                                            <label class="custom_check w-100">
-                                                                <input type="checkbox" name="username">
-                                                                <span class="checkmark"></span> Greg Lynch
-                                                            </label>
-                                                            <label class="custom_check w-100">
-                                                                <input type="checkbox" name="username">
-                                                                <span class="checkmark"></span> John Blair
-                                                            </label>
-                                                            <label class="custom_check w-100">
-                                                                <input type="checkbox" name="username">
-                                                                <span class="checkmark"></span> Barbara Moore
-                                                            </label>
-                                                            <label class="custom_check w-100">
-                                                                <input type="checkbox" name="username">
-                                                                <span class="checkmark"></span> Hendry Evan
-                                                            </label>
-                                                            <label class="custom_check w-100">
-                                                                <input type="checkbox" name="username">
-                                                                <span class="checkmark"></span> Richard Miles
-                                                            </label>
-                                                        </div>
-                                                        <button type="submit"
-                                                            class="btn w-100 btn-primary">Apply</button>
-                                                        <button type="reset"
-                                                            class="btn w-100 btn-grey">Reset</button>
-                                                    </div>
-                                                </div>
+                                                <select class="select select2s-hidden-accessible @error('full_name') is-invalid @enderror" style="width: 100%;" tabindex="-1" aria-hidden="true" id="customer_name" name="customer_name">
+                                                    <option selected disabled>-- Select Customer --</option>
+                                                    @foreach($users as $key => $names)
+                                                        <option value="{{ $names->name }}"data-teacher_id={{ $names->user_id }} {{ old('full_name') == $names->name ? "selected" :""}}>{{ $names->name }}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                             <div class="form-group">
                                                 <label>Po Number</label>
-                                                <input class="form-control" type="text" placeholder="Enter Reference Number">
+                                                <input class="form-control" type="text" id="reference_number" name="reference_number" placeholder="Enter Reference Number">
                                             </div>
                                         </div>
                                         
@@ -102,21 +53,21 @@
                                             <h4 class="invoice-details-title">Invoice details</h4>
                                             <div class="invoice-details-box">
                                                 <div class="invoice-inner-head">
-                                                    <span>Invoice No. <a href="view-invoice.html">IN093439#@09</a></span>
+                                                    <span>Invoice No. <a>IN000000#@00</a></span>
                                                 </div>
                                                 <div class="invoice-inner-footer">
                                                     <div class="row align-items-center">
                                                         <div class="col-lg-6 col-md-6">
                                                             <div class="invoice-inner-date">
                                                                 <span>
-                                                                    Date <input class="form-control datetimepicker" type="text" placeholder="15/02/2022">
+                                                                    Date <input class="form-control datetimepicker" type="text" name="date_from" value="{{ date('d-m-Y') }}">
                                                                 </span>
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-6 col-md-6">
                                                             <div class="invoice-inner-date invoice-inner-datepic">
                                                                 <span>
-                                                                    Due Date <input class="form-control datetimepicker" type="text" placeholder="Select">
+                                                                    Due Date <input class="form-control datetimepicker" type="text" name="date_to" placeholder="Select">
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -129,11 +80,11 @@
                                             <div class="inovices-month-info">
                                                 <div class="form-group mb-0">
                                                     <label class="custom_check w-100">
-                                                        <input type="checkbox" id="enableTax" name="invoice">
+                                                        <input type="checkbox" id="enableTax" name="invoice" value="Enable tax">
                                                         <span class="checkmark"></span> Enable tax
                                                     </label>
                                                     <label class="custom_check w-100">
-                                                        <input type="checkbox" id="chkYes" name="invoice">
+                                                        <input type="checkbox" id="chkYes" name="invoice" value="Recurring Invoice">
                                                         <span class="checkmark"></span> Recurring Invoice
                                                     </label>
                                                 </div>
@@ -141,13 +92,13 @@
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <select class="select">
-                                                                    <option>By month</option>
-                                                                    <option>March</option>
-                                                                    <option>April</option>
-                                                                    <option>May</option>
-                                                                    <option>June</option>
-                                                                    <option>July</option>
+                                                                <select class="select" id="by_month" name="by_month">
+                                                                    <option selected disabled>By month</option>
+                                                                    <option value="March">March</option>
+                                                                    <option value="April">April</option>
+                                                                    <option value="May">May</option>
+                                                                    <option value="June">June</option>
+                                                                    <option value="July">July</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -214,34 +165,15 @@
                                             </thead>
                                             <tbody>
                                                 <tr class="add-row">
-                                                    <td>
-                                                        <input type="text" class="form-control">
-                                                    </td>
-                                                    <td>
-                                                        <input type="text" class="form-control">
-                                                    </td>
-                                                    <td>
-                                                        <input type="text" class="form-control">
-                                                    </td>
-                                                    <td>
-                                                        <input type="text" class="form-control">
-                                                    </td>
-                                                    <td>
-                                                        <input type="text" class="form-control">
-                                                    </td>
-                                                    <td>
-                                                        <input type="text" class="form-control">
-                                                    </td>
+                                                    <td><input type="text" class="form-control" name="items"></td>
+                                                    <td><input type="text" class="form-control" name="category"></td>
+                                                    <td><input type="text" class="form-control" name="quantity"></td>
+                                                    <td><input type="text" class="form-control" name="price"></td>
+                                                    <td><input type="text" class="form-control" name="amount"></td>
+                                                    <td><input type="text" class="form-control" name="discount"></td>
                                                     <td class="add-remove text-end">
-                                                        <a href="javascript:void(0);" class="add-btn me-2">
-                                                            <i class="fas fa-plus-circle"></i>
-                                                        </a>
-                                                        <a href="#" class="copy-btn me-2">
-                                                            <i class="fe fe-copy"></i>
-                                                        </a>
-                                                        <a href="javascript:void(0);" class="remove-btn">
-                                                            <i class="fe fe-trash-2"></i>
-                                                        </a>
+                                                        <a href="#" class="add-btn me-2"><i class="fas fa-plus-circle"></i></a>
+                                                        <a href="#" class="copy-btn me-2"><i class="fe fe-copy"></i></a>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -357,6 +289,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                
                             </form>
                         </div>
                     </div>
@@ -624,12 +557,10 @@
                     <div class="modal-btn delete-action">
                         <div class="row">
                             <div class="col-6">
-                                <a href="javascript:void(0);" data-bs-dismiss="modal"
-                                    class="btn btn-primary paid-continue-btn">Save</a>
+                                <a href="#" data-bs-dismiss="modal" class="btn btn-primary paid-continue-btn">Save</a>
                             </div>
                             <div class="col-6">
-                                <a href="javascript:void(0);" data-bs-dismiss="modal"
-                                    class="btn btn-primary paid-cancel-btn">Cancel</a>
+                                <a href="#" data-bs-dismiss="modal" class="btn btn-primary paid-cancel-btn">Cancel</a>
                             </div>
                         </div>
                     </div>
@@ -637,5 +568,35 @@
             </div>
         </div>
     </div>
+
+    @section('script')
+    
+        {{-- add rows and remove [Item Details]--}}
+        <script>
+            $(".add-table-items").on('click', '.remove-btn', function() {
+                $(this).closest('.add-row').remove();
+                return false;
+            });
+            
+            $(document).on("click", ".add-btn", function() {
+                var experiencecontent =
+                '<tr class="add-row">' +
+                    '<td>' + '<input type="text" class="form-control" name="items">' + '</td>' +
+                    '<td>' + '<input type="text" class="form-control" name="category">' + '</td>' +
+                    '<td>' + '<input type="text" class="form-control" name="quantity">' + '</td>' +
+                    '<td>' + '<input type="text" class="form-control" name="price">' + '</td>' +
+                    '<td>' + '<input type="text" class="form-control" name="amount">' + '</td>' +
+                    '<td>' + '<input type="text" class="form-control" name="discount">' + '</td>' +
+                    '<td class="add-remove text-end">' +
+                        '<a href="#" class="add-btn me-2"><i class="fas fa-plus-circle"></i></a> ' +
+                        '<a href="#" class="copy-btn me-2"><i class="fe fe-copy"></i></a>' +
+                        '<a href="#" class="remove-btn"><i class="fe fe-trash-2"></i></a>' +
+                    '</td>' +
+                '</tr>';
+                $(".add-table-items").append(experiencecontent);
+                return false;
+            });
+        </script>
+    @endsection
     
 @endsection

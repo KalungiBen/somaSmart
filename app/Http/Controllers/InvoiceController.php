@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class InvoiceController extends Controller
 {
@@ -51,7 +52,8 @@ class InvoiceController extends Controller
     /** invoice add */
     public function invoiceAdd()
     {
-        return view('invoices.invoice_add');
+        $users = User::whereIn('role_name',['Student','Client'])->get();
+        return view('invoices.invoice_add',compact('users'));
     }
 
     /** invoice edit */
