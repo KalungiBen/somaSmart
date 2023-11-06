@@ -304,19 +304,12 @@
             }
         });
     }
-    $(function() {
-        $("input[name='invoice']").click(function() {
-            if ($("#chkYes").is(":checked")) {
-                $("#show-invoices").show();
-            } else {
-                $("#show-invoices").hide();
-            }
-        });
-    });
+
     $(".links-info-one").on('click', '.service-trash', function() {
         $(this).closest('.links-cont').remove();
         return false;
     });
+    
     $(document).on("click", ".add-links", function() {
         var experiencecontent = '<div class="links-cont">' +
             '<div class="service-amount">' +

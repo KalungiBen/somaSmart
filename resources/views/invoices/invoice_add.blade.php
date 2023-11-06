@@ -570,7 +570,20 @@
     </div>
 
     @section('script')
-    
+
+        {{-- show hide [Recurring Invoice]--}}
+        <script>
+            $(function() {
+                $("input[name='invoice']").click(function() {
+                    if ($("#chkYes").is(":checked")) {
+                        $("#show-invoices").show();
+                    } else {
+                        $("#show-invoices").hide();
+                    }
+                });
+            });
+        </script>
+
         {{-- add rows and remove [Item Details]--}}
         <script>
             $(".add-table-items").on('click', '.remove-btn', function() {

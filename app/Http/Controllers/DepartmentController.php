@@ -23,4 +23,10 @@ class DepartmentController extends Controller
     {
         return view('department.list-department');
     }
+
+    /** save record */
+    public function saveRecord(Request $request)
+    {
+        
+    }
 }

@@ -21,7 +21,8 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-body">
-                            <form>
+                            <form action="{{ route('department/save') }}" method="POST">
+                                @csrf
                                 <div class="row">
                                     <div class="col-12">
                                         <h5 class="form-title"><span>Department Details</span></h5>
