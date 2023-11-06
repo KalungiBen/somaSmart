@@ -13,6 +13,6 @@ class Department extends Model
         'department_name',
         'head_of_department',
         'department_start_date',
-        'no_of_student',
+        'no_of_students',
     ];
 }

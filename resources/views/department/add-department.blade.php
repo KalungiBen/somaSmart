@@ -36,7 +36,7 @@
                                     <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms">
                                             <label>Department Name <span class="login-danger">*</span></label>
-                                            <input type="text" class="form-control" name="department_dame">
+                                            <input type="text" class="form-control" name="department_name">
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-4">

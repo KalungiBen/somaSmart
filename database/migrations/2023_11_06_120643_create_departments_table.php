@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('department_name')->nullable();
             $table->string('head_of_department')->nullable();
             $table->string('department_start_date')->nullable();
-            $table->string('no_of_student')->nullable();
+            $table->string('no_of_students')->nullable();
             $table->timestamps();
         });
     }
