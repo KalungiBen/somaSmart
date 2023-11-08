@@ -54,21 +54,16 @@
                                 <div class="col-auto text-end float-end ms-auto download-grp">
                                     <a href="#" class="btn btn-outline-primary me-2"><i
                                             class="fas fa-download"></i> Download</a>
-                                    <a href="add-department.html" class="btn btn-primary"><i
-                                            class="fas fa-plus"></i></a>
+                                    <a href="add-department.html" class="btn btn-primary">
+                                        <i class="fas fa-plus"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
 
-                        <table
-                            class="table border-0 star-student table-hover table-center mb-0 datatable table-striped">
+                        <table class="table table-stripped table table-hover table-center mb-0" id="dataList">
                             <thead class="student-thread">
                                 <tr>
-                                    <th>
-                                        <div class="form-check check-tables">
-                                            <input class="form-check-input" type="checkbox" value="something">
-                                        </div>
-                                    </th>
                                     <th>ID</th>
                                     <th>Name</th>
                                     <th>HOD</th>
@@ -77,60 +72,6 @@
                                     <th class="text-end">Action</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="form-check check-tables">
-                                            <input class="form-check-input" type="checkbox" value="something">
-                                        </div>
-                                    </td>
-                                    <td>PRE2209</td>
-                                    <td>
-                                        <h2>
-                                            <a>Computer Science Engg</a>
-                                        </h2>
-                                    </td>
-                                    <td>Aaliyah</td>
-                                    <td>1995</td>
-                                    <td>180</td>
-                                    <td class="text-end">
-                                        <div class="actions">
-                                            <a href="javascript:;" class="btn btn-sm bg-success-light me-2">
-                                                <i class="feather-eye"></i>
-                                            </a>
-                                            <a href="edit-department.html" class="btn btn-sm bg-danger-light">
-                                                <i class="feather-edit"></i>
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-check check-tables">
-                                            <input class="form-check-input" type="checkbox" value="something">
-                                        </div>
-                                    </td>
-                                    <td>PRE2213</td>
-                                    <td>
-                                        <h2>
-                                            <a>Mechanical Engg</a>
-                                        </h2>
-                                    </td>
-                                    <td>Malynne</td>
-                                    <td>1999</td>
-                                    <td>240</td>
-                                    <td class="text-end">
-                                        <div class="actions">
-                                            <a href="javascript:;" class="btn btn-sm bg-success-light me-2">
-                                                <i class="feather-eye"></i>
-                                            </a>
-                                            <a href="edit-department.html" class="btn btn-sm bg-danger-light">
-                                                <i class="feather-edit"></i>
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -141,5 +82,45 @@
 </div>
 
 @section('script')
+    {{-- get data all js --}}
+    <script type="text/javascript">
+        $(document).ready(function() {
+        $('#dataList').DataTable({
+                processing: true,
+                serverSide: true,
+                ordering: true,
+                searching: true,
+                ajax: {
+                    url:"{{ route('get-data-list') }}",
+                },
+                columns: [
+                    {
+                        data: 'department_id',
+                        name: 'department_id',
+                    },
+                    {
+                        data: 'department_name',
+                        name: 'department_name',
+                    },
+                    {
+                        data: 'head_of_department',
+                        name: 'head_of_department',
+                    },
+                    {
+                        data: 'department_start_date',
+                        name: 'department_start_date',
+                    },
+                    {
+                        data: 'no_of_students',
+                        name: 'no_of_students',
+                    },
+                    {
+                        data: 'modify',
+                        name: 'modify',
+                    },
+                ]
+            });
+        });
+    </script>
 @endsection
 @endsection

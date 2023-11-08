@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use Illuminate\Http\Request;
 use App\Models\Department;
 use Brian2694\Toastr\Facades\Toastr;
@@ -24,6 +25,80 @@ class DepartmentController extends Controller
     public function departmentList()
     {
         return view('department.list-department');
+    }
+
+    /** get data list */
+    public function getDataList(Request $request)
+    {
+        $draw            = $request->get('draw');
+        $start           = $request->get("start");
+        $rowPerPage      = $request->get("length"); // total number of rows per page
+        $columnIndex_arr = $request->get('order');
+        $columnName_arr  = $request->get('columns');
+        $order_arr       = $request->get('order');
+        $search_arr      = $request->get('search');
+
+        $columnIndex     = $columnIndex_arr[0]['column']; // Column index
+        $columnName      = $columnName_arr[$columnIndex]['data']; // Column name
+        $columnSortOrder = $order_arr[0]['dir']; // asc or desc
+        $searchValue     = $search_arr['value']; // Search value
+
+        $departments =  DB::table('departments');
+        $totalRecords = $departments->count();
+
+        $totalRecordsWithFilter = $departments->where(function ($query) use ($searchValue) {
+            $query->where('department_id', 'like', '%' . $searchValue . '%');
+            $query->orWhere('department_name', 'like', '%' . $searchValue . '%');
+            $query->orWhere('head_of_department', 'like', '%' . $searchValue . '%');
+            $query->orWhere('department_start_date', 'like', '%' . $searchValue . '%');
+            $query->orWhere('no_of_students', 'like', '%' . $searchValue . '%');
+        })->count();
+
+        $records = $departments->orderBy($columnName, $columnSortOrder)
+            ->where(function ($query) use ($searchValue) {
+                $query->where('department_id', 'like', '%' . $searchValue . '%');
+                $query->orWhere('department_name', 'like', '%' . $searchValue . '%');
+                $query->orWhere('head_of_department', 'like', '%' . $searchValue . '%');
+                $query->orWhere('department_start_date', 'like', '%' . $searchValue . '%');
+                $query->orWhere('no_of_students', 'like', '%' . $searchValue . '%');
+            })
+            ->skip($start)
+            ->take($rowPerPage)
+            ->get();
+        $data_arr = [];
+        
+        foreach ($records as $key => $record) {
+
+            $modify = '
+                <td class="text-end"> 
+                    <div class="actions">
+                        <a href="" class="btn btn-sm bg-danger-light">
+                            <i class="feather-edit"></i>
+                        </a>
+                        <a class="btn btn-sm bg-danger-light delete user_id" data-bs-toggle="modal" data-user_id="" data-bs-target="#delete">
+                        <i class="fe fe-trash-2"></i>
+                        </a>
+                    </div>
+                </td>
+            ';
+
+            $data_arr [] = [
+                "department_id"         => $record->department_id,
+                "department_name"       => $record->department_name,
+                "head_of_department"    => $record->head_of_department,
+                "department_start_date" => $record->department_start_date,
+                "no_of_students"        => $record->no_of_students,
+                "modify"                => $modify,
+            ];
+        }
+
+        $response = [
+            "draw"                 => intval($draw),
+            "iTotalRecords"        => $totalRecords,
+            "iTotalDisplayRecords" => $totalRecordsWithFilter,
+            "aaData"               => $data_arr
+        ];
+        return response()->json($response);
     }
 
     /** save record */
