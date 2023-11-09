@@ -21,17 +21,17 @@
             <div class="row">
                 <div class="col-lg-3 col-md-6">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search by ID ...">
+                        <input type="text" class="form-control" id="department_id" placeholder="Search by ID ...">
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search by Name ...">
+                        <input type="text" class="form-control" id="department_name" placeholder="Search by Name ...">
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search by Year ...">
+                        <input type="text" class="form-control"  placeholder="Search by Year ...">
                     </div>
                 </div>
                 <div class="col-lg-2">
@@ -52,9 +52,10 @@
                                     <h3 class="page-title">Departments</h3>
                                 </div>
                                 <div class="col-auto text-end float-end ms-auto download-grp">
-                                    <a href="#" class="btn btn-outline-primary me-2"><i
-                                            class="fas fa-download"></i> Download</a>
-                                    <a href="add-department.html" class="btn btn-primary">
+                                    <a href="#" class="btn btn-outline-primary me-2">
+                                        <i class="fas fa-download"></i> Download
+                                    </a>
+                                    <a href="{{ route('department/add/page') }}" class="btn btn-primary">
                                         <i class="fas fa-plus"></i>
                                     </a>
                                 </div>
