@@ -79,7 +79,38 @@
             </div>
         </div>
     </div>
+</div>
 
+{{-- model elete --}}
+<div class="modal custom-modal fade" id="delete" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-header">
+                    <h3>Delete Department</h3>
+                    <p>Are you sure want to delete?</p>
+                </div>
+                <div class="modal-btn delete-action">
+                    <div class="row">
+                        <form action="{{ route('department/delete') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="department_id" class="e_department_id" value="">
+                            <div class="row">
+                                <div class="col-6">
+                                    <button type="submit" class="btn btn-primary paid-continue-btn" style="width: 100%;">Delete</button>
+                                </div>
+                                <div class="col-6">
+                                    <a data-bs-dismiss="modal"
+                                        class="btn btn-primary paid-cancel-btn">Cancel
+                                    </a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 @section('script')
@@ -123,5 +154,14 @@
             });
         });
     </script>
+
+    {{-- delete js --}}
+<script>
+    $(document).on('click','.delete',function()
+    {
+        var _this = $(this).parents('tr');
+        $('.e_department_id').val(_this.find('.department_id').data('department_id'));
+    });
+</script>
 @endsection
 @endsection

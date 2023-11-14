@@ -75,7 +75,7 @@ class DepartmentController extends Controller
                         <a href="" class="btn btn-sm bg-danger-light">
                             <i class="feather-edit"></i>
                         </a>
-                        <a class="btn btn-sm bg-danger-light delete user_id" data-bs-toggle="modal" data-user_id="" data-bs-target="#delete">
+                        <a class="btn btn-sm bg-danger-light delete department_id" data-bs-toggle="modal" data-department_id="'.$record->id.'" data-bs-target="#delete">
                         <i class="fe fe-trash-2"></i>
                         </a>
                     </div>
@@ -126,6 +126,25 @@ class DepartmentController extends Controller
             \Log::info($e);
             DB::rollback();
             Toastr::error('fail, Add new record  :)','Error');
+            return redirect()->back();
+        }
+    }
+
+    /** department delete record */
+    public function deleteRecord(Request $request) 
+    {
+        DB::beginTransaction();
+        try {
+
+            Department::destroy($request->department_id);
+            DB::commit();
+            Toastr::success('Department deleted successfully :)','Success');
+            return redirect()->back();
+    
+        } catch(\Exception $e) {
+            \Log::info($e);
+            DB::rollback();
+            Toastr::error('Department deleted fail :)','Error');
             return redirect()->back();
         }
     }
