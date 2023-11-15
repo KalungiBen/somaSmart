@@ -16,9 +16,10 @@ class DepartmentController extends Controller
     }
     
     /** edit record */
-    public function editDepartment()
+    public function editDepartment($department_id)
     {
-        return view('department.edit-departmen');
+        $department = Department::where('department_id',$department_id)->first();
+        return view('department.edit-departmen',compact('department'));
     }
 
     /** department list */
@@ -72,7 +73,7 @@ class DepartmentController extends Controller
             $modify = '
                 <td class="text-end"> 
                     <div class="actions">
-                        <a href="" class="btn btn-sm bg-danger-light">
+                        <a href="'.url('department/edit/'.$record->department_id).'" class="btn btn-sm bg-danger-light">
                             <i class="feather-edit"></i>
                         </a>
                         <a class="btn btn-sm bg-danger-light delete department_id" data-bs-toggle="modal" data-department_id="'.$record->id.'" data-bs-target="#delete">

@@ -28,32 +28,31 @@
                                     <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms">
                                             <label>Department ID <span class="login-danger">*</span></label>
-                                            <input type="text" class="form-control" value="PRE1534">
+                                            <input type="text" class="form-control" value="{{ $department->department_id }}" readonly>
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms">
                                             <label>Department Name <span class="login-danger">*</span></label>
-                                            <input type="text" class="form-control" value="MCA">
+                                            <input type="text" class="form-control" value="{{ $department->department_name }}">
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms">
                                             <label>Head of Department <span class="login-danger">*</span></label>
-                                            <input type="text" class="form-control" value="Lois A">
+                                            <input type="text" class="form-control" value="{{ $department->head_of_department }}">
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms calendar-icon">
                                             <label>Department Start Date <span class="login-danger">*</span></label>
-                                            <input class="form-control datetimepicker" type="text"
-                                                placeholder="DD-MM-YYYY">
+                                            <input class="form-control datetimepicker" type="text"placeholder="DD-MM-YYYY" value="{{ $department->department_start_date }}">
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms">
                                             <label>No of Students <span class="login-danger">*</span></label>
-                                            <input type="text" class="form-control" value="200">
+                                            <input type="text" class="form-control" value="{{ $department->no_of_students }}">
                                         </div>
                                     </div>
                                     <div class="col-12">
