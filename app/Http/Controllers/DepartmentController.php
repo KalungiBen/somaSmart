@@ -131,6 +131,32 @@ class DepartmentController extends Controller
         }
     }
 
+    /** update record */
+    public function updateRecord(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            
+            $updateRecord = [
+                'department_name'       => $request->department_name,
+                'head_of_department'    => $request->head_of_department,
+                'department_start_date' => $request->department_start_date,
+                'no_of_students'        => $request->no_of_students,
+            ];
+
+            Department::where('department_id',$request->department_id)->update($updateRecord);
+            Toastr::success('Has been update successfully :)','Success');
+            DB::commit();
+            return redirect()->back();
+           
+        } catch(\Exception $e) {
+            \Log::info($e);
+            DB::rollback();
+            Toastr::error('Fail, update record:)','Error');
+            return redirect()->back();
+        }
+    }
+
     /** department delete record */
     public function deleteRecord(Request $request) 
     {

@@ -110,6 +110,7 @@ Route::group(['namespace' => 'App\Http\Controllers'],function()
         Route::get('department/add/page', 'indexDepartment')->middleware('auth')->name('department/add/page'); // page add department
         Route::get('department/edit/{department_id}', 'editDepartment'); // page add department
         Route::post('department/save', 'saveRecord')->middleware('auth')->name('department/save'); // department/save
+        Route::post('department/update', 'updateRecord')->middleware('auth')->name('department/update'); // department/update
         Route::post('department/delete', 'deleteRecord')->middleware('auth')->name('department/delete'); // department/delete
         Route::get('get-data-list', 'getDataList')->name('get-data-list'); // get data list
 
