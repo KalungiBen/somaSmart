@@ -142,4 +142,9 @@ Route::group(['namespace' => 'App\Http\Controllers'],function()
         Route::get('invoice/settings/tax/page', 'invoiceSettingsTax')->middleware('auth')->name('invoice/settings/tax/page'); // invoice/settings/tax/page
         Route::get('invoice/settings/bank/page', 'invoiceSettingsBank')->middleware('auth')->name('invoice/settings/bank/page'); // invoice/settings/bank/page
     });
+
+    // ----------------------- accounts ----------------------------//
+    Route::controller(AccountsController::class)->group(function () {
+        Route::get('account/fees/collections/page', 'index')->middleware('auth')->name('account/fees/collections/page'); // account/fees/collections/page
+    });
 });
