@@ -402,7 +402,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="invoice-logo">
-                                                    <img src="assets/img/logo.png" alt="logo">
+                                                    <img src="{{ URL::to('assets/img/logo.png') }}" alt="logo">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -418,10 +418,8 @@
 
                                     <div class="invoice-item invoice-item-bg">
                                         <div class="invoice-circle-img">
-                                            <img src="assets/img/invoice-circle1.png" alt=""
-                                                class="invoice-circle1">
-                                            <img src="assets/img/invoice-circle2.png" alt=""
-                                                class="invoice-circle2">
+                                            <img src="assets/img/invoice-circle1.png" alt="" class="invoice-circle1">
+                                            <img src="assets/img/invoice-circle2.png" alt="" class="invoice-circle2">
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-4 col-md-12">
@@ -547,9 +545,8 @@
                                             </div>
                                             <div class="col-lg-4 col-md-4">
                                                 <div class="invoice-sign text-end">
-                                                    <img class="img-fluid d-inline-block"
-                                                        src="assets/img/signature.png" alt="sign">
-                                                    <span class="d-block">Harristemp</span>
+                                                    <img class="img-fluid d-inline-block" src="{{ URL::to('assets/img/signature.png') }}" alt="sign">
+                                                    <span class="d-block">StarCode Kh</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -574,12 +571,10 @@
                     <div class="modal-btn delete-action">
                         <div class="row">
                             <div class="col-6">
-                                <a href="javascript:void(0);" data-bs-dismiss="modal"
-                                    class="btn btn-primary paid-continue-btn">Delete</a>
+                                <a href="#" data-bs-dismiss="modal" class="btn btn-primary paid-continue-btn">Delete</a>
                             </div>
                             <div class="col-6">
-                                <a href="javascript:void(0);" data-bs-dismiss="modal"
-                                    class="btn btn-primary paid-cancel-btn">Cancel</a>
+                                <a href="#" data-bs-dismiss="modal" class="btn btn-primary paid-cancel-btn">Cancel</a>
                             </div>
                         </div>
                     </div>
@@ -638,4 +633,103 @@
         </div>
     </div>
     
+    @section('script')
+
+    {{-- show hide [Recurring Invoice]--}}
+    <script>
+        $(function() {
+            $("input[name='invoice']").click(function() {
+                if ($("#chkYes").is(":checked")) {
+                    $("#show-invoices").show();
+                } else {
+                    $("#show-invoices").hide();
+                }
+            });
+        });
+    </script>
+
+    {{-- add rows and remove [Item Details]--}}
+    <script>
+        $(".add-table-items").on('click', '.remove-btn', function() {
+            $(this).closest('.add-row').remove();
+            return false;
+        });
+        
+        $(document).on("click", ".add-btn", function() {
+            var experiencecontent =
+            '<tr class="add-row">' +
+                '<td>' + '<input type="text" class="form-control" name="items">' + '</td>' +
+                '<td>' + '<input type="text" class="form-control" name="category">' + '</td>' +
+                '<td>' + '<input type="text" class="form-control" name="quantity">' + '</td>' +
+                '<td>' + '<input type="text" class="form-control" name="price">' + '</td>' +
+                '<td>' + '<input type="text" class="form-control" name="amount">' + '</td>' +
+                '<td>' + '<input type="text" class="form-control" name="discount">' + '</td>' +
+                '<td class="add-remove text-end">' +
+                    '<a href="#" class="add-btn me-2"><i class="fas fa-plus-circle"></i></a> ' +
+                    '<a href="#" class="copy-btn me-2"><i class="fe fe-copy"></i></a>' +
+                    '<a href="#" class="remove-btn"><i class="fe fe-trash-2"></i></a>' +
+                '</td>' +
+            '</tr>';
+            $(".add-table-items").append(experiencecontent);
+            return false;
+        });
+    </script>
+
+    {{-- Summary --}}
+    <script>
+        $(document).on("click", ".add-links", function() {
+            var experiencecontent = 
+            '<div class="links-cont">' +
+                '<div class="service-amount">' +
+                    '<a href="#" class="service-trash">' +
+                        '<i class="fe fe-minus-circle me-1"></i>' +
+                        'Service Charge ' +
+                    '</a> ' +
+                    '<span>$ 4</span' +
+                '</div>' +
+            '</div>';
+            $(".links-info-one").append(experiencecontent);
+            return false;
+        });
+
+        $(".links-info-discount").on('click', '.service-trash-one', function() {
+            $(this).closest('.links-cont-discount').remove();
+            return false;
+        });
+
+        $(document).on("click", ".add-links-one", function() {
+            var experiencecontent =
+            '<div class="links-cont-discount">' +
+                '<div class="service-amount">' +
+                    '<a href="#" class="service-trash-one">' +
+                        '<i class="fe fe-minus-circle me-1"></i> Offer new' +
+                    '</a>' +
+                    '<span>$ 4 %</span' +
+                '</div>' +
+            '</div>';
+            $(".links-info-discount").append(experiencecontent);
+            return false;
+        });
+
+        $(document).on("click", ".add-links", function() {
+            var experiencecontent = 
+            '<div class="row form-row links-cont">' +
+                '<div class="form-group d-flex">' +
+                    '<button class="btn social-icon">' +
+                        '<i class="feather-github"></i>' +
+                    '</button>' +
+                    '<input type="text" class="form-control" placeholder="Social Link">' +
+                    '<div>' +
+                        '<a href="#" class="btn trash">' +
+                            '<i class="feather-trash-2"></i>' +
+                        '</a>' +
+                    '</div>' +
+                '</div>' +
+            '</div>';
+            $(".settings-form").append(experiencecontent);
+            return false;
+        });
+    </script>
+    
+@endsection
 @endsection

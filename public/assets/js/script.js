@@ -95,17 +95,7 @@
         $(this).closest('.links-cont').remove();
         return false;
     });
-    $(document).on("click", ".add-links", function() {
-        var experiencecontent = '<div class="row form-row links-cont">' +
-            '<div class="form-group d-flex">' +
-            '<button class="btn social-icon"><i class="feather-github"></i></button>' +
-            '<input type="text" class="form-control" placeholder="Social Link">' +
-            '<div><a href="#" class="btn trash"><i class="feather-trash-2"></i></a></div>' +
-            '</div>' +
-            '</div>';
-        $(".settings-form").append(experiencecontent);
-        return false;
-    });
+
     if ($('.datetimepicker').length > 0) {
         $('.datetimepicker').datetimepicker({
             format: 'DD-MM-YYYY',
@@ -310,28 +300,7 @@
         return false;
     });
     
-    $(document).on("click", ".add-links", function() {
-        var experiencecontent = '<div class="links-cont">' +
-            '<div class="service-amount">' +
-            '<a href="#" class="service-trash"><i class="fe fe-minus-circle me-1"></i>Service Charge</a> <span>$ 4</span' +
-            '</div>' +
-            '</div>';
-        $(".links-info-one").append(experiencecontent);
-        return false;
-    });
-    $(".links-info-discount").on('click', '.service-trash-one', function() {
-        $(this).closest('.links-cont-discount').remove();
-        return false;
-    });
-    $(document).on("click", ".add-links-one", function() {
-        var experiencecontent = '<div class="links-cont-discount">' +
-            '<div class="service-amount">' +
-            '<a href="#" class="service-trash-one"><i class="fe fe-minus-circle me-1"></i>Offer new</a> <span>$ 4 %</span' +
-            '</div>' +
-            '</div>';
-        $(".links-info-discount").append(experiencecontent);
-        return false;
-    });
+   
     if ($('#summernote').length > 0) {
         $('#summernote').summernote({
             height: 300,

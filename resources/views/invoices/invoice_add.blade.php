@@ -120,14 +120,14 @@
                                         <div class="col-xl-4 col-lg-6 col-md-6">
                                             <div class="invoice-info">
                                                 <strong class="customer-text">Invoice From 
-                                                    <a class="small" href="edit-invoice.html">Edit Address</a>
+                                                    <a class="small" href="#">Edit Address</a>
                                                 </strong>
                                                 <p class="invoice-details invoice-details-two">
-                                                    Darren Elder 
+                                                    StarCode Kh
                                                     <br>
-                                                    806 Twin Willow Lane, Old Forge,
+                                                    #61, Preah Monivong Blvd.,
                                                     <br>
-                                                    Newyork, USA 
+                                                    Penh, Cambodia.
                                                     <br>
                                                 </p>
                                             </div>
@@ -136,11 +136,11 @@
                                             <div class="invoice-info">
                                                 <strong class="customer-text">Invoice To</strong>
                                                 <p class="invoice-details invoice-details-two">
-                                                    Walter Roberson
+                                                    Soeng Souy
                                                     <br>
-                                                    299 Star Trek Drive, Panama City,
+                                                    #28, Mao Tse Tung Blvd.,
                                                     <br>
-                                                    Florida, 32405, USA
+                                                    Penh, Cambodia.
                                                     <br>
                                                 </p>
                                             </div>
@@ -172,8 +172,12 @@
                                                     <td><input type="text" class="form-control" name="amount"></td>
                                                     <td><input type="text" class="form-control" name="discount"></td>
                                                     <td class="add-remove text-end">
-                                                        <a href="#" class="add-btn me-2"><i class="fas fa-plus-circle"></i></a>
-                                                        <a href="#" class="copy-btn me-2"><i class="fe fe-copy"></i></a>
+                                                        <a href="#" class="add-btn me-2">
+                                                            <i class="fas fa-plus-circle"></i>
+                                                        </a>
+                                                        <a href="#" class="copy-btn me-2">
+                                                            <i class="fe fe-copy"></i>
+                                                        </a>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -187,9 +191,9 @@
                                             <h4 class="field-title">More Fields</h4>
                                             <div class="field-box">
                                                 <p>Payment Details</p>
-                                                <a class="btn btn-primary" href="#" data-bs-toggle="modal"
-                                                    data-bs-target="#bank_details"><i
-                                                        class="fas fa-plus-circle me-2"></i>Add Bank Details</a>
+                                                <a class="btn btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#bank_details">
+                                                    <i class="fas fa-plus-circle me-2"></i>Add Bank Details
+                                                </a>
                                             </div>
                                         </div>
                                         <div class="invoice-faq">
@@ -199,20 +203,14 @@
                                                     <div class="panel panel-default">
                                                         <div class="panel-heading" role="tab" id="headingTwo">
                                                             <p class="panel-title">
-                                                                <a class="collapsed" data-bs-toggle="collapse"
-                                                                    data-bs-parent="#accordion" href="#collapseTwo"
-                                                                    aria-expanded="false"
-                                                                    aria-controls="collapseTwo">
-                                                                    <i class="fas fa-plus-circle me-1"></i> Add
-                                                                    Terms & Conditions
+                                                                <a class="collapsed" data-bs-toggle="collapse" data-bs-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                                    <i class="fas fa-plus-circle me-1"></i> Add Terms & Conditions
                                                                 </a>
                                                             </p>
                                                         </div>
-                                                        <div id="collapseTwo" class="panel-collapse collapse"
-                                                            role="tabpanel" aria-labelledby="headingTwo"
-                                                            data-bs-parent="#accordion">
+                                                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo" data-bs-parent="#accordion">
                                                             <div class="panel-body">
-                                                                <textarea class="form-control"></textarea>
+                                                                <textarea class="form-control" name="add_terms_and_conditions"></textarea>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -221,20 +219,14 @@
                                                     <div class="panel panel-default">
                                                         <div class="panel-heading" role="tab" id="headingThree">
                                                             <p class="panel-title">
-                                                                <a class="collapsed" data-bs-toggle="collapse"
-                                                                    data-bs-parent="#accordion"
-                                                                    href="#collapseThree" aria-expanded="false"
-                                                                    aria-controls="collapseThree">
-                                                                    <i class="fas fa-plus-circle me-1"></i> Add
-                                                                    Notes
+                                                                <a class="collapsed" data-bs-toggle="collapse" data-bs-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                                    <i class="fas fa-plus-circle me-1"></i> Add Notes
                                                                 </a>
                                                             </p>
                                                         </div>
-                                                        <div id="collapseThree" class="panel-collapse collapse"
-                                                            role="tabpanel" aria-labelledby="headingThree"
-                                                            data-bs-parent="#accordion">
+                                                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree" data-bs-parent="#accordion">
                                                             <div class="panel-body">
-                                                                <textarea class="form-control"></textarea>
+                                                                <textarea class="form-control" name="add_notes"></textarea>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -249,22 +241,20 @@
                                                 <div class="invoice-total-inner">
                                                     <p>Taxable Amount <span>$21</span></p>
                                                     <p>Round Off
-                                                        <input type="checkbox" id="status_1" class="check">
+                                                        <input type="checkbox" name="round_off" id="status_1" class="check" value="$54">
                                                         <label for="status_1" class="checktoggle">checkbox</label>
                                                         <span>$54</span>
                                                     </p>
                                                     <div class="links-info-one">
-                                                        <div class="links-info">
-                                                        </div>
+                                                        <div class="links-info"></div>
                                                     </div>
-                                                    <a href="javascript:void(0);" class="add-links add-links-bg">
+                                                    <a href="#" class="add-links add-links-bg">
                                                         <i class="fas fa-plus-circle me-1"></i> Additional Charges
                                                     </a>
                                                     <div class="links-info-discount">
                                                         <div class="links-cont-discount">
-                                                            <a href="javascript:void(0);" class="add-links-one">
-                                                                <i class="fas fa-plus-circle me-1"></i> Add more
-                                                                Discount
+                                                            <a href="#" class="add-links-one">
+                                                                <i class="fas fa-plus-circle me-1"></i> Add more Discount
                                                             </a>
                                                         </div>
                                                     </div>
@@ -277,11 +267,10 @@
                                         <div class="upload-sign">
                                             <div class="form-group service-upload">
                                                 <span>Upload Sign</span>
-                                                <input type="file" multiple>
+                                                <input type="file" name="upload_sign" multiple>
                                             </div>
                                             <div class="form-group">
-                                                <input type="text" class="form-control"
-                                                    placeholder="Name of the Signatuaory">
+                                                <input type="text" class="form-control" name="name_of_the_signatuaory" placeholder="Name of the Signatuaory">
                                             </div>
                                             <div class="form-group float-end mb-0">
                                                 <button class="btn btn-primary" type="submit">Save Invoice</button>
@@ -610,6 +599,64 @@
                 return false;
             });
         </script>
+
+        {{-- Summary --}}
+        <script>
+            $(document).on("click", ".add-links", function() {
+                var experiencecontent = 
+                '<div class="links-cont">' +
+                    '<div class="service-amount">' +
+                        '<a href="#" class="service-trash">' +
+                            '<i class="fe fe-minus-circle me-1"></i>' +
+                            'Service Charge ' +
+                        '</a> ' +
+                        '<span>$ 4</span' +
+                    '</div>' +
+                '</div>';
+                $(".links-info-one").append(experiencecontent);
+                return false;
+            });
+
+            $(".links-info-discount").on('click', '.service-trash-one', function() {
+                $(this).closest('.links-cont-discount').remove();
+                return false;
+            });
+
+            $(document).on("click", ".add-links-one", function() {
+                var experiencecontent =
+                '<div class="links-cont-discount">' +
+                    '<div class="service-amount">' +
+                        '<a href="#" class="service-trash-one">' +
+                            '<i class="fe fe-minus-circle me-1"></i> Offer new' +
+                        '</a>' +
+                        '<span>$ 4 %</span' +
+                    '</div>' +
+                '</div>';
+                $(".links-info-discount").append(experiencecontent);
+                return false;
+            });
+
+            $(document).on("click", ".add-links", function() {
+                var experiencecontent = 
+                '<div class="row form-row links-cont">' +
+                    '<div class="form-group d-flex">' +
+                        '<button class="btn social-icon">' +
+                            '<i class="feather-github"></i>' +
+                        '</button>' +
+                        '<input type="text" class="form-control" placeholder="Social Link">' +
+                        '<div>' +
+                            '<a href="#" class="btn trash">' +
+                                '<i class="feather-trash-2"></i>' +
+                            '</a>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>';
+                $(".settings-form").append(experiencecontent);
+                return false;
+            });
+
+        </script>
+
     @endsection
     
 @endsection
