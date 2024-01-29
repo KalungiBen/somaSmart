@@ -30,7 +30,8 @@
                 <div class="col-md-12">
                     <div class="card invoices-add-card">
                         <div class="card-body">
-                            <form action="#" class="invoices-form">
+                            <form action="{{ route('invoice/add/save') }}" class="invoices-form" method="POST" enctype="multipart/form-data">
+                                @csrf
                                 <div class="invoices-main-form">
                                     <div class="row">
                                         <div class="col-xl-4 col-md-6 col-sm-12 col-12">
@@ -45,7 +46,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label>Po Number</label>
-                                                <input class="form-control" type="text" id="reference_number" name="reference_number" placeholder="Enter Reference Number">
+                                                <input class="form-control" type="text" id="po_number" name="po_number" placeholder="Enter Reference Number">
                                             </div>
                                         </div>
                                         
@@ -60,14 +61,14 @@
                                                         <div class="col-lg-6 col-md-6">
                                                             <div class="invoice-inner-date">
                                                                 <span>
-                                                                    Date <input class="form-control datetimepicker" type="text" name="date_from" value="{{ date('d-m-Y') }}">
+                                                                    Date <input class="form-control datetimepicker" type="text" name="date" value="{{ date('d-m-Y') }}">
                                                                 </span>
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-6 col-md-6">
                                                             <div class="invoice-inner-date invoice-inner-datepic">
                                                                 <span>
-                                                                    Due Date <input class="form-control datetimepicker" type="text" name="date_to" placeholder="Select">
+                                                                    Due Date <input class="form-control datetimepicker" type="text" name="due_date" placeholder="Select">
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -80,11 +81,11 @@
                                             <div class="inovices-month-info">
                                                 <div class="form-group mb-0">
                                                     <label class="custom_check w-100">
-                                                        <input type="checkbox" id="enableTax" name="invoice" value="Enable tax">
+                                                        <input type="checkbox" id="enableTax" name="enable_tax" value="Enable tax">
                                                         <span class="checkmark"></span> Enable tax
                                                     </label>
                                                     <label class="custom_check w-100">
-                                                        <input type="checkbox" id="chkYes" name="invoice" value="Recurring Invoice">
+                                                        <input type="checkbox" id="chkYes" name="recurring_incoice" value="Recurring Invoice">
                                                         <span class="checkmark"></span> Recurring Invoice
                                                     </label>
                                                 </div>
@@ -104,7 +105,7 @@
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <input class="form-control" type="text" placeholder="Enter Months">
+                                                                <input class="form-control" type="text" name="month" placeholder="Enter Months">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -130,6 +131,11 @@
                                                     Penh, Cambodia.
                                                     <br>
                                                 </p>
+                                                <textarea hidden name="invoice_from">
+                                                    StarCode Kh
+                                                    #61, Preah Monivong Blvd.,
+                                                    Penh, Cambodia.
+                                                </textarea>
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-lg-6 col-md-6">
@@ -143,6 +149,11 @@
                                                     Penh, Cambodia.
                                                     <br>
                                                 </p>
+                                                <textarea hidden name="invoice_to">
+                                                    Soeng Souy
+                                                    #28, Mao Tse Tung Blvd.,
+                                                    Penh, Cambodia.
+                                                </textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -151,7 +162,7 @@
                                 <div class="invoice-add-table">
                                     <h4>Item Details</h4>
                                     <div class="table-responsive">
-                                        <table class="table table-center add-table-items">
+                                        <table class="table table-center add-table-items" id="invoice-add-table">
                                             <thead>
                                                 <tr>
                                                     <th>Items</th>
@@ -165,19 +176,15 @@
                                             </thead>
                                             <tbody>
                                                 <tr class="add-row">
-                                                    <td><input type="text" class="form-control" name="items"></td>
-                                                    <td><input type="text" class="form-control" name="category"></td>
-                                                    <td><input type="text" class="form-control" name="quantity"></td>
-                                                    <td><input type="text" class="form-control" name="price"></td>
-                                                    <td><input type="text" class="form-control" name="amount"></td>
-                                                    <td><input type="text" class="form-control" name="discount"></td>
+                                                    <td><input type="text" class="form-control" name="items[]"></td>
+                                                    <td><input type="text" class="form-control" name="category[]"></td>
+                                                    <td><input type="text" class="form-control" name="quantity[]" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" ></td>
+                                                    <td><input type="text" class="form-control price" name="price[]" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" ></td>
+                                                    <td><input type="text" class="form-control amount" name="amount[]" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" ></td>
+                                                    <td><input type="text" class="form-control discount" name="discount[]" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" ></td>
                                                     <td class="add-remove text-end">
-                                                        <a href="#" class="add-btn me-2">
-                                                            <i class="fas fa-plus-circle"></i>
-                                                        </a>
-                                                        <a href="#" class="copy-btn me-2">
-                                                            <i class="fe fe-copy"></i>
-                                                        </a>
+                                                        <a class="add-btn me-2"><i class="fas fa-plus-circle"></i></a>
+                                                        <a class="copy-btn me-2"><i class="fe fe-copy"></i></a>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -189,16 +196,52 @@
                                     <div class="col-lg-7 col-md-6">
                                         <div class="invoice-fields">
                                             <h4 class="field-title">More Fields</h4>
-                                            <div class="field-box">
+                                            <div id="btn-add-bank-details" class="field-box">
                                                 <p>Payment Details</p>
                                                 <a class="btn btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#bank_details">
                                                     <i class="fas fa-plus-circle me-2"></i>Add Bank Details
                                                 </a>
                                             </div>
+                                            <div id="btn-remove-bank-details" class="field-box">
+                                                <p>Payment Details</p>
+                                                <a class="btn btn-danger">
+                                                    <i class="fe fe-trash-2"></i> Remove Bank Details
+                                                </a>
+                                            </div>
                                         </div>
+                                        <br>
+
+                                        <div id="bank-details" class="bank-inner-details">
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Account Holder Name</label>
+                                                        <input type="text" class="form-control" id="auto_account_holder_name" name="account_holder_name" placeholder="Add Name">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Bank name</label>
+                                                        <input type="text" class="form-control" id="auto_bank_name" name="bank_name" placeholder="Add Bank name">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6">
+                                                    <div class="form-group">
+                                                        <label>IFSC Code</label>
+                                                        <input type="text" class="form-control" id="auto_ifsc_code" name="ifsc_code" placeholder="IFSC Code">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Account Number</label>
+                                                        <input type="text" class="form-control" id="auto_account_number" name="account_number" placeholder="Account Number">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
                                         <div class="invoice-faq">
-                                            <div class="panel-group" id="accordion" role="tablist"
-                                                aria-multiselectable="true">
+                                            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                                                 <div class="faq-tab">
                                                     <div class="panel panel-default">
                                                         <div class="panel-heading" role="tab" id="headingTwo">
@@ -234,16 +277,18 @@
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="col-lg-5 col-md-6">
                                         <div class="invoice-total-card">
                                             <h4 class="invoice-total-title">Summary</h4>
                                             <div class="invoice-total-box">
                                                 <div class="invoice-total-inner">
-                                                    <p>Taxable Amount <span>$21</span></p>
+                                                    <input type="hidden" name="taxable_amount" id="taxable_amount" value="21">
+                                                    <p>Taxable Amount <span id="">$21</span></p>
                                                     <p>Round Off
-                                                        <input type="checkbox" name="round_off" id="status_1" class="check" value="$54">
+                                                        <input type="checkbox" name="round_off" id="status_1" class="check" value="54">
                                                         <label for="status_1" class="checktoggle">checkbox</label>
-                                                        <span>$54</span>
+                                                        <span id="">$54</span>
                                                     </p>
                                                     <div class="links-info-one">
                                                         <div class="links-info"></div>
@@ -260,7 +305,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="invoice-total-footer">
-                                                    <h4>Total Amount <span>$ 894.00</span></h4>
+                                                    <h4>Total Amount <span id="total_amount">$<span class="total_amount" name="total_amount">00</span></span></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -278,7 +323,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+    
                             </form>
                         </div>
                     </div>
@@ -475,25 +520,25 @@
                             <div class="col-lg-6 col-md-6">
                                 <div class="form-group">
                                     <label>Account Holder Name</label>
-                                    <input type="text" class="form-control" placeholder="Add Name">
+                                    <input type="text" class="form-control" id="account_holder_name" placeholder="Add Name">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <div class="form-group">
                                     <label>Bank name</label>
-                                    <input type="text" class="form-control" placeholder="Add Bank name">
+                                    <input type="text" class="form-control" id="bank_name" placeholder="Add Bank name">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <div class="form-group">
                                     <label>IFSC Code</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" id="ifsc_code" placeholder="IFSC Code">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <div class="form-group">
                                     <label>Account Number</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" id="account_number" placeholder="Account Number">
                                 </div>
                             </div>
                         </div>
@@ -501,9 +546,8 @@
                 </div>
                 <div class="modal-footer">
                     <div class="bank-details-btn">
-                        <a href="javascript:void(0);" data-bs-dismiss="modal"
-                            class="btn bank-cancel-btn me-2">Cancel</a>
-                        <a href="javascript:void(0);" class="btn bank-save-btn">Save Item</a>
+                        <a href="javascript:void(0);" data-bs-dismiss="modal" class="btn bank-cancel-btn me-2">Cancel</a>
+                        <a id="save-item" class="btn bank-save-btn" class="close" data-bs-dismiss="modal" aria-label="Close">Save Item</a>
                     </div>
                 </div>
             </div>
@@ -560,10 +604,41 @@
 
     @section('script')
 
+        {{-- show hide [Bank Details]--}}
+        <script>
+            $('#bank-details').hide();
+            $('#btn-remove-bank-details').hide();
+            $(function() {
+                $("#save-item").click(function() {
+                    if (!isNaN($("#account_holder_name").val())) {
+                        $('#bank-details').hide();
+                    } else {
+                        $('#bank-details').show();
+                        $('#btn-add-bank-details').hide();
+                        $('#btn-remove-bank-details').show();
+                        var account_holder_name = $('#account_holder_name').val();
+                        var bank_name = $('#bank_name').val();
+                        var ifsc_code = $('#ifsc_code').val();
+                        var account_number = $('#account_number').val();
+
+                        $('#auto_account_holder_name').val(account_holder_name);
+                        $('#auto_bank_name').val(bank_name);
+                        $('#auto_ifsc_code').val(ifsc_code);
+                        $('#auto_account_number').val(account_number);
+                    }
+                });
+                $("#btn-remove-bank-details").click(function() {
+                    $('#bank-details').hide();
+                    $('#btn-add-bank-details').show();
+                    $('#btn-remove-bank-details').hide();
+                });
+            });
+        </script>
+
         {{-- show hide [Recurring Invoice]--}}
         <script>
             $(function() {
-                $("input[name='invoice']").click(function() {
+                $("input[name='recurring_incoice']").click(function() {
                     if ($("#chkYes").is(":checked")) {
                         $("#show-invoices").show();
                     } else {
@@ -583,21 +658,48 @@
             $(document).on("click", ".add-btn", function() {
                 var experiencecontent =
                 '<tr class="add-row">' +
-                    '<td>' + '<input type="text" class="form-control" name="items">' + '</td>' +
-                    '<td>' + '<input type="text" class="form-control" name="category">' + '</td>' +
-                    '<td>' + '<input type="text" class="form-control" name="quantity">' + '</td>' +
-                    '<td>' + '<input type="text" class="form-control" name="price">' + '</td>' +
-                    '<td>' + '<input type="text" class="form-control" name="amount">' + '</td>' +
-                    '<td>' + '<input type="text" class="form-control" name="discount">' + '</td>' +
+                    '<td>' + '<input type="text" class="form-control" name="items[]">' + '</td>' +
+                    '<td>' + '<input type="text" class="form-control" name="category[]">' + '</td>' +
+                    '<td>' + '<input type="text" class="form-control" name="quantity[]">' + '</td>' +
+                    '<td>' + '<input type="text" class="form-control price" name="price[]">' + '</td>' +
+                    '<td>' + '<input type="text" class="form-control amount" name="amount[]">' + '</td>' +
+                    '<td>' + '<input type="text" class="form-control discount" name="discount[]">' + '</td>' +
                     '<td class="add-remove text-end">' +
-                        '<a href="#" class="add-btn me-2"><i class="fas fa-plus-circle"></i></a> ' +
-                        '<a href="#" class="copy-btn me-2"><i class="fe fe-copy"></i></a>' +
-                        '<a href="#" class="remove-btn"><i class="fe fe-trash-2"></i></a>' +
+                        '<a class="add-btn me-2"><i class="fas fa-plus-circle"></i></a> ' +
+                        '<a class="copy-btn me-2"><i class="fe fe-copy"></i></a>' +
+                        '<a class="remove-btn"><i class="fe fe-trash-2"></i></a>' +
                     '</td>' +
                 '</tr>';
                 $(".add-table-items").append(experiencecontent);
                 return false;
             });
+        </script>
+
+        <script>
+
+            $('#invoice-add-table tbody').on("keyup",".price",function()
+            {
+                var parent = $(this).closest('tr');
+                var price  = parseFloat($(parent).find('.price').val());
+                $(parent).find('.price').val(price);
+                GrandTotal();
+            });
+
+            function GrandTotal() {
+                var sum = 0;
+                $('.price').each(function() {
+                    sum += Number($(this).val());
+                });
+                $(document).on("change keyup blur", ".discount", function() 
+                {
+                    var discount = parseFloat($('.discount').val());
+                    var calculatedDiscount = (sum * discount) / 100;
+                    var totalAmount = sum - calculatedDiscount;
+                    if (!isNaN(totalAmount)) {
+                        document.querySelector('.total_amount').innerText = totalAmount;
+                    }
+                }); 
+            };
         </script>
 
         {{-- Summary --}}
