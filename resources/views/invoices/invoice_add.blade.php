@@ -293,12 +293,12 @@
                                                     <div class="links-info-one">
                                                         <div class="links-info"></div>
                                                     </div>
-                                                    <a href="#" class="add-links add-links-bg">
+                                                    <a class="add-links add-links-bg">
                                                         <i class="fas fa-plus-circle me-1"></i> Additional Charges
                                                     </a>
                                                     <div class="links-info-discount">
                                                         <div class="links-cont-discount">
-                                                            <a href="#" class="add-links-one">
+                                                            <a class="add-links-one">
                                                                 <i class="fas fa-plus-circle me-1"></i> Add more Discount
                                                             </a>
                                                         </div>
@@ -712,7 +712,8 @@
                             '<i class="fe fe-minus-circle me-1"></i>' +
                             'Service Charge ' +
                         '</a> ' +
-                        '<span>$ 4</span' +
+                        '<span>$ 4</span><input name="service_charge[]" value="4" hidden>' +
+                    
                     '</div>' +
                 '</div>';
                 $(".links-info-one").append(experiencecontent);
