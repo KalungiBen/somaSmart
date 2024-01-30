@@ -126,10 +126,12 @@ class InvoiceController extends Controller
                 $InvoiceAdditionalCharges->save();
             }
             /** InvoiceDiscount */
-            $InvoiceDiscount             = new InvoiceDiscount;
-            $InvoiceDiscount->invoice_id = $invoiceId->invoice_id;
-            $InvoiceDiscount->offer_new  = $request->offer_new;
-            $InvoiceDiscount->save();
+            foreach ($request->offer_new as $key => $values) {
+                $InvoiceDiscount             = new InvoiceDiscount;
+                $InvoiceDiscount->invoice_id = $invoiceId->invoice_id;
+                $InvoiceDiscount->offer_new  = $request->offer_new;
+                $InvoiceDiscount->save();
+            }
 
             /** InvoicePaymentDetails */
             $InvoicePaymentDetails                            = new InvoicePaymentDetails;
