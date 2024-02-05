@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('month')->nullable();
             $table->longText('invoice_from')->nullable();
             $table->longText('invoice_to')->nullable();
+            $table->longText('status')->nullable();
             $table->timestamps();
         });
     }

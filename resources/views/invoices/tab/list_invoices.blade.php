@@ -342,25 +342,26 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach($invoiceList as $key => $value)
                                         <tr>
                                             <td>
                                                 <label class="custom_check">
                                                     <input type="checkbox" name="invoice">
                                                     <span class="checkmark"></span>
                                                 </label>
-                                                <a href="view-invoice.html" class="invoice-link">IN093439#@09</a>
+                                                <a href="view-invoice.html" class="invoice-link">{{ $value->invoice_id }}</a>
                                             </td>
-                                            <td>Advertising</td>
-                                            <td>16 Mar 2022</td>
+                                            <td>{{ $value->category }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($value->created_at)->format('d M Y') }}</td>
                                             <td>
                                                 <h2 class="table-avatar">
                                                     <a href="profile.html">
-                                                        <img class="avatar avatar-sm me-2 avatar-img rounded-circle" src="{{ URL::to('/images/photo_defaults.jpg') }}" alt=""> Barbara Moore
+                                                        <img class="avatar avatar-sm me-2 avatar-img rounded-circle" src="{{ URL::to('/images/photo_defaults.jpg') }}" alt=""> {{ $value->customer_name }}
                                                     </a>
                                                 </h2>
                                             </td>
-                                            <td class="text-primary">$1,54,220</td>
-                                            <td>23 Mar 2022</td>
+                                            <td class="text-primary">$ {{ $value->total_amount }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($value->due_date)->format('d M Y') }}</td>
                                             <td><span class="badge bg-success-light">Paid</span></td>
                                             <td class="text-end">
                                                 <div class="dropdown dropdown-action">
@@ -391,6 +392,7 @@
                                                 </div>
                                             </td>
                                         </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

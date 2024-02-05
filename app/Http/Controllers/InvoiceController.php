@@ -18,7 +18,12 @@ class InvoiceController extends Controller
     /** index page */
     public function invoiceList()
     {
-        return view('invoices.tab.list_invoices');
+        $invoiceList = InvoiceDetails::join('invoice_customer_names as icn', 'invoice_details.invoice_id', 'icn.invoice_id')
+                    ->join('invoice_total_amounts as ita', 'invoice_details.invoice_id', 'ita.invoice_id') // Add this line for the additional join
+                    ->select('invoice_details.*','icn.customer_name','ita.total_amount')
+                    ->distinct('invoice_details.invoice_id')
+                    ->get();
+        return view('invoices.tab.list_invoices',compact('invoiceList'));
     }
 
     /** invoice paid page */
@@ -106,6 +111,8 @@ class InvoiceController extends Controller
             if ($request->hasFile('upload_sign')) {
                 $file        = $request->file('upload_sign');
                 $upload_sign = $file->store('upload_sign','local'); // 'local' disk corresponds to the storage/app directory    
+            } else {
+                $upload_sign = 'NULL';
             }
 
             /** InvoiceTotalAmount */
@@ -119,18 +126,22 @@ class InvoiceController extends Controller
             $InvoiceTotalAmount->save();
 
             /** InvoiceAdditionalCharges */
-            foreach ($request->service_charge as $key => $values) {
-                $InvoiceAdditionalCharges                 = new InvoiceAdditionalCharges;
-                $InvoiceAdditionalCharges->invoice_id     = $invoiceId->invoice_id;
-                $InvoiceAdditionalCharges->service_charge = $request->service_charge[$key];
-                $InvoiceAdditionalCharges->save();
+            if(!empty($request->service_charge)) {
+                foreach ($request->service_charge as $key => $values) {
+                    $InvoiceAdditionalCharges                 = new InvoiceAdditionalCharges;
+                    $InvoiceAdditionalCharges->invoice_id     = $invoiceId->invoice_id;
+                    $InvoiceAdditionalCharges->service_charge = $request->service_charge[$key];
+                    $InvoiceAdditionalCharges->save();
+                }
             }
             /** InvoiceDiscount */
-            foreach ($request->offer_new as $key => $values) {
-                $InvoiceDiscount             = new InvoiceDiscount;
-                $InvoiceDiscount->invoice_id = $invoiceId->invoice_id;
-                $InvoiceDiscount->offer_new  = $request->offer_new;
-                $InvoiceDiscount->save();
+            if(!empty($request->offer_new)) {
+                foreach ($request->offer_new as $key => $values) {
+                    $InvoiceDiscount             = new InvoiceDiscount;
+                    $InvoiceDiscount->invoice_id = $invoiceId->invoice_id;
+                    $InvoiceDiscount->offer_new  = $request->offer_new;
+                    $InvoiceDiscount->save();
+                }
             }
 
             /** InvoicePaymentDetails */

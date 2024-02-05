@@ -142,7 +142,7 @@
                                             <div class="invoice-info">
                                                 <strong class="customer-text">Invoice To</strong>
                                                 <p class="invoice-details invoice-details-two">
-                                                    Soeng Souy
+                                                    <span id="invoice_to"></span>
                                                     <br>
                                                     #28, Mao Tse Tung Blvd.,
                                                     <br>
@@ -305,7 +305,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="invoice-total-footer">
-                                                    <h4>Total Amount <span id="total_amount">$<span class="total_amount" name="total_amount">00</span></span></h4>
+                                                    <h4>Total Amount <span id="total_amount">$<span class="total_amount">00</span></span></h4>
+                                                    <input type="hidden" id="total_amounts" name="total_amount">
                                                 </div>
                                             </div>
                                         </div>
@@ -604,6 +605,17 @@
 
     @section('script')
 
+        <script>
+            // Invoice To
+            $('#customer_name').on('change',function()
+            {
+                var invoiceToSpan       = document.getElementById("invoice_to");
+                var customer_name       = $('#customer_name').val();
+                var contentToDisplay    = customer_name;
+                invoiceToSpan.innerText = contentToDisplay;
+            });
+            
+        </script>
         {{-- show hide [Bank Details]--}}
         <script>
             $('#bank-details').hide();
@@ -697,6 +709,7 @@
                     var totalAmount = sum - calculatedDiscount;
                     if (!isNaN(totalAmount)) {
                         document.querySelector('.total_amount').innerText = totalAmount;
+                        $('#total_amounts').val(totalAmount);
                     }
                 }); 
             };
