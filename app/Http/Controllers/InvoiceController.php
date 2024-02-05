@@ -135,11 +135,11 @@ class InvoiceController extends Controller
                 }
             }
             /** InvoiceDiscount */
-            if(!empty($request->offer_new)) {
+            if (!empty($request->offer_new)) {
                 foreach ($request->offer_new as $key => $values) {
                     $InvoiceDiscount             = new InvoiceDiscount;
                     $InvoiceDiscount->invoice_id = $invoiceId->invoice_id;
-                    $InvoiceDiscount->offer_new  = $request->offer_new;
+                    $InvoiceDiscount->offer_new  = $request->offer_new[$key];
                     $InvoiceDiscount->save();
                 }
             }

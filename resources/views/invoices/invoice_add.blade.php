@@ -745,7 +745,7 @@
                         '<a href="#" class="service-trash-one">' +
                             '<i class="fe fe-minus-circle me-1"></i> Offer new' +
                         '</a>' +
-                        '<span>$ 4 %</span><input name="offer_new[]" value="4"hidden>' +
+                        '<span>$ 4 %</span><input name="offer_new[]" value="4" hidden>' +
                     '</div>' +
                 '</div>';
                 $(".links-info-discount").append(experiencecontent);
