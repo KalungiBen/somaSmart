@@ -23,7 +23,7 @@ class InvoiceController extends Controller
                     ->select('invoice_details.*','icn.customer_name','ita.total_amount')
                     ->distinct('invoice_details.invoice_id')
                     ->get();
-        return view('invoices.tab.list_invoices',compact('invoiceList'));
+        return view('invoices.list_invoices',compact('invoiceList'));
     }
 
     /** invoice paid page */
