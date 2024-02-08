@@ -39,16 +39,18 @@
                                 <li>
                                     <div class="multipleSelection">
                                         <div class="selectBox">
-                                            <p class="mb-0"><i class="fas fa-user-plus me-1 select-icon"></i> Select
-                                                User</p>
-                                            <span class="down-icon"><i class="fas fa-chevron-down"></i></span>
+                                            <p class="mb-0">
+                                                <i class="fas fa-user-plus me-1 select-icon"></i> Select User
+                                            </p>
+                                            <span class="down-icon">
+                                                <i class="fas fa-chevron-down"></i>
+                                            </span>
                                         </div>
                                         <div id="checkBoxes">
                                             <form action="#">
                                                 <p class="checkbox-title">Customer Search</p>
                                                 <div class="form-custom">
-                                                    <input type="text" class="form-control bg-grey"
-                                                        placeholder="Enter Customer Name">
+                                                    <input type="text" class="form-control bg-grey" placeholder="Enter Customer Name">
                                                 </div>
                                                 <div class="selectBox-cont">
                                                     <label class="custom_check w-100">
@@ -248,373 +250,62 @@
                     </div>
                 </div>
             </div>
+
             <div class="row">
-                <div class="col-sm-6 col-lg-4 col-xl-3 d-flex">
-                    <div class="card invoices-grid-card w-100">
-                        <div class="card-header d-flex justify-content-between align-items-center">
-                            <a href="view-invoice.html" class="invoice-grid-link">IN093439#@09</a>
-                            <div class="dropdown dropdown-action">
-                                <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown"
-                                    aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
-                                <div class="dropdown-menu dropdown-menu-end">
-                                    <a class="dropdown-item" href="edit-invoice.html"><i
-                                            class="far fa-edit me-2"></i>Edit</a>
-                                    <a class="dropdown-item" href="view-invoice.html"><i
-                                            class="far fa-eye me-2"></i>View</a>
-                                    <a class="dropdown-item" href="javascript:void(0);"><i
-                                            class="far fa-trash-alt me-2"></i>Delete</a>
+
+                @foreach($invoiceList as $key => $value)
+                    <div class="col-sm-6 col-lg-4 col-xl-3 d-flex">
+                        <div class="card invoices-grid-card w-100">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <a href="view-invoice.html" class="invoice-grid-link">{{ $value->invoice_id }}</a>
+                                <div class="dropdown dropdown-action">
+                                    <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-end">
+                                        <a class="dropdown-item" href="edit-invoice.html">
+                                            <i class="far fa-edit me-2"></i>Edit
+                                        </a>
+                                        <a class="dropdown-item" href="view-invoice.html">
+                                            <i class="far fa-eye me-2"></i>View
+                                        </a>
+                                        <a class="dropdown-item" href="javascript:void(0);">
+                                            <i class="far fa-trash-alt me-2"></i>Delete
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-middle">
+                                <h2 class="card-middle-avatar">
+                                    <a href="profile.html">
+                                        <img class="avatar avatar-sm me-2 avatar-img rounded-circle" src="{{ URL::to('/images/photo_defaults.jpg') }}" alt="User Image"> {{ $value->customer_name }}
+                                    </a>
+                                </h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <span><i class="far fa-money-bill-alt"></i> Amount</span>
+                                        <h6 class="mb-0">${{ $value->total_amount }}</h6>
+                                    </div>
+                                    <div class="col-auto">
+                                        <span><i class="far fa-calendar-alt"></i> Due Date</span>
+                                        <h6 class="mb-0">{{ \Carbon\Carbon::parse($value->due_date)->format('d M Y') }}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="row align-items-center">
+                                    <div class="col-auto">
+                                        <span class="badge bg-success-dark">Paid</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="card-middle">
-                            <h2 class="card-middle-avatar">
-                                <a href="profile.html">
-                                    <img class="avatar avatar-sm me-2 avatar-img rounded-circle" src="{{ URL::to('/images/photo_defaults.jpg') }}" alt="User Image"> StarCode Moore
-                                </a>
-                            </h2>
-                        </div>
-                        <div class="card-body">
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    <span><i class="far fa-money-bill-alt"></i> Amount</span>
-                                    <h6 class="mb-0">$1,54,220</h6>
-                                </div>
-                                <div class="col-auto">
-                                    <span><i class="far fa-calendar-alt"></i> Due Date</span>
-                                    <h6 class="mb-0">23 Mar, 2022</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <div class="row align-items-center">
-                                <div class="col-auto">
-                                    <span class="badge bg-success-dark">Paid</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-4 col-xl-3 d-flex">
-                    <div class="card invoices-grid-card w-100">
-                        <div class="card-header d-flex justify-content-between align-items-center">
-                            <a href="view-invoice.html" class="invoice-grid-link">IN093439#@10</a>
-                            <div class="dropdown dropdown-action">
-                                <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown"
-                                    aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
-                                <div class="dropdown-menu dropdown-menu-end">
-                                    <a class="dropdown-item" href="edit-invoice.html"><i
-                                            class="far fa-edit me-2"></i>Edit</a>
-                                    <a class="dropdown-item" href="view-invoice.html"><i
-                                            class="far fa-eye me-2"></i>View</a>
-                                    <a class="dropdown-item" href="javascript:void(0);"><i
-                                            class="far fa-trash-alt me-2"></i>Delete</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-middle">
-                            <h2 class="card-middle-avatar">
-                                <a href="profile.html">
-                                    <img class="avatar avatar-sm me-2 avatar-img rounded-circle" src="{{ URL::to('/images/photo_defaults.jpg') }}" alt="User Image"> StarCode Moore
-                                </a>
-                            </h2>
-                        </div>
-                        <div class="card-body">
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    <span><i class="far fa-money-bill-alt"></i> Amount</span>
-                                    <h6 class="mb-0">$1,222</h6>
-                                </div>
-                                <div class="col-auto">
-                                    <span><i class="far fa-calendar-alt"></i> Due Date</span>
-                                    <h6 class="mb-0">18 Mar 2022</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <div class="row align-items-center">
-                                <div class="col-auto">
-                                    <span class="badge bg-danger-dark">Overdue</span>
-                                </div>
-                                <div class="col text-end">
-                                    <span class="text-danger text-sm">Overdue 14 days</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-4 col-xl-3 d-flex">
-                    <div class="card invoices-grid-card w-100">
-                        <div class="card-header d-flex justify-content-between align-items-center">
-                            <a href="view-invoice.html" class="invoice-grid-link">IN093439#@11</a>
-                            <div class="dropdown dropdown-action">
-                                <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown"
-                                    aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
-                                <div class="dropdown-menu dropdown-menu-end">
-                                    <a class="dropdown-item" href="edit-invoice.html"><i
-                                            class="far fa-edit me-2"></i>Edit</a>
-                                    <a class="dropdown-item" href="view-invoice.html"><i
-                                            class="far fa-eye me-2"></i>View</a>
-                                    <a class="dropdown-item" href="javascript:void(0);"><i
-                                            class="far fa-trash-alt me-2"></i>Delete</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-middle">
-                            <h2 class="card-middle-avatar">
-                                <a href="profile.html">
-                                    <img class="avatar avatar-sm me-2 avatar-img rounded-circle" src="{{ URL::to('/images/photo_defaults.jpg') }}" alt="User Image"> StarCode Moore
-                                </a>
-                            </h2>
-                        </div>
-                        <div class="card-body">
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    <span><i class="far fa-money-bill-alt"></i> Amount</span>
-                                    <h6 class="mb-0">$3,470</h6>
-                                </div>
-                                <div class="col-auto">
-                                    <span><i class="far fa-calendar-alt"></i> Due Date</span>
-                                    <h6 class="mb-0">10 Mar 2022</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <div class="row align-items-center">
-                                <div class="col-auto">
-                                    <span class="badge bg-secondary-dark">Cancelled</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-4 col-xl-3 d-flex">
-                    <div class="card invoices-grid-card w-100">
-                        <div class="card-header d-flex justify-content-between align-items-center">
-                            <a href="view-invoice.html" class="invoice-grid-link">IN093439#@12</a>
-                            <div class="dropdown dropdown-action">
-                                <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown"
-                                    aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
-                                <div class="dropdown-menu dropdown-menu-end">
-                                    <a class="dropdown-item" href="edit-invoice.html"><i
-                                            class="far fa-edit me-2"></i>Edit</a>
-                                    <a class="dropdown-item" href="view-invoice.html"><i
-                                            class="far fa-eye me-2"></i>View</a>
-                                    <a class="dropdown-item" href="javascript:void(0);"><i
-                                            class="far fa-trash-alt me-2"></i>Delete</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-middle">
-                            <h2 class="card-middle-avatar">
-                                <a href="profile.html">
-                                    <img class="avatar avatar-sm me-2 avatar-img rounded-circle" src="{{ URL::to('/images/photo_defaults.jpg') }}" alt="User Image"> StarCode Moore
-                                </a>
-                            </h2>
-                        </div>
-                        <div class="card-body">
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    <span><i class="far fa-money-bill-alt"></i> Amount</span>
-                                    <h6 class="mb-0">$8,265</h6>
-                                </div>
-                                <div class="col-auto">
-                                    <span><i class="far fa-calendar-alt"></i> Due Date</span>
-                                    <h6 class="mb-0">30 Mar 2022</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <div class="row align-items-center">
-                                <div class="col-auto">
-                                    <span class="badge bg-primary-dark">Sent</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-4 col-xl-3 d-flex">
-                    <div class="card invoices-grid-card w-100">
-                        <div class="card-header d-flex justify-content-between align-items-center">
-                            <a href="view-invoice.html" class="invoice-grid-link">IN093439#@13</a>
-                            <div class="dropdown dropdown-action">
-                                <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown"
-                                    aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
-                                <div class="dropdown-menu dropdown-menu-end">
-                                    <a class="dropdown-item" href="edit-invoice.html"><i
-                                            class="far fa-edit me-2"></i>Edit</a>
-                                    <a class="dropdown-item" href="view-invoice.html"><i
-                                            class="far fa-eye me-2"></i>View</a>
-                                    <a class="dropdown-item" href="javascript:void(0);"><i
-                                            class="far fa-trash-alt me-2"></i>Delete</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-middle">
-                            <h2 class="card-middle-avatar">
-                                <a href="profile.html">
-                                    <img class="avatar avatar-sm me-2 avatar-img rounded-circle" src="{{ URL::to('/images/photo_defaults.jpg') }}" alt="User Image"> StarCode Moore
-                                </a>
-                            </h2>
-                        </div>
-                        <div class="card-body">
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    <span><i class="far fa-money-bill-alt"></i> Amount</span>
-                                    <h6 class="mb-0">$5,200</h6>
-                                </div>
-                                <div class="col-auto">
-                                    <span><i class="far fa-calendar-alt"></i> Due Date</span>
-                                    <h6 class="mb-0">20 Mar 2022</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <div class="row align-items-center">
-                                <div class="col-auto">
-                                    <span class="badge bg-secondary-dark">Cancelled</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-4 col-xl-3 d-flex">
-                    <div class="card invoices-grid-card w-100">
-                        <div class="card-header d-flex justify-content-between align-items-center">
-                            <a href="view-invoice.html" class="invoice-grid-link">IN093439#@14</a>
-                            <div class="dropdown dropdown-action">
-                                <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown"
-                                    aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
-                                <div class="dropdown-menu dropdown-menu-end">
-                                    <a class="dropdown-item" href="edit-invoice.html"><i
-                                            class="far fa-edit me-2"></i>Edit</a>
-                                    <a class="dropdown-item" href="view-invoice.html"><i
-                                            class="far fa-eye me-2"></i>View</a>
-                                    <a class="dropdown-item" href="javascript:void(0);"><i
-                                            class="far fa-trash-alt me-2"></i>Delete</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-middle">
-                            <h2 class="card-middle-avatar">
-                                <a href="profile.html">
-                                    <img class="avatar avatar-sm me-2 avatar-img rounded-circle" src="{{ URL::to('/images/photo_defaults.jpg') }}" alt="User Image"> StarCode Moore
-                                </a>
-                            </h2>
-                        </div>
-                        <div class="card-body">
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    <span><i class="far fa-money-bill-alt"></i> Amount</span>
-                                    <h6 class="mb-0">$480</h6>
-                                </div>
-                                <div class="col-auto">
-                                    <span><i class="far fa-calendar-alt"></i> Due Date</span>
-                                    <h6 class="mb-0">15 Mar 2022</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <div class="row align-items-center">
-                                <div class="col-auto">
-                                    <span class="badge bg-primary-dark">Sent</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-4 col-xl-3 d-flex">
-                    <div class="card invoices-grid-card w-100">
-                        <div class="card-header d-flex justify-content-between align-items-center">
-                            <a href="view-invoice.html" class="invoice-grid-link">IN093439#@15</a>
-                            <div class="dropdown dropdown-action">
-                                <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown"
-                                    aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
-                                <div class="dropdown-menu dropdown-menu-end">
-                                    <a class="dropdown-item" href="edit-invoice.html"><i
-                                            class="far fa-edit me-2"></i>Edit</a>
-                                    <a class="dropdown-item" href="view-invoice.html"><i
-                                            class="far fa-eye me-2"></i>View</a>
-                                    <a class="dropdown-item" href="javascript:void(0);"><i
-                                            class="far fa-trash-alt me-2"></i>Delete</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-middle">
-                            <h2 class="card-middle-avatar">
-                                <a href="profile.html">
-                                    <img class="avatar avatar-sm me-2 avatar-img rounded-circle" src="{{ URL::to('/images/photo_defaults.jpg') }}" alt="User Image"> StarCode Moore
-                                </a>
-                            </h2>
-                        </div>
-                        <div class="card-body">
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    <span><i class="far fa-money-bill-alt"></i> Amount</span>
-                                    <h6 class="mb-0">$1,999</h6>
-                                </div>
-                                <div class="col-auto">
-                                    <span><i class="far fa-calendar-alt"></i> Due Date</span>
-                                    <h6 class="mb-0">08 Mar 2022</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <div class="row align-items-center">
-                                <div class="col-auto">
-                                    <span class="badge bg-danger-dark">Overdue</span>
-                                </div>
-                                <div class="col text-end">
-                                    <span class="text-danger text-sm">Overdue 10 days</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-4 col-xl-3 d-flex">
-                    <div class="card invoices-grid-card w-100">
-                        <div class="card-header d-flex justify-content-between align-items-center">
-                            <a href="view-invoice.html" class="invoice-grid-link">IN093439#@016</a>
-                            <div class="dropdown dropdown-action">
-                                <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown"
-                                    aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
-                                <div class="dropdown-menu dropdown-menu-end">
-                                    <a class="dropdown-item" href="edit-invoice.html"><i
-                                            class="far fa-edit me-2"></i>Edit</a>
-                                    <a class="dropdown-item" href="view-invoice.html"><i
-                                            class="far fa-eye me-2"></i>View</a>
-                                    <a class="dropdown-item" href="javascript:void(0);"><i
-                                            class="far fa-trash-alt me-2"></i>Delete</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-middle">
-                            <h2 class="card-middle-avatar">
-                                <a href="profile.html">
-                                    <img class="avatar avatar-sm me-2 avatar-img rounded-circle" src="{{ URL::to('/images/photo_defaults.jpg') }}" alt="User Image"> StarCode Moore
-                                </a>
-                            </h2>
-                        </div>
-                        <div class="card-body">
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    <span><i class="far fa-money-bill-alt"></i> Amount</span>
-                                    <h6 class="mb-0">$2,700</h6>
-                                </div>
-                                <div class="col-auto">
-                                    <span><i class="far fa-calendar-alt"></i> Due Date</span>
-                                    <h6 class="mb-0">18 Mar, 2022</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <div class="row align-items-center">
-                                <div class="col-auto">
-                                    <span class="badge bg-success-dark">Paid</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    </div> 
+                @endforeach
+               
+            
                 <div class="col-lg-12">
                     <div class="invoice-load-btn">
                         <a href="#" class="btn">
@@ -623,6 +314,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 @endsection

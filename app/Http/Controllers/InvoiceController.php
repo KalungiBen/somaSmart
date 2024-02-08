@@ -59,7 +59,12 @@ class InvoiceController extends Controller
     /** invoice grid */
     public function invoiceGrid()
     {
-        return view('invoices.grid_invoice');
+        $invoiceList = InvoiceDetails::join('invoice_customer_names as icn', 'invoice_details.invoice_id', 'icn.invoice_id')
+            ->join('invoice_total_amounts as ita', 'invoice_details.invoice_id', 'ita.invoice_id') // Add this line for the additional join
+            ->select('invoice_details.*','icn.customer_name','ita.total_amount','icn.due_date')
+            ->distinct('invoice_details.invoice_id')
+            ->get();
+        return view('invoices.grid_invoice',compact('invoiceList'));
     }
     
     /** invoice add page */
