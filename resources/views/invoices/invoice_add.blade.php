@@ -37,7 +37,7 @@
                                         <div class="col-xl-4 col-md-6 col-sm-12 col-12">
                                             <div class="form-group">
                                                 <label>Customer Name</label>
-                                                <select class="select select2s-hidden-accessible @error('full_name') is-invalid @enderror" style="width: 100%;" tabindex="-1" aria-hidden="true" id="customer_name" name="customer_name">
+                                                <select class="select select2s-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" id="customer_name" name="customer_name">
                                                     <option selected disabled>-- Select Customer --</option>
                                                     @foreach($users as $key => $names)
                                                         <option value="{{ $names->name }}"data-teacher_id={{ $names->user_id }} {{ old('full_name') == $names->name ? "selected" :""}}>{{ $names->name }}</option>
@@ -46,7 +46,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label>Po Number</label>
-                                                <input class="form-control" type="text" id="po_number" name="po_number" placeholder="Enter Reference Number">
+                                                <input class="form-control @error('po_number') is-invalid @enderror" type="text" id="po_number" name="po_number" placeholder="Enter Reference Number" value="{{ old('po_number') }}">
                                             </div>
                                         </div>
                                         
@@ -68,7 +68,7 @@
                                                         <div class="col-lg-6 col-md-6">
                                                             <div class="invoice-inner-date invoice-inner-datepic">
                                                                 <span>
-                                                                    Due Date <input class="form-control datetimepicker" type="text" name="due_date" placeholder="Select">
+                                                                    Due Date <input class="form-control datetimepicker @error('due_date') is-invalid @enderror" type="text" name="due_date" placeholder="Select" value="{{ old('due_date') }}">
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -176,12 +176,12 @@
                                             </thead>
                                             <tbody>
                                                 <tr class="add-row">
-                                                    <td><input type="text" class="form-control" name="items[]"></td>
-                                                    <td><input type="text" class="form-control" name="category[]"></td>
-                                                    <td><input type="text" class="form-control" name="quantity[]" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" ></td>
-                                                    <td><input type="text" class="form-control price" name="price[]" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" ></td>
-                                                    <td><input type="text" class="form-control amount" name="amount[]" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" ></td>
-                                                    <td><input type="text" class="form-control discount" name="discount[]" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" ></td>
+                                                    <td><input type="text" class="form-control @error('items.*') is-invalid @enderror" name="items[]" value="{{ old('items.0') }}"></td>
+                                                    <td><input type="text" class="form-control @error('category.*') is-invalid @enderror" name="category[]" value="{{ old('category.0') }}"></td>
+                                                    <td><input type="text" class="form-control @error('quantity.*') is-invalid @enderror" name="quantity[]" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" value="{{ old('quantity.0') }}"></td>
+                                                    <td><input type="text" class="form-control price @error('price.*') is-invalid @enderror" name="price[]" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" value="{{ old('price.0') }}"></td>
+                                                    <td><input type="text" class="form-control amount @error('amount.*') is-invalid @enderror" name="amount[]" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" value="{{ old('amount.0') }}"></td>
+                                                    <td><input type="text" class="form-control discount @error('discount.*') is-invalid @enderror" name="discount[]" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" value="{{ old('discount.0') }}"></td>
                                                     <td class="add-remove text-end">
                                                         <a class="add-btn me-2"><i class="fas fa-plus-circle"></i></a>
                                                         <a class="copy-btn me-2"><i class="fe fe-copy"></i></a>
@@ -316,7 +316,7 @@
                                                 <input type="file" name="upload_sign" multiple>
                                             </div>
                                             <div class="form-group">
-                                                <input type="text" class="form-control" name="name_of_the_signatuaory" placeholder="Name of the Signatuaory">
+                                                <input type="text" class="form-control @error('name_of_the_signatuaory') is-invalid @enderror" name="name_of_the_signatuaory" placeholder="Name of the Signatuaory" value="{{ old('name_of_the_signatuaory') }}">
                                             </div>
                                             <div class="form-group float-end mb-0">
                                                 <button class="btn btn-primary" type="submit">Save Invoice</button>

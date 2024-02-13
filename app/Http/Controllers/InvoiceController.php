@@ -77,10 +77,18 @@ class InvoiceController extends Controller
     /** save record incoice */
     public function saveRecord(Request $request)
     {
-        // $request->validate([
-        //     'first_name'    => 'required|string',
-        //     'last_name'     => 'required|string',
-        // ]);
+        $request->validate([
+            'customer_name'    => 'required|string',
+            'po_number'        => 'required|string',
+            'due_date'         => 'required|string',
+            'name_of_the_signatuaory' => 'required|string',
+            'items.*'    => 'required|string',
+            'category.*' => 'required|string',
+            'quantity.*' => 'required|string',
+            'price.*'    => 'required|string',
+            'amount.*'   => 'required|string',
+            'discount.*' => 'required|string',
+        ]);
         
         DB::beginTransaction();
         try {
