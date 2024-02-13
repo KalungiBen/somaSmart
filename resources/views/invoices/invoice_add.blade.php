@@ -68,7 +68,7 @@
                                                         <div class="col-lg-6 col-md-6">
                                                             <div class="invoice-inner-date invoice-inner-datepic">
                                                                 <span>
-                                                                    Due Date <input class="form-control datetimepicker @error('due_date') is-invalid @enderror" type="text" name="due_date" placeholder="Select" value="{{ old('due_date') }}">
+                                                                    Due Date <input class="form-control datetimepicker @error('po_number') is-invalid @enderror" type="text" name="due_date" placeholder="Select" value="{{ old('due_date') }}">
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -316,7 +316,7 @@
                                                 <input type="file" name="upload_sign" multiple>
                                             </div>
                                             <div class="form-group">
-                                                <input type="text" class="form-control @error('name_of_the_signatuaory') is-invalid @enderror" name="name_of_the_signatuaory" placeholder="Name of the Signatuaory" value="{{ old('name_of_the_signatuaory') }}">
+                                                <input type="text" class="form-control @error('name_of_the_signatuaory') is-invalid @enderror" name="name_of_the_signatuaory" placeholder="Name of the Signatuaory">
                                             </div>
                                             <div class="form-group float-end mb-0">
                                                 <button class="btn btn-primary" type="submit">Save Invoice</button>
@@ -400,7 +400,6 @@
                                             </div>
                                         </div>
                                     </div>
-
 
                                     <div class="invoice-item invoice-table-wrap">
                                         <div class="row">
@@ -670,7 +669,7 @@
             $(document).on("click", ".add-btn", function() {
                 var experiencecontent =
                 '<tr class="add-row">' +
-                    '<td>' + '<input type="text" class="form-control" name="items[]">' + '</td>' +
+                    '<td>' + '<input type="text" class="form-control @error("items.*") is-invalid @enderror" name="items[]">' + '</td>' +
                     '<td>' + '<input type="text" class="form-control" name="category[]">' + '</td>' +
                     '<td>' + '<input type="text" class="form-control" name="quantity[]">' + '</td>' +
                     '<td>' + '<input type="text" class="form-control price" name="price[]">' + '</td>' +
