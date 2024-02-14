@@ -38,15 +38,15 @@
                                             <div class="form-group">
                                                 <label>Customer Name</label>
                                                 <select class="select select2s-hidden-accessible @error('full_name') is-invalid @enderror" style="width: 100%;" tabindex="-1" aria-hidden="true" id="customer_name" name="customer_name">
-                                                    <option selected disabled>-- Select Customer --</option>
-                                                    {{-- @foreach($users as $key => $names)
+                                                    <option>{{ $invoiceView->customer_name }}</option>
+                                                    @foreach($users as $key => $names)
                                                         <option value="{{ $names->name }}"data-teacher_id={{ $names->user_id }} {{ old('full_name') == $names->name ? "selected" :""}}>{{ $names->name }}</option>
-                                                    @endforeach --}}
+                                                    @endforeach
                                                 </select>
                                             </div>
                                             <div class="form-group">
                                                 <label>Po Number</label>
-                                                <input class="form-control" type="text" id="po_number" name="po_number" placeholder="Enter Reference Number">
+                                                <input class="form-control" type="text" id="po_number" name="po_number" value="{{ $invoiceView->po_number }}">
                                             </div>
                                         </div>
                                         
@@ -54,7 +54,7 @@
                                             <h4 class="invoice-details-title">Invoice details</h4>
                                             <div class="invoice-details-box">
                                                 <div class="invoice-inner-head">
-                                                    <span>Invoice No. <a>IN000000#@00</a></span>
+                                                    <span>Invoice No. <a>{{ $invoiceView->invoice_id }}</a></span>
                                                 </div>
                                                 <div class="invoice-inner-footer">
                                                     <div class="row align-items-center">
@@ -68,7 +68,7 @@
                                                         <div class="col-lg-6 col-md-6">
                                                             <div class="invoice-inner-date invoice-inner-datepic">
                                                                 <span>
-                                                                    Due Date <input class="form-control datetimepicker" type="text" name="due_date" placeholder="Select">
+                                                                    Due Date <input class="form-control datetimepicker" type="text" name="due_date" value="{{ $invoiceView->due_date }}">
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -81,20 +81,29 @@
                                             <div class="inovices-month-info">
                                                 <div class="form-group mb-0">
                                                     <label class="custom_check w-100">
-                                                        <input type="checkbox" id="enableTax" name="enable_tax" value="Enable tax">
+                                                        @if(!empty($invoiceView->enable_tax))
+                                                            <input type="checkbox" checked id="enableTax" name="enable_tax" value="Enable tax">
+                                                        @else
+                                                            <input type="checkbox" id="enableTax" name="enable_tax" value="Enable tax">
+                                                        @endif
                                                         <span class="checkmark"></span> Enable tax
                                                     </label>
                                                     <label class="custom_check w-100">
+                                                        @if(!empty($invoiceView->recurring_incoice))
+                                                        <input type="checkbox" checked id="chkYes" name="recurring_incoice" value="Recurring Invoice">
+                                                        @else
                                                         <input type="checkbox" id="chkYes" name="recurring_incoice" value="Recurring Invoice">
+                                                        @endif
                                                         <span class="checkmark"></span> Recurring Invoice
                                                     </label>
                                                 </div>
-                                                <div id="show-invoices">
+                                                @if(!empty($invoiceView->recurring_incoice))
+                                                <div id="show">
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <select class="select" id="by_month" name="by_month">
-                                                                    <option selected disabled>By month</option>
+                                                                <select class="select" id="by_month" name="">
+                                                                    <option selected>{{ $invoiceView->by_month }}</option>
                                                                     <option value="March">March</option>
                                                                     <option value="April">April</option>
                                                                     <option value="May">May</option>
@@ -105,11 +114,12 @@
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <input class="form-control" type="text" name="month" placeholder="Enter Months">
+                                                                <input class="form-control" type="text" name="month" value="{{ $invoiceView->month }}">
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                @endif
                                             </div>
                                         </div>
 
@@ -175,18 +185,20 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr class="add-row">
-                                                    <td><input type="text" class="form-control" name="items[]"></td>
-                                                    <td><input type="text" class="form-control" name="category[]"></td>
-                                                    <td><input type="text" class="form-control" name="quantity[]" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" ></td>
-                                                    <td><input type="text" class="form-control price" name="price[]" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" ></td>
-                                                    <td><input type="text" class="form-control amount" name="amount[]" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" ></td>
-                                                    <td><input type="text" class="form-control discount" name="discount[]" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" ></td>
-                                                    <td class="add-remove text-end">
-                                                        <a class="add-btn me-2"><i class="fas fa-plus-circle"></i></a>
-                                                        <a class="copy-btn me-2"><i class="fe fe-copy"></i></a>
-                                                    </td>
-                                                </tr>
+                                                @foreach($invoiceDetails as $key => $value)
+                                                    <tr class="add-row">
+                                                        <td><input type="text" class="form-control" name="items[]" value="{{ $value->items }}"></td>
+                                                        <td><input type="text" class="form-control" name="category[]" value="{{ $value->category }}"></td>
+                                                        <td><input type="text" class="form-control" name="quantity[]" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" value="{{ $value->quantity }}"></td>
+                                                        <td><input type="text" class="form-control price" name="price[]" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" value="{{ $value->price }}"></td>
+                                                        <td><input type="text" class="form-control amount" name="amount[]" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" value="{{ $value->amount }}" ></td>
+                                                        <td><input type="text" class="form-control discount" name="discount[]" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" value="{{ $value->discount }}"></td>
+                                                        <td class="add-remove text-end">
+                                                            <a class="add-btn me-2"><i class="fas fa-plus-circle"></i></a>
+                                                            <a class="copy-btn me-2"><i class="fe fe-copy"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>

@@ -349,7 +349,7 @@
                                                     <input type="checkbox" name="invoice">
                                                     <span class="checkmark"></span>
                                                 </label>
-                                                <a href="view-invoice.html" class="invoice-link">{{ $value->invoice_id }}</a>
+                                                <a href="{{ url('invoice/edit/'.$value->invoice_id) }}" class="invoice-link">{{ $value->invoice_id }}</a>
                                             </td>
                                             <td>{{ $value->category }}</td>
                                             <td>{{ \Carbon\Carbon::parse($value->created_at)->format('d M Y') }}</td>
