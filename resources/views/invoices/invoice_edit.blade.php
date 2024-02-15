@@ -194,7 +194,7 @@
                                                         <td><input type="text" class="form-control amount" name="amount[]" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" value="{{ $value->amount }}" ></td>
                                                         <td><input type="text" class="form-control discount" name="discount[]" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" value="{{ $value->discount }}"></td>
                                                         <td class="add-remove text-end">
-                                                            @if($key < 1 )
+                                                            @if ($key < 1 )
                                                                 <a class="add-btn me-2"><i class="fas fa-plus-circle"></i></a>
                                                             @else 
                                                                 <a class="remove-btn"><i class="fe fe-trash-2"></i></a>
