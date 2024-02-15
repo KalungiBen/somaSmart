@@ -20,9 +20,10 @@ class InvoiceController extends Controller
     {
         $invoiceList = InvoiceDetails::join('invoice_customer_names as icn', 'invoice_details.invoice_id', 'icn.invoice_id')
                     ->join('invoice_total_amounts as ita', 'invoice_details.invoice_id', 'ita.invoice_id') // Add this line for the additional join
-                    ->select('invoice_details.*','icn.customer_name','ita.total_amount')
-                    ->distinct('invoice_details.invoice_id')
+                    ->select('invoice_details.invoice_id','icn.customer_name','ita.total_amount')
+                    ->distinct('icn.invoice_id')
                     ->get();
+
         return view('invoices.list_invoices',compact('invoiceList'));
     }
 
@@ -61,8 +62,8 @@ class InvoiceController extends Controller
     {
         $invoiceList = InvoiceDetails::join('invoice_customer_names as icn', 'invoice_details.invoice_id', 'icn.invoice_id')
             ->join('invoice_total_amounts as ita', 'invoice_details.invoice_id', 'ita.invoice_id') // Add this line for the additional join
-            ->select('invoice_details.*','icn.customer_name','ita.total_amount','icn.due_date')
-            ->distinct('invoice_details.invoice_id')
+            ->select('invoice_details.invoice_id','icn.customer_name','ita.total_amount')
+            ->distinct('icn.invoice_id')
             ->get();
         return view('invoices.grid_invoice',compact('invoiceList'));
     }
