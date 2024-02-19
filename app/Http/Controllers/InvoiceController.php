@@ -195,6 +195,33 @@ class InvoiceController extends Controller
         return view('invoices.invoice_edit',compact('invoiceView','users','invoiceDetails'));
     }
 
+    /** update record */
+    public function updateRecord(Request $request)
+    {
+        try {
+
+            foreach ($request->items as $key => $values) {
+                $updateRecord = [
+                    'items'      => $request->items[$key],
+                    'items'      => $request->items[$key],
+                    'category'   => $request->category[$key],
+                    'quantity'   => $request->quantity[$key],
+                    'price'      => $request->price[$key],
+                    'amount'     => $request->amount[$key],
+                    'discount'   => $request->discount[$key],
+                ];
+                InvoiceDetails::where('id',$request->id[$key])->update($updateRecord);
+            }
+
+            Toastr::success('Has been updated successfully :)','Success');
+            return redirect()->back();
+        } catch(\Exception $e) {
+            \Log::info($e);
+            Toastr::error('fail, update record  :)','Error');
+            return redirect()->back();
+        }
+    }
+
     /** invoice view */
     public function invoiceView()
     {

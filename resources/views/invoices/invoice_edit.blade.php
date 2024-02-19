@@ -30,8 +30,9 @@
                 <div class="col-md-12">
                     <div class="card invoices-add-card">
                         <div class="card-body">
-                            <form action="{{ route('invoice/add/save') }}" class="invoices-form" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('invoice/update/save') }}" class="invoices-form" method="POST" enctype="multipart/form-data">
                                 @csrf
+                                <input type="hidden" name="invoice_id" value="{{ $invoiceView->invoice_id }}">
                                 <div class="invoices-main-form">
                                     <div class="row">
                                         <div class="col-xl-4 col-md-6 col-sm-12 col-12">
@@ -187,6 +188,7 @@
                                             <tbody>
                                                 @foreach($invoiceDetails as $key => $value)
                                                     <tr class="add-row">
+                                                        <td hidden><input type="text" class="form-control" name="id[]" value="{{ $value->id }}"></td>
                                                         <td><input type="text" class="form-control" name="items[]" value="{{ $value->items }}"></td>
                                                         <td><input type="text" class="form-control" name="category[]" value="{{ $value->category }}"></td>
                                                         <td><input type="text" class="form-control" name="quantity[]" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" value="{{ $value->quantity }}"></td>
@@ -339,7 +341,6 @@
                                         </div>
                                     </div>
                                 </div>
-    
                             </form>
                         </div>
                     </div>

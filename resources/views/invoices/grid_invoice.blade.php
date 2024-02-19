@@ -257,7 +257,7 @@
                     <div class="col-sm-6 col-lg-4 col-xl-3 d-flex">
                         <div class="card invoices-grid-card w-100">
                             <div class="card-header d-flex justify-content-between align-items-center">
-                                <a href="view-invoice.html" class="invoice-grid-link">{{ $value->invoice_id }}</a>
+                                <a href="{{ url('invoice/edit/'.$value->invoice_id) }}" class="invoice-grid-link">{{ $value->invoice_id }}</a>
                                 <div class="dropdown dropdown-action">
                                     <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                         <i class="fas fa-ellipsis-v"></i>
@@ -304,7 +304,6 @@
                         </div>
                     </div> 
                 @endforeach
-               
             
                 <div class="col-lg-12">
                     <div class="invoice-load-btn">
