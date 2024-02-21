@@ -15,6 +15,6 @@ class InvoiceDetails extends Model
         'quantity',
         'price',
         'amount',
-        'amount_discount',
+        'discount',
     ];
 }

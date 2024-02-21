@@ -580,16 +580,18 @@
                         <p>Are you sure want to delete?</p>
                     </div>
                     <div class="modal-btn delete-action">
-                        <div class="row">
-                            <div class="col-6">
-                                <a href="javascript:void(0);" data-bs-dismiss="modal"
-                                    class="btn btn-primary paid-continue-btn">Delete</a>
+                        <form action="{{ route('invoice/delete') }}" method="POST">
+                            @csrf
+                            <div class="row">
+                                <input type="hidden" name="invoice_id" value="{{ $invoiceView->invoice_id }}">
+                                <div class="col-6">
+                                    <button type="submit" class="btn btn-primary continue-btn submit-btn" style="border-radius: 5px !important;">Delete</button>
+                                </div>
+                                <div class="col-6">
+                                    <a href="#" data-bs-dismiss="modal"class="btn btn-primary paid-cancel-btn">Cancel</a>
+                                </div>
                             </div>
-                            <div class="col-6">
-                                <a href="javascript:void(0);" data-bs-dismiss="modal"
-                                    class="btn btn-primary paid-cancel-btn">Cancel</a>
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>

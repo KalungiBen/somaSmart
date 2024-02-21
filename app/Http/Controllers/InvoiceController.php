@@ -19,11 +19,11 @@ class InvoiceController extends Controller
     public function invoiceList()
     {
         $invoiceList = InvoiceDetails::join('invoice_customer_names as icn', 'invoice_details.invoice_id', 'icn.invoice_id')
-                    ->join('invoice_total_amounts as ita', 'invoice_details.invoice_id', 'ita.invoice_id') // Add this line for the additional join
-                    ->select('invoice_details.invoice_id','icn.customer_name','ita.total_amount')
-                    ->distinct('icn.invoice_id')
-                    ->get();
-
+            ->join('invoice_total_amounts as ita', 'invoice_details.invoice_id', 'ita.invoice_id')
+            ->select('invoice_details.invoice_id', 'invoice_details.category', 'icn.customer_name', 'ita.total_amount')
+            ->distinct('invoice_details.invoice_id')
+            ->get();
+        $invoiceList = $invoiceList->unique('invoice_id')->values();
         return view('invoices.list_invoices',compact('invoiceList'));
     }
 
@@ -220,6 +220,28 @@ class InvoiceController extends Controller
             Toastr::error('fail, update record  :)','Error');
             return redirect()->back();
         }
+    }
+
+    /** delete record */
+    public function deleteRecord(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            InvoiceCustomerName::where('invoice_id',$request->invoice_id)->delete();
+            InvoiceDetails::where('invoice_id',$request->invoice_id)->delete();
+            InvoiceTotalAmount::where('invoice_id',$request->invoice_id)->delete();
+            InvoiceAdditionalCharges::where('invoice_id',$request->invoice_id)->delete();
+            InvoiceDiscount::where('invoice_id',$request->invoice_id)->delete();
+            InvoicePaymentDetails::where('invoice_id',$request->invoice_id)->delete();
+            DB::commit();
+            Toastr::success('Record deleted successfully :)','Success');
+            return redirect()->route('invoice/list/page');
+        } catch(\Exception $e) {
+            DB::rollback();
+            Toastr::error('Record deleted fail :)','Error');
+            return redirect()->back();
+        }
+
     }
 
     /** invoice view */
