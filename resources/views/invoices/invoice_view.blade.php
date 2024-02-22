@@ -16,7 +16,7 @@
                                         </div>
                                         <div class="invoice-head">
                                             <h2>Invoice</h2>
-                                            <p>Invoice Number : In983248782</p>
+                                            <p>Invoice Number : {{ $invoiceView->invoice_id }}</p>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -24,9 +24,7 @@
                                             <strong class="customer-text-one">Invoice From</strong>
                                             <h6 class="invoice-name">Company Name</h6>
                                             <p class="invoice-details">
-                                                9087484288 <br>
-                                                Address line 1, Address line 2<br>
-                                                Zip code ,City - Country
+                                                {!! nl2br(($invoiceView->invoice_to)) !!}
                                             </p>
                                         </div>
                                     </div>
@@ -38,12 +36,9 @@
                                     <div class="col-md-6">
                                         <div class="invoice-info">
                                             <strong class="customer-text-one">Billed to</strong>
-                                            <h6 class="invoice-name">Customer Name</h6>
+                                            <h6 class="invoice-name"></h6>
                                             <p class="invoice-details invoice-details-two">
-                                                9087484288 <br>
-                                                Address line 1, <br>
-                                                Address line 2 <br>
-                                                Zip code ,City - Country
+                                                {!! nl2br(($invoiceView->invoice_from)) !!}
                                             </p>
                                         </div>
                                     </div>
@@ -52,12 +47,12 @@
                                             <strong class="customer-text-one">Payment Details</strong>
                                             <p class="invoice-details">
                                                 Debit Card <br>
-                                                XXXXXXXXXXXX-2541 <br>
-                                                HDFC Bank
+                                                XXXXXXXXXXXX-{{ $invoiceView->account_number }} <br>
+                                                {{  $invoiceView->bank_name }}
                                             </p>
                                             <div class="invoice-item-box">
                                                 <p>Recurring : 15 Months</p>
-                                                <p class="mb-0">PO Number : 54515454</p>
+                                                <p class="mb-0">PO Number : {{ $invoiceView->po_number }}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -93,7 +88,7 @@
                                             <table class="invoice-table table table-center mb-0">
                                                 <thead>
                                                     <tr>
-                                                        <th>Description</th>
+                                                        <th>Iteams</th>
                                                         <th>Category</th>
                                                         <th>Rate/Item</th>
                                                         <th>Quantity</th>
@@ -102,30 +97,16 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>Dell Laptop</td>
-                                                        <td>Laptop</td>
-                                                        <td>$1,110</td>
-                                                        <th>2</th>
-                                                        <th>2%</th>
-                                                        <td class="text-end">$400</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>HP Laptop</td>
-                                                        <td>Laptop</td>
-                                                        <td>$1,500</td>
-                                                        <th>3</th>
-                                                        <th>6%</th>
-                                                        <td class="text-end">$3,000</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Apple Ipad</td>
-                                                        <td>Ipad</td>
-                                                        <td>$11,500</td>
-                                                        <th>1</th>
-                                                        <th>10%</th>
-                                                        <td class="text-end">$11,000</td>
-                                                    </tr>
+                                                    @foreach($invoiceDetails as $key => $value)
+                                                        <tr>
+                                                            <td>{{ $value->items }}</td>
+                                                            <td>{{ $value->category }}</td>
+                                                            <td>${{ $value->amount }}</td>
+                                                            <th>{{ $value->quantity }}</th>
+                                                            <th>{{ $value->discount }}%</th>
+                                                            <td class="text-end">${{ $value->price }}</td>
+                                                        </tr>
+                                                    @endforeach
                                                 </tbody>
                                             </table>
                                         </div>

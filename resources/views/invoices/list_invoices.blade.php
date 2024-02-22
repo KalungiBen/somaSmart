@@ -373,8 +373,8 @@
                                                         <a class="dropdown-item" href="edit-invoice.html">
                                                             <i class="far fa-edit me-2"></i>Edit
                                                         </a>
-                                                        <a class="dropdown-item" href="view-invoice.html">
-                                                            <i class="far fa-eye me-2"></i>View
+                                                        <a class="dropdown-item" href="{{ url('invoice/view/'.$value->invoice_id) }}">
+                                                            <i class="far fa-eye me-2"></i>View Detail
                                                         </a>
                                                         <a class="dropdown-item" href="javascript:void(0);">
                                                             <i class="far fa-trash-alt me-2"></i>Delete

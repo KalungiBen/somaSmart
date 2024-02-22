@@ -245,9 +245,22 @@ class InvoiceController extends Controller
     }
 
     /** invoice view */
-    public function invoiceView()
+    public function invoiceView($invoice_id)
     {
-        return view('invoices.invoice_view');
+        $invoiceView = InvoiceDetails::join('invoice_customer_names as icn', 'invoice_details.invoice_id', 'icn.invoice_id')
+            ->join('invoice_total_amounts as ita', 'invoice_details.invoice_id', 'ita.invoice_id')
+            ->join('invoice_payment_details as ide', 'invoice_details.invoice_id', 'ide.invoice_id')
+            ->select('invoice_details.*','icn.customer_name','ita.total_amount',
+            'icn.due_date','icn.po_number','icn.enable_tax','icn.recurring_incoice',
+            'icn.by_month','icn.month','icn.invoice_from','icn.invoice_to'
+            ,'ide.bank_name','ide.account_number')
+            ->distinct('invoice_details.invoice_id')
+            ->where('icn.invoice_id',$invoice_id)
+            ->first();
+
+        $invoiceDetails = InvoiceDetails::where('invoice_id',$invoice_id)->get();
+
+        return view('invoices.invoice_view',compact('invoiceView','invoiceDetails'));
     }
 
     /** invoice settings */
