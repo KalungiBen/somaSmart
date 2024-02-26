@@ -584,6 +584,7 @@
                             @csrf
                             <div class="row">
                                 <input type="hidden" name="invoice_id" value="{{ $invoiceView->invoice_id }}">
+                                <input type="hidden" name="upload_sign" value="{{ $invoiceView->upload_sign }}">
                                 <div class="col-6">
                                     <button type="submit" class="btn btn-primary continue-btn submit-btn" style="border-radius: 5px !important;">Delete</button>
                                 </div>

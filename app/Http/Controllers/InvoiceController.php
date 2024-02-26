@@ -12,6 +12,7 @@ use App\Models\InvoiceCustomerName;
 use App\Models\InvoicePaymentDetails;
 use App\Models\InvoiceAdditionalCharges;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Storage;
 
 class InvoiceController extends Controller
 {
@@ -124,7 +125,7 @@ class InvoiceController extends Controller
 
             if ($request->hasFile('upload_sign')) {
                 $file        = $request->file('upload_sign');
-                $upload_sign = $file->store('upload_sign','local'); // 'local' disk corresponds to the storage/app directory    
+                $upload_sign = $file->store('public/upload_sign','local'); // 'local' disk corresponds to the storage/app directory    
             } else {
                 $upload_sign = 'NULL';
             }
@@ -185,7 +186,9 @@ class InvoiceController extends Controller
     {
         $invoiceView = InvoiceDetails::join('invoice_customer_names as icn', 'invoice_details.invoice_id', 'icn.invoice_id')
             ->join('invoice_total_amounts as ita', 'invoice_details.invoice_id', 'ita.invoice_id') // Add this line for the additional join
-            ->select('invoice_details.*','icn.customer_name','ita.total_amount','icn.due_date','icn.po_number','icn.enable_tax','icn.recurring_incoice','icn.by_month','icn.month')
+            ->select('invoice_details.*','icn.customer_name','ita.total_amount','icn.due_date',
+            'icn.po_number','icn.enable_tax','icn.recurring_incoice','icn.by_month','icn.month',
+            'ita.upload_sign')
             ->distinct('invoice_details.invoice_id')
             ->where('icn.invoice_id',$invoice_id)
             ->first();
@@ -233,6 +236,12 @@ class InvoiceController extends Controller
             InvoiceAdditionalCharges::where('invoice_id',$request->invoice_id)->delete();
             InvoiceDiscount::where('invoice_id',$request->invoice_id)->delete();
             InvoicePaymentDetails::where('invoice_id',$request->invoice_id)->delete();
+
+            $file = $request->upload_sign;
+            if (Storage::exists($file)) {
+                unlink(Storage::path($file));
+            }
+
             DB::commit();
             Toastr::success('Record deleted successfully :)','Success');
             return redirect()->route('invoice/list/page');
@@ -253,11 +262,10 @@ class InvoiceController extends Controller
             ->select('invoice_details.*','icn.customer_name','ita.total_amount',
             'icn.due_date','icn.po_number','icn.enable_tax','icn.recurring_incoice',
             'icn.by_month','icn.month','icn.invoice_from','icn.invoice_to'
-            ,'ide.bank_name','ide.account_number')
+            ,'ide.bank_name','ide.account_number','ita.total_amount','ita.upload_sign','ita.name_of_the_signatuaory')
             ->distinct('invoice_details.invoice_id')
             ->where('icn.invoice_id',$invoice_id)
             ->first();
-
         $invoiceDetails = InvoiceDetails::where('invoice_id',$invoice_id)->get();
 
         return view('invoices.invoice_view',compact('invoiceView','invoiceDetails'));

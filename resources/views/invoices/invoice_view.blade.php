@@ -93,7 +93,7 @@
                                                         <th>Rate/Item</th>
                                                         <th>Quantity</th>
                                                         <th>Discount (%)</th>
-                                                        <th class="text-end">Amount</th>
+                                                        <th class="text-end">Price</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -135,15 +135,15 @@
                                                 <p class="mb-0">Sub total <span>$3,300.00</span></p>
                                             </div>
                                             <div class="invoice-total-footer">
-                                                <h4>Total Amount <span>$143,300.00</span></h4>
+                                                <h4>Total Amount <span>${{ $invoiceView->total_amount }}</span></h4>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="invoice-sign text-end">
-                                <img class="img-fluid d-inline-block" src="{{ URL::to('assets/img/signature.png') }}" alt="sign">
-                                <span class="d-block">StarCode Kh</span>
+                                <img class="img-fluid d-inline-block" src="{{ Storage::url($invoiceView->upload_sign) }}" alt="sign" style="width: 10%;">
+                                <span class="d-block">{{ $invoiceView->name_of_the_signatuaory }}</span>
                             </div>
                         </div>
                     </div>
