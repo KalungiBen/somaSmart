@@ -18,8 +18,10 @@ return new class extends Migration
             $table->string('user_id')->nullable();
             $table->string('full_name')->nullable();
             $table->string('gender')->nullable();
+            $table->string('date_of_birth')->nullable();
             $table->string('qualification')->nullable();
             $table->string('experience')->nullable();
+            $table->string('phone_number')->nullable();
             $table->string('address')->nullable();
             $table->string('city')->nullable();
             $table->string('state')->nullable();

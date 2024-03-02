@@ -66,17 +66,6 @@
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-4">
-                                    <div class="form-group local-forms">
-                                        <label>Mobile <span class="login-danger">*</span></label>
-                                        <input type="text" class="form-control @error('mobile') is-invalid @enderror" name="mobile" placeholder="Enter Phone" value="{{ $teacher->phone_number }}">
-                                        @error('mobile')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-4">
                                     <div class="form-group local-forms calendar-icon">
                                         <label>Joining Date <span class="login-danger">*</span></label>
                                         <input type="text" class="form-control @error('joining_date') is-invalid @enderror" name="joining_date" value="{{ $teacher->join_date}}" readonly>
@@ -112,11 +101,22 @@
                                 <div class="col-12">
                                     <h5 class="form-title"><span>Address</span></h5>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-6">
                                     <div class="form-group local-forms">
                                         <label>Address <span class="login-danger">*</span></label>
                                         <input type="text" class="form-control @error('address') is-invalid @enderror" name="address" placeholder="Enter address" value="{{ $teacher->address }}">
                                         @error('address')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group local-forms">
+                                        <label>Phone <span class="login-danger">*</span></label>
+                                        <input type="text" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" placeholder="Enter phone number" value="{{ $teacher->phone_number }}">
+                                        @error('phone_number')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>

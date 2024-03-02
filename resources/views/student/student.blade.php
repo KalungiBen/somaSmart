@@ -111,10 +111,10 @@
                                             <td class="text-end">
                                                 <div class="actions">
                                                     <a href="{{ url('student/edit/'.$list->id) }}" class="btn btn-sm bg-danger-light">
-                                                        <i class="feather-edit"></i>
+                                                        <i class="far fa-edit me-2"></i>
                                                     </a>
                                                     <a class="btn btn-sm bg-danger-light student_delete" data-bs-toggle="modal" data-bs-target="#studentUser">
-                                                        <i class="feather-trash-2 me-1"></i>
+                                                        <i class="far fa-trash-alt me-2"></i>
                                                     </a>
                                                 </div>
                                             </td>
@@ -129,31 +129,31 @@
             </div>
         </div>
     </div>
+
     {{-- model student delete --}}
-    <div class="modal fade contentmodal" id="studentUser" tabindex="-1" aria-hidden="true">
+    <div class="modal custom-modal fade" id="studentUser" role="dialog">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content doctor-profile">
-                <div class="modal-header pb-0 border-bottom-0  justify-content-end">
-                    <button type="button" class="close-btn" data-bs-dismiss="modal" aria-label="Close"><i
-                        class="feather-x-circle"></i>
-                    </button>
-                </div>
+            <div class="modal-content">
                 <div class="modal-body">
-                    <form action="{{ route('student/delete') }}" method="POST">
-                        @csrf
-                        <div class="delete-wrap text-center">
-                            <div class="del-icon">
-                                <i class="feather-x-circle"></i>
+                    <div class="form-header">
+                        <h3>Delete Student</h3>
+                        <p>Are you sure want to delete?</p>
+                    </div>
+                    <div class="modal-btn delete-action">
+                        <form action="{{ route('student/delete') }}" method="POST">
+                            @csrf
+                            <div class="row">
+                                <input type="hidden" name="id" class="e_id" value="">
+                                <input type="hidden" name="avatar" class="e_avatar" value="">
+                                <div class="col-6">
+                                    <button type="submit" class="btn btn-primary continue-btn submit-btn" style="border-radius: 5px !important;">Delete</button>
+                                </div>
+                                <div class="col-6">
+                                    <a href="#" data-bs-dismiss="modal"class="btn btn-primary paid-cancel-btn">Cancel</a>
+                                </div>
                             </div>
-                            <input type="hidden" name="id" class="e_id" value="">
-                            <input type="hidden" name="avatar" class="e_avatar" value="">
-                            <h2>Sure you want to delete</h2>
-                            <div class="submit-section">
-                                <button type="submit" class="btn btn-success me-2">Yes</button>
-                                <a class="btn btn-danger" data-bs-dismiss="modal">No</a>
-                            </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

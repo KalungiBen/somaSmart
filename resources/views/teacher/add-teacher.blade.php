@@ -87,15 +87,37 @@
                                         @enderror
                                     </div>
                                 </div>
+                                <div class="col-12 col-sm-4">
+                                    <div class="form-group local-forms calendar-icon">
+                                        <label>Date Of Birth <span class="login-danger">*</span></label>
+                                        <input type="text" class="form-control datetimepicker @error('date_of_birth') is-invalid @enderror" name="date_of_birth" placeholder="DD-MM-YYYY" value="{{ old('date_of_birth') }}">
+                                        @error('date_of_birth')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
 
                                 <div class="col-12">
                                     <h5 class="form-title"><span>Address</span></h5>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-12 col-sm-6">
                                     <div class="form-group local-forms">
                                         <label>Address <span class="login-danger">*</span></label>
                                         <input type="text" class="form-control @error('address') is-invalid @enderror" name="address" placeholder="Enter address" value="{{ old('address') }}">
                                         @error('address')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group local-forms">
+                                        <label>Phone </label>
+                                        <input class="form-control @error('phone_number') is-invalid @enderror" type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');" name="phone_number" placeholder="Enter Phone Number" value="{{ old('phone_number') }}">
+                                        @error('phone_number')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>

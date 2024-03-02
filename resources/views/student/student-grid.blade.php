@@ -27,8 +27,8 @@
                                         <h3 class="page-title">Students</h3>
                                     </div>
                                     <div class="col-auto text-end float-end ms-auto download-grp">
-                                        <a href="{{ route('student/list') }}" class="btn btn-outline-gray me-2"><i class="feather-list"></i></a>
-                                        <a href="{{ route('student/grid') }}" class="btn btn-outline-gray me-2 active"><i class="feather-grid "></i></a>
+                                        <a href="{{ route('student/list') }}" class="btn btn-outline-gray me-2"><i class="fa fa-list"></i></a>
+                                        <a href="{{ route('student/grid') }}" class="btn btn-outline-gray me-2 active"><i class="fa fa-th"></i></a>
                                     </div>
                                 </div>
                             </div>

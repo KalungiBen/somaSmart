@@ -41,7 +41,9 @@ class TeacherController extends Controller
             'full_name'     => 'required|string',
             'gender'        => 'required|string',
             'experience'    => 'required|string',
+            'date_of_birth' => 'required|string',
             'qualification' => 'required|string',
+            'phone_number'  => 'required|string',
             'address'       => 'required|string',
             'city'          => 'required|string',
             'state'         => 'required|string',
@@ -57,6 +59,8 @@ class TeacherController extends Controller
             $saveRecord->gender        = $request->gender;
             $saveRecord->experience    = $request->experience;
             $saveRecord->qualification = $request->qualification;
+            $saveRecord->date_of_birth = $request->date_of_birth;
+            $saveRecord->phone_number  = $request->phone_number;
             $saveRecord->address       = $request->address;
             $saveRecord->city          = $request->city;
             $saveRecord->state         = $request->state;
@@ -93,11 +97,9 @@ class TeacherController extends Controller
                 'full_name'     => $request->full_name,
                 'gender'        => $request->gender,
                 'date_of_birth' => $request->date_of_birth,
-                'mobile'        => $request->mobile,
-                'joining_date'  => $request->joining_date,
                 'qualification' => $request->qualification,
                 'experience'    => $request->experience,
-                'username'      => $request->username,
+                'phone_number'  => $request->phone_number,
                 'address'       => $request->address,
                 'city'          => $request->city,
                 'state'         => $request->state,
@@ -112,6 +114,7 @@ class TeacherController extends Controller
            
         } catch(\Exception $e) {
             DB::rollback();
+            \Log::info($e);
             Toastr::error('fail, update record  :)','Error');
             return redirect()->back();
         }
@@ -129,6 +132,7 @@ class TeacherController extends Controller
             return redirect()->back();
         } catch(\Exception $e) {
             DB::rollback();
+            \Log::info($e);
             Toastr::error('Deleted record fail :)','Error');
             return redirect()->back();
         }
