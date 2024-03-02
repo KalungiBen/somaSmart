@@ -70,7 +70,7 @@
                                         <div class="upload-images">
                                             <img src="{{ URL::to('assets/img/logo.png') }}" alt="Image">
                                             <a href="javascript:void(0);" class="btn-icon logo-hide-btn">
-                                                <i class="feather-x-circle"></i>
+                                                <i class="fa fa-times-circle"></i>
                                             </a>
                                         </div>
                                     </div>
@@ -90,7 +90,7 @@
                                         <div class="upload-images upload-size">
                                             <img src="{{ URL::to('assets/img/favicon.png') }}" alt="Image">
                                             <a href="javascript:void(0);" class="btn-icon logo-hide-btn">
-                                                <i class="feather-x-circle"></i>
+                                                <i class="fa fa-times-circle"></i>
                                             </a>
                                         </div>
                                     </div>

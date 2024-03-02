@@ -35,7 +35,7 @@
                                                 <div class="form-group students-up-files profile-edit-icon mb-0">
                                                     <div class="uplod d-flex">
                                                         <label class="file-upload profile-upbtn mb-0">
-                                                            <i class="feather-edit-3"></i><input type="file">
+                                                            <i class="far fa-edit me-2-3"></i><input type="file">
                                                         </label>
                                                     </div>
                                                 </div>

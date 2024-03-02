@@ -64,13 +64,11 @@
                                     <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms">
                                             <label>Role Name <span class="login-danger">*</span></label>
-                                            <select class="form-control select" name="role_name">
-                                                <option disabled>Select Role Name</option>
-                                                <option value="Admin" {{ $users->role_name == 'Admin' ? 'selected' : '' }}>Admin</option>
-                                                <option value="Super Admin" {{ $users->role_name == 'Super Admin' ? 'selected' : '' }}>Super Admin</option>
-                                                <option value="Normal User" {{ $users->role_name == 'Normal User' ? 'selected' : '' }}>Normal User</option>
-                                                <option value="Teachers" {{ $users->role_name == 'Teachers' ? 'selected' : '' }}>Teachers</option>
-                                                <option value="Student" {{ $users->role_name == 'Student' ? 'selected' : '' }}>Student</option>
+                                            <select class="form-control select" name="role_name" id="role_name">
+                                                <option selected disabled>Role Type</option>
+                                                @foreach ($role as $name)
+                                                    <option value="{{ $name->role_type }}" {{ $users->role_name == $name->role_type ? 'selected' : '' }}>{{ $name->role_type }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>

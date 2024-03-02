@@ -74,7 +74,7 @@ class DepartmentController extends Controller
                 <td class="text-end"> 
                     <div class="actions">
                         <a href="'.url('department/edit/'.$record->department_id).'" class="btn btn-sm bg-danger-light">
-                            <i class="feather-edit"></i>
+                            <i class="far fa-edit me-2"></i>
                         </a>
                         <a class="btn btn-sm bg-danger-light delete department_id" data-bs-toggle="modal" data-department_id="'.$record->id.'" data-bs-target="#delete">
                         <i class="fe fe-trash-2"></i>

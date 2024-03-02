@@ -97,7 +97,7 @@
                                             <td class="text-end">
                                                 <div class="actions">
                                                     <a href="{{ url('subject/edit/'.$value->subject_id) }}" class="btn btn-sm bg-danger-light">
-                                                        <i class="feather-edit"></i>
+                                                        <i class="far fa-edit me-2"></i>
                                                     </a>
                                                     <a class="btn btn-sm bg-danger-light delete" data-bs-toggle="modal" data-bs-target="#delete">
                                                         <i class="fe fe-trash-2"></i>

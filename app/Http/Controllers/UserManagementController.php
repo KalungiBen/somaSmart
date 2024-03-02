@@ -28,7 +28,8 @@ class UserManagementController extends Controller
     public function userView($id)
     {
         $users = User::where('user_id',$id)->first();
-        return view('usermanagement.user_update',compact('users'));
+        $role  = DB::table('role_type_users')->get();
+        return view('usermanagement.user_update',compact('users','role'));
     }
 
     /** user Update */
@@ -190,7 +191,7 @@ class UserManagementController extends Controller
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="'.url('users/add/edit/'.$record->user_id).'">
-                                <i class="fas fa-pencil-alt m-r-5"></i> Edit
+                                <i class="far fa-edit me-2"></i> Edit
                             </a>
                             <a class="dropdown-item" href="'.url('users/delete/'.$record->id).'">
                             <i class="fas fa-trash-alt m-r-5"></i> Delete
@@ -222,7 +223,7 @@ class UserManagementController extends Controller
                 <td class="text-end"> 
                     <div class="actions">
                         <a href="'.url('view/user/edit/'.$record->user_id).'" class="btn btn-sm bg-danger-light">
-                            <i class="feather-edit"></i>
+                            <i class="far fa-edit me-2"></i>
                         </a>
                         <a class="btn btn-sm bg-danger-light delete user_id" data-bs-toggle="modal" data-user_id="'.$record->user_id.'" data-bs-target="#delete">
                         <i class="fe fe-trash-2"></i>
