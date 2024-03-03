@@ -185,17 +185,21 @@ class InvoiceController extends Controller
     public function invoiceEdit($invoice_id)
     {
         $invoiceView = InvoiceDetails::join('invoice_customer_names as icn', 'invoice_details.invoice_id', 'icn.invoice_id')
-            ->join('invoice_total_amounts as ita', 'invoice_details.invoice_id', 'ita.invoice_id') // Add this line for the additional join
-            ->select('invoice_details.*','icn.customer_name','ita.total_amount','icn.due_date',
-            'icn.po_number','icn.enable_tax','icn.recurring_incoice','icn.by_month','icn.month',
-            'ita.upload_sign')
+            ->join('invoice_total_amounts as ita', 'invoice_details.invoice_id', 'ita.invoice_id')
+            ->join('invoice_payment_details as ipd', 'invoice_details.invoice_id', 'ipd.invoice_id')
+            ->select('invoice_details.*','icn.customer_name','icn.po_number',
+            'icn.date','icn.due_date','icn.enable_tax','icn.recurring_incoice','icn.by_month'
+            ,'icn.month','icn.invoice_from','icn.invoice_to','ita.*','ita.name_of_the_signatuaory','ipd.*')
             ->distinct('invoice_details.invoice_id')
             ->where('icn.invoice_id',$invoice_id)
             ->first();
 
         $users = User::all();
-        $invoiceDetails = InvoiceDetails::where('invoice_id',$invoice_id)->get();
-        return view('invoices.invoice_edit',compact('invoiceView','users','invoiceDetails'));
+        $invoiceDetails    = InvoiceDetails::where('invoice_id',$invoice_id)->get();
+        $AdditionalCharges = InvoiceAdditionalCharges::where('invoice_id',$invoice_id)->get();
+        $InvoiceDiscount   = InvoiceDiscount::where('invoice_id',$invoice_id)->get();
+
+        return view('invoices.invoice_edit',compact('invoiceView','users','invoiceDetails','AdditionalCharges','InvoiceDiscount'));
     }
 
     /** update record */
@@ -203,18 +207,77 @@ class InvoiceController extends Controller
     {
         try {
 
+            $customerName                    = InvoiceCustomerName::where('invoice_id',$request->invoice_id)->firstOrFail();
+            $customerName->customer_name     = $request->customer_name;
+            $customerName->po_number         = $request->po_number;
+            $customerName->date              = $request->date;
+            $customerName->due_date          = $request->due_date;
+            $customerName->enable_tax        = $request->enable_tax;
+            $customerName->recurring_incoice = $request->recurring_incoice;
+            $customerName->by_month          = $request->by_month;
+            $customerName->month             = $request->month;
+            $customerName->invoice_from      = $request->invoice_from;
+            $customerName->invoice_to        = $request->invoice_to;
+            $customerName->save();
+
             foreach ($request->items as $key => $values) {
-                $updateRecord = [
-                    'items'      => $request->items[$key],
-                    'items'      => $request->items[$key],
-                    'category'   => $request->category[$key],
-                    'quantity'   => $request->quantity[$key],
-                    'price'      => $request->price[$key],
-                    'amount'     => $request->amount[$key],
-                    'discount'   => $request->discount[$key],
-                ];
-                InvoiceDetails::where('id',$request->id[$key])->update($updateRecord);
+                $InvoiceDetails             = InvoiceDetails::where('invoice_id',$request->invoice_id)->firstOrFail();
+                $InvoiceDetails->items      = $request->items[$key];
+                $InvoiceDetails->category   = $request->category[$key];
+                $InvoiceDetails->quantity   = $request->quantity[$key];
+                $InvoiceDetails->price      = $request->price[$key];
+                $InvoiceDetails->amount     = $request->amount[$key];
+                $InvoiceDetails->discount   = $request->discount[$key];
+                $InvoiceDetails->save();
             }
+
+            /** InvoiceAdditionalCharges */
+            if(!empty($request->service_charge)) {
+                foreach ($request->service_charge as $key => $values) {
+                    $InvoiceAdditionalCharges                 = InvoiceAdditionalCharges::where('invoice_id',$request->invoice_id)->firstOrFail();
+                    $InvoiceAdditionalCharges->service_charge = $request->service_charge[$key];
+                    $InvoiceAdditionalCharges->save();
+                }
+            }
+            /** InvoiceDiscount */
+            if (!empty($request->offer_new)) {
+                foreach ($request->offer_new as $key => $values) {
+                    $InvoiceDiscount             = InvoiceDiscount::where('invoice_id',$request->invoice_id)->firstOrFail();
+                    $InvoiceDiscount->offer_new  = $request->offer_new[$key];
+                    $InvoiceDiscount->save();
+                }
+            }
+
+            $InvoicePaymentDetails                            = InvoicePaymentDetails::where('invoice_id',$request->invoice_id)->firstOrFail();
+            $InvoicePaymentDetails->account_holder_name       = $request->account_holder_name;
+            $InvoicePaymentDetails->bank_name                 = $request->bank_name;
+            $InvoicePaymentDetails->ifsc_code                 = $request->ifsc_code;
+            $InvoicePaymentDetails->account_number            = $request->account_number;
+            $InvoicePaymentDetails->add_terms_and_Conditions  = $request->add_terms_and_Conditions;
+            $InvoicePaymentDetails->add_notes                 = $request->add_notes;
+            $InvoicePaymentDetails->save();
+
+            if(!empty($request->upload_sign)) {
+                $file = $request->upload_sign_unlink;
+                if (Storage::exists($file)) {
+                    unlink(Storage::path($file));
+                }
+            } 
+            if ($request->hasFile('upload_sign')) {
+                $file        = $request->file('upload_sign');
+                $upload_sign = $file->store('public/upload_sign','local'); // 'local' disk corresponds to the storage/app directory    
+            } else {
+                $upload_sign = $request->upload_sign_unlink;
+            }
+            
+            /** InvoiceTotalAmount */
+            $InvoiceTotalAmount                          = InvoiceTotalAmount::where('invoice_id',$request->invoice_id)->firstOrFail();
+            $InvoiceTotalAmount->taxable_amount          = $request->taxable_amount;
+            $InvoiceTotalAmount->round_off               = $request->round_off;
+            $InvoiceTotalAmount->total_amount            = $request->total_amount;
+            $InvoiceTotalAmount->upload_sign             = $upload_sign;
+            $InvoiceTotalAmount->name_of_the_signatuaory = $request->name_of_the_signatuaory;
+            $InvoiceTotalAmount->save();
 
             Toastr::success('Has been updated successfully :)','Success');
             return redirect()->back();
@@ -260,7 +323,7 @@ class InvoiceController extends Controller
             ->join('invoice_total_amounts as ita', 'invoice_details.invoice_id', 'ita.invoice_id')
             ->join('invoice_payment_details as ide', 'invoice_details.invoice_id', 'ide.invoice_id')
             ->select('invoice_details.*','icn.customer_name','ita.total_amount',
-            'icn.due_date','icn.po_number','icn.enable_tax','icn.recurring_incoice',
+            'icn.due_date','icn.po_number','icn.enable_tax','ita.round_off','icn.recurring_incoice',
             'icn.by_month','icn.month','icn.invoice_from','icn.invoice_to'
             ,'ide.bank_name','ide.account_number','ita.total_amount','ita.upload_sign','ita.name_of_the_signatuaory')
             ->distinct('invoice_details.invoice_id')

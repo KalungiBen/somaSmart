@@ -103,7 +103,7 @@
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <select class="select" id="by_month" name="">
+                                                                <select class="select" id="by_month" name="by_month">
                                                                     <option selected>{{ $invoiceView->by_month }}</option>
                                                                     <option value="March">March</option>
                                                                     <option value="April">April</option>
@@ -131,40 +131,14 @@
                                     <div class="row">
                                         <div class="col-xl-4 col-lg-6 col-md-6">
                                             <div class="invoice-info">
-                                                <strong class="customer-text">Invoice From 
-                                                    <a class="small" href="#">Edit Address</a>
-                                                </strong>
-                                                <p class="invoice-details invoice-details-two">
-                                                    StarCode Kh
-                                                    <br>
-                                                    #61, Preah Monivong Blvd.,
-                                                    <br>
-                                                    Penh, Cambodia.
-                                                    <br>
-                                                </p>
-                                                <textarea hidden name="invoice_from">
-                                                    StarCode Kh
-                                                    #61, Preah Monivong Blvd.,
-                                                    Penh, Cambodia.
-                                                </textarea>
+                                                <strong class="customer-text">Invoice From</strong>
+                                                <textarea rows="1.5" class="form-control" name="invoice_from">{{ $invoiceView->invoice_from }}</textarea>
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-lg-6 col-md-6">
                                             <div class="invoice-info">
                                                 <strong class="customer-text">Invoice To</strong>
-                                                <p class="invoice-details invoice-details-two">
-                                                    Soeng Souy
-                                                    <br>
-                                                    #28, Mao Tse Tung Blvd.,
-                                                    <br>
-                                                    Penh, Cambodia.
-                                                    <br>
-                                                </p>
-                                                <textarea hidden name="invoice_to">
-                                                    Soeng Souy
-                                                    #28, Mao Tse Tung Blvd.,
-                                                    Penh, Cambodia.
-                                                </textarea>
+                                                <textarea rows="1.5" class="form-control" name="invoice_to">{{ $invoiceView->invoice_to }}</textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -212,47 +186,52 @@
 
                                 <div class="row">
                                     <div class="col-lg-7 col-md-6">
-                                        <div class="invoice-fields">
-                                            <h4 class="field-title">More Fields</h4>
-                                            <div id="btn-add-bank-details" class="field-box">
-                                                <p>Payment Details</p>
-                                                <a class="btn btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#bank_details">
-                                                    <i class="fas fa-plus-circle me-2"></i>Add Bank Details
-                                                </a>
+                                        @if(empty($invoiceView->account_holder_name))
+                                            <div class="invoice-fields">
+                                                <h4 class="field-title">More Fields</h4>
+                                                <div id="btn-add-bank-details" class="field-box">
+                                                    <p>Payment Details</p>
+                                                    <a class="btn btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#bank_details">
+                                                        <i class="fas fa-plus-circle me-2"></i>Add Bank Details
+                                                    </a>
+                                                </div>
+                                                <div id="btn-remove-bank-details" class="field-box">
+                                                    <p>Payment Details</p>
+                                                    <a class="btn btn-danger">
+                                                        <i class="fe fe-trash-2"></i> Remove Bank Details
+                                                    </a>
+                                                </div>
                                             </div>
-                                            <div id="btn-remove-bank-details" class="field-box">
-                                                <p>Payment Details</p>
-                                                <a class="btn btn-danger">
-                                                    <i class="fe fe-trash-2"></i> Remove Bank Details
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <br>
-
-                                        <div id="bank-details" class="bank-inner-details">
+                                            <br>
+                                        @endif
+                                        @if(!empty($invoiceView->account_holder_name))
+                                            <div id="bank-details-em" class="bank-inner-details">
+                                        @else
+                                            <div id="bank-details" class="bank-inner-details">
+                                        @endif
                                             <div class="row">
                                                 <div class="col-lg-6 col-md-6">
                                                     <div class="form-group">
                                                         <label>Account Holder Name</label>
-                                                        <input type="text" class="form-control" id="auto_account_holder_name" name="account_holder_name" placeholder="Add Name">
+                                                        <input type="text" class="form-control" id="auto_account_holder_name" name="account_holder_name" placeholder="Add Name" value="{{ $invoiceView->account_holder_name }}">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6 col-md-6">
                                                     <div class="form-group">
                                                         <label>Bank name</label>
-                                                        <input type="text" class="form-control" id="auto_bank_name" name="bank_name" placeholder="Add Bank name">
+                                                        <input type="text" class="form-control" id="auto_bank_name" name="bank_name" placeholder="Add Bank name" value="{{ $invoiceView->bank_name }}">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6 col-md-6">
                                                     <div class="form-group">
                                                         <label>IFSC Code</label>
-                                                        <input type="text" class="form-control" id="auto_ifsc_code" name="ifsc_code" placeholder="IFSC Code">
+                                                        <input type="text" class="form-control" id="auto_ifsc_code" name="ifsc_code" placeholder="IFSC Code" value="{{ $invoiceView->ifsc_code }}">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6 col-md-6">
                                                     <div class="form-group">
                                                         <label>Account Number</label>
-                                                        <input type="text" class="form-control" id="auto_account_number" name="account_number" placeholder="Account Number">
+                                                        <input type="text" class="form-control" id="auto_account_number" name="account_number" placeholder="Account Number" value="{{ $invoiceView->account_number }}">
                                                     </div>
                                                 </div>
                                             </div>
@@ -301,16 +280,33 @@
                                             <h4 class="invoice-total-title">Summary</h4>
                                             <div class="invoice-total-box">
                                                 <div class="invoice-total-inner">
-                                                    <input type="hidden" name="taxable_amount" id="taxable_amount" value="21">
-                                                    <p>Taxable Amount <span id="">$21</span></p>
+                                                    <input type="hidden" name="taxable_amount" id="taxable_amount" value="{{ $invoiceView->taxable_amount }}">
+                                                    <p>Taxable Amount <span id="">${{ $invoiceView->taxable_amount }}</span></p>
                                                     <p>Round Off
+                                                        @if(!empty($invoiceView->round_off))
+                                                            <input type="checkbox" name="round_off" id="status_1" class="check" checked value="{{ $invoiceView->round_off }}">
+                                                            <label for="status_1" class="checktoggle">checkbox</label>
+                                                            <span>${{ $invoiceView->round_off }}</span>
+                                                        @else 
                                                         <input type="checkbox" name="round_off" id="status_1" class="check" value="54">
                                                         <label for="status_1" class="checktoggle">checkbox</label>
-                                                        <span id="">$54</span>
+                                                        <span>$54</span>
+                                                        @endif
                                                     </p>
                                                     <div class="links-info-one">
                                                         <div class="links-info"></div>
                                                     </div>
+                                                    @if(!empty($AdditionalCharges))  
+                                                        @foreach($AdditionalCharges as $key => $value)
+                                                            <div class="service-amount">
+                                                                <a href="#" class="service-trash">
+                                                                    <i class="fe fe-minus-circle me-1"></i>Service Charge
+                                                                </a> 
+                                                                <span>${{ $value->service_charge }}</span>
+                                                                <input type="hidden" name="service_charge[]" value="{{ $value->service_charge }}">
+                                                            </div>
+                                                        @endforeach
+                                                    @endif
                                                     <a class="add-links add-links-bg">
                                                         <i class="fas fa-plus-circle me-1"></i> Additional Charges
                                                     </a>
@@ -321,19 +317,34 @@
                                                             </a>
                                                         </div>
                                                     </div>
+                                                    @if(!empty($InvoiceDiscount))  
+                                                        @foreach($InvoiceDiscount as $key => $value)
+                                                            <div class="service-amount">
+                                                                <a href="#" class="service-trash-one">
+                                                                    <i class="fe fe-minus-circle me-1"></i> Offer new
+                                                                </a>
+                                                                <span>${{ $value->offer_new }}%</span>
+                                                                <input type="hidden" name="offer_new[]" value="{{ $value->offer_new }}">
+                                                            </div>
+                                                        @endforeach
+                                                    @endif
                                                 </div>
                                                 <div class="invoice-total-footer">
-                                                    <h4>Total Amount <span id="total_amount">$<span class="total_amount" name="total_amount">00</span></span></h4>
+                                                    <h4>Total Amount <span id="total_amount">$<span class="total_amount" name="total_amount">{{ $invoiceView->total_amount }}</span></span></h4>
+                                                    <input type="hidden" name="total_amount" value="{{ $invoiceView->total_amount }}">
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="upload-sign">
                                             <div class="form-group service-upload">
-                                                <span>Upload Sign</span>
+                                                <span>Update Sign</span>
                                                 <input type="file" name="upload_sign" multiple>
+                                                <img class="img-fluid d-inline-block" src="{{ Storage::url($invoiceView->upload_sign) }}" alt="sign" style="width: 20%;">
+                                                <input type="hidden" name="upload_sign_unlink" value="{{ $invoiceView->upload_sign }}">
                                             </div>
                                             <div class="form-group">
-                                                <input type="text" class="form-control" name="name_of_the_signatuaory" placeholder="Name of the Signatuaory">
+                                                <input type="text" class="form-control" name="name_of_the_signatuaory" placeholder="Name of the Signatuaory" value="{{ $invoiceView->name_of_the_signatuaory }}">
                                             </div>
                                             <div class="form-group float-end mb-0">
                                                 <button class="btn btn-primary" type="submit">Save Invoice</button>
@@ -341,6 +352,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                
                             </form>
                         </div>
                     </div>
@@ -777,7 +789,6 @@
                 $(".settings-form").append(experiencecontent);
                 return false;
             });
-
         </script>
 
     @endsection

@@ -120,39 +120,16 @@
                                     <div class="row">
                                         <div class="col-xl-4 col-lg-6 col-md-6">
                                             <div class="invoice-info">
-                                                <strong class="customer-text">Invoice From 
-                                                    <a class="small" href="#">Edit Address</a>
-                                                </strong>
-                                                <p class="invoice-details invoice-details-two">
-                                                    StarCode Kh
-                                                    <br>
-                                                    #61, Preah Monivong Blvd.,
-                                                    <br>
-                                                    Penh, Cambodia.
-                                                    <br>
-                                                </p>
-                                                <textarea hidden name="invoice_from">
-                                                    StarCode Kh
-                                                    #61, Preah Monivong Blvd.,
-                                                    Penh, Cambodia.
-                                                </textarea>
+                                                <strong class="customer-text">Invoice From</strong>
+                                                <textarea rows="1.5" class="form-control" name="invoice_from">StarCode Kh
+#61, Preah Monivong Blvd., Penh, Cambodia.</textarea>
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-lg-6 col-md-6">
                                             <div class="invoice-info">
                                                 <strong class="customer-text">Invoice To</strong>
-                                                <p class="invoice-details invoice-details-two">
-                                                    <span id="invoice_to"></span>
-                                                    <br>
-                                                    #28, Mao Tse Tung Blvd.,
-                                                    <br>
-                                                    Penh, Cambodia.
-                                                    <br>
-                                                </p>
-                                                <textarea hidden name="invoice_to">
-                                                    Soeng Souy
-                                                    #28, Mao Tse Tung Blvd.,
-                                                    Penh, Cambodia.
+                                                <textarea rows="1.5" class="form-control" name="invoice_to">StarCode Kh
+#28, Mao Tse Tung Blvd., Penh, Cambodia.
                                                 </textarea>
                                             </div>
                                         </div>
@@ -603,18 +580,6 @@
     </div>
 
     @section('script')
-
-        <script>
-            // Invoice To
-            $('#customer_name').on('change',function()
-            {
-                var invoiceToSpan       = document.getElementById("invoice_to");
-                var customer_name       = $('#customer_name').val();
-                var contentToDisplay    = customer_name;
-                invoiceToSpan.innerText = contentToDisplay;
-            });
-            
-        </script>
         {{-- show hide [Bank Details]--}}
         <script>
             $('#bank-details').hide();
