@@ -109,7 +109,7 @@
                     <span>Management</span>
                 </li>
 
-                <li class="submenu {{set_active(['account/fees/collections/page'])}}">
+                <li class="submenu {{set_active(['account/fees/collections/page','add/fees/collection/page'])}}">
                     <a href="#"><i class="fas fa-file-invoice-dollar"></i>
                         <span> Accounts</span>
                         <span class="menu-arrow"></span>
@@ -118,7 +118,7 @@
                         <li><a class="{{set_active(['account/fees/collections/page'])}}" href="{{ route('account/fees/collections/page') }}">Fees Collection</a></li>
                         <li><a href="expenses.html">Expenses</a></li>
                         <li><a href="salary.html">Salary</a></li>
-                        <li><a href="add-fees-collection.html">Add Fees</a></li>
+                        <li><a class="{{set_active(['add/fees/collection/page'])}}" href="{{ route('add/fees/collection/page') }}">Add Fees</a></li>
                         <li><a href="add-expenses.html">Add Expenses</a></li>
                         <li><a href="add-salary.html">Add Salary</a></li>
                     </ul>

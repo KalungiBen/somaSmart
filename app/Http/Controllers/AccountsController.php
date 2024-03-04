@@ -11,4 +11,10 @@ class AccountsController extends Controller
     {
         return view('accounts.feescollections');
     }
+
+    /** add Fees Collection */
+    public function addFeesCollection()
+    {
+        return view('accounts.add-fees-collection');
+    }
 }
