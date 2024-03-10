@@ -28,10 +28,12 @@
                                         <h3 class="page-title">Fees Collections</h3>
                                     </div>
                                     <div class="col-auto text-end float-end ms-auto download-grp">
-                                        <a href="#" class="btn btn-outline-primary me-2"><i
-                                                class="fas fa-download"></i> Download</a>
-                                        <a href="{{ route('add/fees/collection/page') }}" class="btn btn-primary"><i
-                                                class="fas fa-plus"></i></a>
+                                        <a href="#" class="btn btn-outline-primary me-2">
+                                            <i class="fas fa-download"></i> Download
+                                        </a>
+                                        <a href="{{ route('add/fees/collection/page') }}" class="btn btn-primary">
+                                            <i class="fas fa-plus"></i>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -101,150 +103,6 @@
                                             <td>Exam Fees</td>
                                             <td>$378</td>
                                             <td>04 Sept 2020</td>
-                                            <td class="text-end">
-                                                <span class="badge badge-success">Paid</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>PRE2431</td>
-                                            <td>
-                                                <h2 class="table-avatar">
-                                                    <a class="avatar avatar-sm me-2">
-                                                        <img class="avatar-img rounded-circle"src="{{ URL::to('images/photo_defaults.jpg') }}"alt="User Image">
-                                                    </a>
-                                                    <a>Soeng Souy</a>
-                                                </h2>
-                                            </td>
-                                            <td>Female</td>
-                                            <td>Exam Fees</td>
-                                            <td>$246</td>
-                                            <td>17 Sept 2020</td>
-                                            <td class="text-end">
-                                                <span class="badge badge-danger">Unpaid</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>PRE1534</td>
-                                            <td>
-                                                <h2 class="table-avatar">
-                                                    <a class="avatar avatar-sm me-2">
-                                                        <img class="avatar-img rounded-circle"src="{{ URL::to('images/photo_defaults.jpg') }}"alt="User Image">
-                                                    </a>
-                                                    <a>Soeng Souy</a>
-                                                </h2>
-                                            </td>
-                                            <td>Male</td>
-                                            <td>Exam Fees</td>
-                                            <td>$56</td>
-                                            <td>02 Oct 2020</td>
-                                            <td class="text-end">
-                                                <span class="badge badge-danger">Unpaid</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>PRE2153</td>
-                                            <td>
-                                                <h2 class="table-avatar">
-                                                    <a class="avatar avatar-sm me-2">
-                                                        <img class="avatar-img rounded-circle"src="{{ URL::to('images/photo_defaults.jpg') }}"alt="User Image">
-                                                    </a>
-                                                    <a>Soeng Souy</a>
-                                                </h2>
-                                            </td>
-                                            <td>Male</td>
-                                            <td>Exam Fees</td>
-                                            <td>$236</td>
-                                            <td>28 Oct 2020</td>
-                                            <td class="text-end">
-                                                <span class="badge badge-danger">Unpaid</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>PRE1252</td>
-                                            <td>
-                                                <h2 class="table-avatar">
-                                                    <a class="avatar avatar-sm me-2">
-                                                        <img class="avatar-img rounded-circle"src="{{ URL::to('images/photo_defaults.jpg') }}"alt="User Image">
-                                                    </a>
-                                                    <a>Soeng Souy</a>
-                                                </h2>
-                                            </td>
-                                            <td>Female</td>
-                                            <td>Transport Fees</td>
-                                            <td>$237</td>
-                                            <td>17 Oct 2020</td>
-                                            <td class="text-end">
-                                                <span class="badge badge-success">Paid</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>PRE1434</td>
-                                            <td>
-                                                <h2 class="table-avatar">
-                                                    <a class="avatar avatar-sm me-2">
-                                                        <img class="avatar-img rounded-circle"src="{{ URL::to('images/photo_defaults.jpg') }}"alt="User Image">
-                                                    </a>
-                                                    <a>Soeng Souy</a>
-                                                </h2>
-                                            </td>
-                                            <td>Male</td>
-                                            <td>Mess Fees</td>
-                                            <td>$567</td>
-                                            <td>05 Nov 2020</td>
-                                            <td class="text-end">
-                                                <span class="badge badge-success">Paid</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>PRE2345</td>
-                                            <td>
-                                                <h2 class="table-avatar">
-                                                    <a class="avatar avatar-sm me-2">
-                                                        <img class="avatar-img rounded-circle"src="{{ URL::to('images/photo_defaults.jpg') }}"alt="User Image">
-                                                    </a>
-                                                    <a>Soeng Souy</a>
-                                                </h2>
-                                            </td>
-                                            <td>Female</td>
-                                            <td>Exam Fees</td>
-                                            <td>$564</td>
-                                            <td>12 Nov 2020</td>
-                                            <td class="text-end">
-                                                <span class="badge badge-success">Paid</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>PRE2365</td>
-                                            <td>
-                                                <h2 class="table-avatar">
-                                                    <a class="avatar avatar-sm me-2">
-                                                        <img class="avatar-img rounded-circle"src="{{ URL::to('images/photo_defaults.jpg') }}"alt="User Image">
-                                                    </a>
-                                                    <a>Soeng Souy</a>
-                                                </h2>
-                                            </td>
-                                            <td>Male</td>
-                                            <td>Class Test</td>
-                                            <td>$234</td>
-                                            <td>15 Nov 2020</td>
-                                            <td class="text-end">
-                                                <span class="badge badge-success">Paid</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>PRE1234</td>
-                                            <td>
-                                                <h2 class="table-avatar">
-                                                    <a class="avatar avatar-sm me-2">
-                                                        <img class="avatar-img rounded-circle"src="{{ URL::to('images/photo_defaults.jpg') }}"alt="User Image">
-                                                    </a>
-                                                    <a>Soeng Souy</a>
-                                                </h2>
-                                            </td>
-                                            <td>Male</td>
-                                            <td>Exam Fees</td>
-                                            <td>$278</td>
-                                            <td>17 Nov 2020</td>
                                             <td class="text-end">
                                                 <span class="badge badge-success">Paid</span>
                                             </td>
