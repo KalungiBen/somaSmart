@@ -150,5 +150,6 @@ Route::group(['namespace' => 'App\Http\Controllers'],function()
     Route::controller(AccountsController::class)->group(function () {
         Route::get('account/fees/collections/page', 'index')->middleware('auth')->name('account/fees/collections/page'); // account/fees/collections/page
         Route::get('add/fees/collection/page', 'addFeesCollection')->middleware('auth')->name('add/fees/collection/page'); // add/fees/collection
+        Route::post('fees/collection/save', 'saveRecord')->middleware('auth')->name('fees/collection/save'); // fees/collection/save
     });
 });

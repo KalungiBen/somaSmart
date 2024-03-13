@@ -21,7 +21,8 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-body">
-                            <form>
+                            <form action="{{ route('fees/collection/save') }}" method="POST">
+                                @csrf
                                 <div class="row">
                                     <div class="col-12">
                                         <h5 class="form-title"><span>Fees Information</span></h5>
@@ -46,7 +47,7 @@
                                     <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms">
                                             <label>Gender <span class="login-danger">*</span></label>
-                                            <select class="form-control select">
+                                            <select class="form-control select" name="gender">
                                                 <option selected disabled>Select Gender</option>
                                                 <option value="Female">Female</option>
                                                 <option value="Male">Male</option>
