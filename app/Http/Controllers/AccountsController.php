@@ -13,7 +13,10 @@ class AccountsController extends Controller
     /** index page */
     public function index()
     {
-        return view('accounts.feescollections');
+        $feesInformation = FeesInformation::join('users', 'fees_information.student_id', 'users.id')
+            ->select('fees_information.*','users.avatar')
+            ->get();
+        return view('accounts.feescollections',compact('feesInformation'));
     }
 
     /** add Fees Collection */

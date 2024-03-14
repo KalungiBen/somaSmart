@@ -53,60 +53,26 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>PRE2209</td>
-                                            <td>
-                                                <h2 class="table-avatar">
-                                                    <a class="avatar avatar-sm me-2">
-                                                        <img class="avatar-img rounded-circle"src="{{ URL::to('images/photo_defaults.jpg') }}"alt="User Image">
-                                                    </a>
-                                                    <a>Soeng Souy</a>
-                                                </h2>
-                                            </td>
-                                            <td>Female</td>
-                                            <td>Mess Fees</td>
-                                            <td>$120</td>
-                                            <td>17 Aug 2020</td>
-                                            <td class="text-end">
-                                                <span class="badge badge-success">Paid</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>PRE2213</td>
-                                            <td>
-                                                <h2 class="table-avatar">
-                                                    <a class="avatar avatar-sm me-2">
-                                                        <img class="avatar-img rounded-circle"src="{{ URL::to('images/photo_defaults.jpg') }}"alt="User Image">
-                                                    </a>
-                                                    <a>Soeng Souy</a>
-                                                </h2>
-                                            </td>
-                                            <td>Female</td>
-                                            <td>Class Test</td>
-                                            <td>$56</td>
-                                            <td>05 Aug 2020</td>
-                                            <td class="text-end">
-                                                <span class="badge badge-success">Paid</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>PRE2143</td>
-                                            <td>
-                                                <h2 class="table-avatar">
-                                                    <a class="avatar avatar-sm me-2">
-                                                        <img class="avatar-img rounded-circle"src="{{ URL::to('images/photo_defaults.jpg') }}"alt="User Image">
-                                                    </a>
-                                                    <a>Soeng Souy</a>
-                                                </h2>
-                                            </td>
-                                            <td>Male</td>
-                                            <td>Exam Fees</td>
-                                            <td>$378</td>
-                                            <td>04 Sept 2020</td>
-                                            <td class="text-end">
-                                                <span class="badge badge-success">Paid</span>
-                                            </td>
-                                        </tr>
+                                        @foreach($feesInformation as $key => $value)
+                                            <tr>
+                                                <td>ST-{{ $value->student_id }}</td>
+                                                <td>
+                                                    <h2 class="table-avatar">
+                                                        <a class="avatar avatar-sm me-2">
+                                                            <img class="avatar-img rounded-circle"src="{{ URL::to('/images/'. $value->avatar) }}"alt="{{ $value->student_name }}">
+                                                        </a>
+                                                        <a>{{ $value->student_name }}</a>
+                                                    </h2>
+                                                </td>
+                                                <td>{{ $value->gender }}</td>
+                                                <td>{{ $value->fees_type }}</td>
+                                                <td>${{ $value->fees_amount }}</td>
+                                                <td>{{ $value->paid_date }}</td>
+                                                <td class="text-end">
+                                                    <span class="badge badge-success">Paid</span>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
